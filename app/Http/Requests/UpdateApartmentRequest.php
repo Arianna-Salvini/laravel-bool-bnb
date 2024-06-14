@@ -11,7 +11,7 @@ class UpdateApartmentRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,17 @@ class UpdateApartmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => 'required|min:5|max:255',
+            'user_id' => 'nullable|exists:user,id',
+            'services' => 'exists:services,id',
+            'description' => 'nullable|max:1000',
+            'image' => 'nullable|image|max:1000',
+            'rooms' => 'nullable|integer|min:1',
+            'beds' => 'nullable|integer|min:1',
+            'bathrooms' => 'nullable|integer|min:1',
+            'square_meters' => 'nullable|integer',
+            'address' => 'nullable',
+            'visibility' => 'required|boolean',
         ];
     }
 }
