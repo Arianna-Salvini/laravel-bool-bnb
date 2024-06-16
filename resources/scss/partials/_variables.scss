@@ -1,0 +1,10 @@
+/* colors */
+
+
+
+/* mixins */
+@mixin d-flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
