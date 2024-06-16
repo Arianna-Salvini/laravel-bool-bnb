@@ -194,7 +194,7 @@
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="{{ $service->id }}"
                                 id="service_{{ $service->id }}" name="services[]"
-                                {{ in_array($service->id, old('services', [])) ? 'selected' : '' }} />
+                                {{ in_array($service->id, old('services', [])) ? 'checked' : '' }} />
                             <label class="form-check-label pe-1" for="service_{{ $service->id }}">
                                 {{ $service->service_name }} </label>
                         </div>
