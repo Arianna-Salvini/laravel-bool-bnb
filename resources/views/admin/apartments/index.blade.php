@@ -27,7 +27,14 @@
 
 
                                 <td>{{ $apartment->id }}</td>
-                                <td><img src="{{ $apartment->image }}" alt="" width="100"></td>
+                                <td>
+                                    @if (Str::startsWith($apartment->image, 'http'))
+                                        <img src="{{ $apartment->image }}" alt="" width="100">
+                                    @else
+                                        <img src="{{ asset('storage/' . $apartment->image) }}" alt=""
+                                            width="100">
+                                    @endif
+                                </td>
                                 <td>{{ $apartment->title }}</td>
                                 <td>{{ $apartment->address }}</td>
                                 <td>
