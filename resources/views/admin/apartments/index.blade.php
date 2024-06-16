@@ -6,6 +6,8 @@
 
         <div class="container mt-5">
             <h2>All Apartments</h2>
+            @include('layouts.partials.session-messages')
+
             <a href="{{ route('admin.apartments.create') }}" class="btn btn-primary">Insert New Apartment</a>
             <div class="table-responsive mt-3">
                 <table class="table table-primary">
