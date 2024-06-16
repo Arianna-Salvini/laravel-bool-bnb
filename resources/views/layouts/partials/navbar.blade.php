@@ -16,7 +16,7 @@
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse pt-2 justify-content-end" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
         <!-- Left Side Of Navbar -->
         @auth
             <ul class="navbar-nav me-auto d-md-none">
