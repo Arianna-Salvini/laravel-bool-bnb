@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="bg-dark text-white mt-5">
+    <div class="bg-dark text-white">
         <div class="container">
             <h2>Edit apartment</h2>
         </div>
