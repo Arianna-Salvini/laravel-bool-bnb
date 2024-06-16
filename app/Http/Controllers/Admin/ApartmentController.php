@@ -82,7 +82,8 @@ class ApartmentController extends Controller
      */
     public function edit(Apartment $apartment)
     {
-        //
+        $services = Service::all();
+        return view('admin.apartments.edit', compact('apartment', 'services'));
     }
 
     /**
@@ -90,7 +91,39 @@ class ApartmentController extends Controller
      */
     public function update(UpdateApartmentRequest $request, Apartment $apartment)
     {
-        //
+        $validated = $request->validated();
+        /* generate slug based on apartment title that might have been changed */
+        $slug = Str::slug($request->title, '-');
+        $validated['slug'] = $slug;
+
+        /* if I upload a different img, delete the old one from storage and save the new img path */
+        if($request->has('image')){
+            if($apartment->image){
+                Storage::delete($apartment->image);
+            }
+            $img_path = Storage::put('uploads', $validated['image']);
+            $validated['image'] = $img_path;
+        }
+
+        /* if I have services in the request, sync them, otherwise sync an empty array */
+        if($request->has('services')){
+            $apartment->services()->sync($validated['services']);
+        }
+        else{
+            $apartment->services()->sync([]);
+        }
+
+        /* if I change the address in the request, I have to update latitude and longitude of that address ->api call to tom tom */
+
+
+
+
+
+
+
+        /* update apartment data */
+        $apartment->update($validated);
+        return to_route('admin.apartments.index')->with('message', "Your apartment $apartment->title has been updated successfully");
     }
 
     /**
