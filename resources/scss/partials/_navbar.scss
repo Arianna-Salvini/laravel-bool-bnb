@@ -1,0 +1,30 @@
+@use "./variables" as *;
+
+
+
+#top-bar {
+    border-bottom: 1px solid black;
+
+    .home-btn {
+        padding: 0.5rem;
+    }
+
+    .logo-sm {
+        height: 60px;
+    }
+
+    .dropdown-menu {
+        top: 3rem !important;
+    }
+
+    .auth {
+        padding: 0.5rem;
+        border-radius: 20px;
+    }
+}
+
+@media screen and (min-width:768px) {
+    nav {
+        height: 60px;
+    }
+}

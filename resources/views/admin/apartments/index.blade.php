@@ -4,7 +4,7 @@
     <section id="apartment_table" class="pb-5">
 
 
-        <div class="container mt-5">
+        <div class="container">
             <h2>All Apartments</h2>
             @include('layouts.partials.session-messages')
 
