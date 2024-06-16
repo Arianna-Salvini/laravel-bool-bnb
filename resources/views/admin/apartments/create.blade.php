@@ -19,7 +19,7 @@
                         value="{{ old('title') }}" />
                     <small id="titleHelper" class="form-text text-muted">Insert the title of your apartment</small>
                     @error('title')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                        <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
             </div>
@@ -32,7 +32,7 @@
                         id="image" aria-describedby="imageHelper" placeholder="Insert the image of your apartment" />
                     <small id="imageHelper" class="form-text text-muted">Insert the image of your apartment</small>
                     @error('image')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                        <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
             </div>
@@ -46,7 +46,7 @@
                         value="{{ old('rooms') }}" />
                     <small id="roomsHelper" class="form-text text-muted">Insert the rooms of your apartment</small>
                     @error('rooms')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                        <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
             </div>
@@ -60,7 +60,7 @@
                         value="{{ old('beds') }}" />
                     <small id="bedsHelper" class="form-text text-muted">Insert the beds of your apartment</small>
                     @error('beds')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                        <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
             </div>
@@ -74,7 +74,7 @@
                         placeholder="Insert the bathrooms of your apartment" value="{{ old('bathrooms') }}" />
                     <small id="bathroomsHelper" class="form-text text-muted">Insert the bathrooms of your apartment</small>
                     @error('bathrooms')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                        <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
             </div>
@@ -89,7 +89,7 @@
                     <small id="square_metersHelper" class="form-text text-muted">Insert the square meters of your
                         apartment</small>
                     @error('square_meters')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                        <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
             </div>
@@ -105,7 +105,7 @@
                     <small id="addressHelper" class="form-text text-muted">Insert the address of your
                         apartment</small>
                     @error('address')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                        <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
             </div>
@@ -147,7 +147,7 @@
                 <label for="description" class="form-label"></label>
                 <textarea class="form-control" name="description" id="description" rows="6">{{ old('description') }}</textarea>
                 @error('description')
-                    <div class="alert alert-danger">{{ $message }}</div>
+                    <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
 
