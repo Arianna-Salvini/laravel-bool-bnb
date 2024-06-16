@@ -22,7 +22,7 @@
                     </label>
                     <input type="text" class="form-control @error('title') is-invalid @enderror" name="title"
                         id="title" aria-describedby="titleHelper" placeholder="Insert the title of your apartment"
-                        minlength="5" value="{{ old('title', $apartment->title) }}" />
+                        minlength="5" value="{{ old('title', $apartment->title) }}" required />
                     <small id="titleHelper" class="form-text text-muted">Edit the title describing your
                         apartment</small>
                     @error('title')
