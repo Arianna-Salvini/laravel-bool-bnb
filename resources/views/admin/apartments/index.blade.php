@@ -51,7 +51,8 @@
 
                                     <a class="btn btn-dark btn-sm " href="#" role="button"> <i class="fa fa-eye"
                                             aria-hidden="true"></i></a>
-                                    <a class="btn btn-warning btn-sm " href="#" role="button"> <i
+                                    <a class="btn btn-warning btn-sm "
+                                        href="{{ route('admin.apartments.edit', $apartment) }}" role="button"> <i
                                             class="fa fa-pencil" aria-hidden="true"></i></a>
                                     <a class="btn btn-danger btn-sm " href="#" role="button"> <i class="fa fa-trash"
                                             aria-hidden="true"></i></a>
