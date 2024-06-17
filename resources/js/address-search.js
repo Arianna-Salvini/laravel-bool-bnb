@@ -40,28 +40,31 @@ address.addEventListener('input', function () {
         for (let i = 0; i < 5; i++) {
             let resultAddress = document.createElement('li');
 
-            /* write response full address into list item */
-            resultAddress.innerHTML = response.results[i].address.freeformAddress
+            if (response.results.length !== 0 && response.results[i].address) {
 
-            /* append list item to list */
-            addressList.appendChild(resultAddress);
+                /* write response full address into list item */
+                resultAddress.innerHTML = response.results[i].address.freeformAddress
 
-            /* add event listener to each suggestion. Event to listen for: click */
-            resultAddress.addEventListener('click', function () {
-                //console.log(this.innerHTML);
-                //console.log(address.value);
-                //console.log(response.results[i].address.streetName);
+                /* append list item to list */
+                addressList.appendChild(resultAddress);
 
-                /* when I click, I get all fields autocomplete with response data */
-                address.value = response.results[i].address.streetName;
-                street_number.value = response.results[i].address.streetNumber;
-                zip_code.value = response.results[i].address.postalCode;
-                city.value = response.results[i].address.municipality;
-                country_code.value = response.results[i].address.countryCode;
+                /* add event listener to each suggestion. Event to listen for: click */
+                resultAddress.addEventListener('click', function () {
+                    //console.log(this.innerHTML);
+                    //console.log(address.value);
+                    //console.log(response.results[i].address.streetName);
 
-                /* when I select a suggestion, the other suggestions disappear */
-                addressList.innerHTML = '';
-            })
+                    /* when I click, I get all fields autocomplete with response data */
+                    address.value = response.results[i].address.streetName;
+                    street_number.value = response.results[i].address.streetNumber;
+                    zip_code.value = response.results[i].address.postalCode;
+                    city.value = response.results[i].address.municipality;
+                    country_code.value = response.results[i].address.countryCode;
+
+                    /* when I select a suggestion, the other suggestions disappear */
+                    addressList.innerHTML = '';
+                })
+            }
         }
     });
 
