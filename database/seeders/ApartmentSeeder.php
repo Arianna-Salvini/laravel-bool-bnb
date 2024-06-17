@@ -26,6 +26,10 @@ class ApartmentSeeder extends Seeder
             $apartment->bathrooms = $faker->numberBetween(1, 2);
             $apartment->square_meters = $faker->numberBetween(40, 250);
             $apartment->address = $faker->address();
+            $apartment->street_number = $faker->randomNumber(3);
+            $apartment->country_code = $faker->countryCode();
+            $apartment->city = $faker->city();
+            $apartment->zip_code = $faker->postcode();
             $apartment->latitude = $faker->latitude(-90, 90);
             $apartment->longitude = $faker->longitude(-180, 180);
             $apartment->visibility = $faker->boolean(75);

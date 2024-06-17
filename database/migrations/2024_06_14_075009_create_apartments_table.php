@@ -22,6 +22,10 @@ return new class extends Migration
             $table->unsignedTinyInteger('bathrooms')->nullable();
             $table->unsignedSmallInteger('square_meters')->nullable();
             $table->string('address', 255)->nullable();
+            $table->string('street_number')->nullable();
+            $table->string('country_code', 5)->nullable();
+            $table->string('city', 60)->nullable();
+            $table->string('zip_code', 15)->nullable();
             $table->decimal('latitude', 9, 6)->nullable();
             $table->decimal('longitude', 9, 6)->nullable();
             $table->boolean('visibility')->nullable()->default(true);
