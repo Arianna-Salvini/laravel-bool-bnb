@@ -59,6 +59,22 @@
                 </div>
             </div>
 
+            {{-- street_number --}}
+
+            <div>
+                <div class="mb-3">
+                    <label for="street_number" class="form-label"><strong>Street number</strong></label>
+                    <input type="text" class="form-control @error('street_number') is-invalid @enderror"
+                        name="street_number" id="street_number" aria-describedby="street_numberHelper"
+                        placeholder="Via MarioRossi 5" value="{{ old('street_number') }}" />
+                    <small id="street_numberHelper" class="form-text text-muted">Insert the street number of your
+                        apartment</small>
+                    @error('street_number')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+
             {{-- country code --}}
 
             <div>
