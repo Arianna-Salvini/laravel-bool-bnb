@@ -32,6 +32,10 @@ class UpdateApartmentRequest extends FormRequest
             'bathrooms' => 'nullable|integer|min:1',
             'square_meters' => 'nullable|integer',
             'address' => 'nullable',
+            'street_number' => 'nullable',
+            'country_code' => 'nullable',
+            'zip_code' => 'nullable',
+            'city' => 'nullable',
             'visibility' => 'required|boolean',
         ];
     }
