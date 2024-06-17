@@ -56,10 +56,19 @@ address.addEventListener('input', function () {
 
                     /* when I click, I get all fields autocomplete with response data */
                     address.value = response.results[i].address.streetName;
-                    street_number.value = response.results[i].address.streetNumber;
-                    zip_code.value = response.results[i].address.postalCode;
-                    city.value = response.results[i].address.municipality;
-                    country_code.value = response.results[i].address.countryCode;
+
+                    if (response.results[i].address.streetNumber) {
+                        street_number.value = response.results[i].address.streetNumber;
+                    }
+                    if (response.results[i].address.postalCode) {
+                        zip_code.value = response.results[i].address.postalCode;
+                    }
+                    if (response.results[i].address.municipality) {
+                        city.value = response.results[i].address.municipality;
+                    }
+                    if (response.results[i].address.countryCode) {
+                        country_code.value = response.results[i].address.countryCode;
+                    }
 
                     /* when I select a suggestion, the other suggestions disappear */
                     addressList.innerHTML = '';
