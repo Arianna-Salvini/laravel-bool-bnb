@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Apartment;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreApartmentRequest;
 use App\Http\Requests\UpdateApartmentRequest;
-use App\Http\Controllers\Controller;
+use App\Models\Apartment;
 use App\Models\Service;
 use App\Models\Sponsorship;
 use GuzzleHttp\Client;
-use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -20,7 +20,14 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-        $apartments = Apartment::orderByDesc('id')->get();
+        // Auth user
+        $user = Auth::user();
+        // dd(Auth::user());
+
+        $apartments = Apartment::where('user_id', $user->id)->orderByDesc('id')->get();
+
+        // dd($apartments);
+
         return view('admin.apartments.index', compact('apartments'));
     }
 
@@ -32,6 +39,7 @@ class ApartmentController extends Controller
         $services = Service::all();
         $nations = config('nation');
         $sponsorships = Sponsorship::all();
+
         return view('admin.apartments.create', compact('services', 'sponsorships', 'nations'));
     }
 
@@ -41,6 +49,8 @@ class ApartmentController extends Controller
     public function store(StoreApartmentRequest $request)
     {
         $validated = $request->validated();
+
+        $validated['user_id'] = Auth::id();  // Id user authenticated
 
         /* generate slug based on apartment title */
         $slug = Str::slug($request->title, '-');
@@ -67,7 +77,7 @@ class ApartmentController extends Controller
         if ($request->has('country_code', 'street_number', 'zip_code', 'city') && $country_code != null && $zip_code != null && $city != null && $street_number != null) {
 
             /* create api url */
-            $api_url = $base_api . 'countryCode=' . $country_code . '&streetNumber=' . $street_number . '&streetName=' . $address . '&municipality=' . $city . '&postalCode=' . $zip_code . '&view=Unified&key=' . $api_key;
+            $api_url = $base_api.'countryCode='.$country_code.'&streetNumber='.$street_number.'&streetName='.$address.'&municipality='.$city.'&postalCode='.$zip_code.'&view=Unified&key='.$api_key;
 
             /* save coordinates */
             /* $coordinates = json_decode(file_get_contents($api_url))->results[0]->position; */
@@ -93,7 +103,6 @@ class ApartmentController extends Controller
             $validated['longitude'] = $longitude;
         }
 
-
         /* create new apartment using validated data*/
         $apartment = Apartment::create($validated);
 
@@ -101,7 +110,6 @@ class ApartmentController extends Controller
         if ($request->has('services')) {
             $apartment->services()->attach($validated['services']);
         }
-
 
         /* return to index route with success message */
         return to_route('admin.apartments.index')->with('message', 'Apartment inserted successfully');
@@ -112,6 +120,11 @@ class ApartmentController extends Controller
      */
     public function show(Apartment $apartment)
     {
+        // User auth
+        if ($apartment->user_id !== Auth::id()) {
+            abort(403, 'This is not your apartment!');
+        }
+
         return view('admin.apartments.show', compact('apartment'));
     }
 
@@ -120,8 +133,14 @@ class ApartmentController extends Controller
      */
     public function edit(Apartment $apartment)
     {
+        // User auth
+        if ($apartment->user_id !== Auth::id()) {
+            abort(403, 'This is not your apartment!');
+        }
+
         $services = Service::all();
         $nations = config('nation');
+
         return view('admin.apartments.edit', compact('apartment', 'services', 'nations'));
     }
 
@@ -153,14 +172,9 @@ class ApartmentController extends Controller
 
         /* if I change the address in the request, I have to update latitude and longitude of that address ->api call to tom tom */
 
-
-
-
-
-
-
         /* update apartment data */
         $apartment->update($validated);
+
         return to_route('admin.apartments.index')->with('message', "Your apartment $apartment->title has been updated successfully");
     }
 
@@ -169,8 +183,12 @@ class ApartmentController extends Controller
      */
     public function destroy(Apartment $apartment)
     {
-        $apartment->services()->detach();
+        // User auth
+        if ($apartment->user_id !== Auth::id()) {
+            abort(403, 'This is not your apartment!');
+        }
 
+        $apartment->services()->detach();
 
         if ($apartment->image) {
             Storage::delete($apartment->image);
