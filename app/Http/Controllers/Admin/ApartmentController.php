@@ -30,9 +30,9 @@ class ApartmentController extends Controller
     public function create()
     {
         $services = Service::all();
-        $nations = config('nation');
+        //$nations = config('nation');
         $sponsorships = Sponsorship::all();
-        return view('admin.apartments.create', compact('services', 'sponsorships', 'nations'));
+        return view('admin.apartments.create', compact('services', 'sponsorships'));
     }
 
     /**
