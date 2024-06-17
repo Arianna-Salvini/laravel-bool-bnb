@@ -30,9 +30,9 @@ class ApartmentController extends Controller
     public function create()
     {
         $services = Service::all();
-        //$nations = config('nation');
+        $nations = config('nation');
         $sponsorships = Sponsorship::all();
-        return view('admin.apartments.create', compact('services', 'sponsorships'));
+        return view('admin.apartments.create', compact('services', 'sponsorships', 'nations'));
     }
 
     /**
@@ -121,7 +121,8 @@ class ApartmentController extends Controller
     public function edit(Apartment $apartment)
     {
         $services = Service::all();
-        return view('admin.apartments.edit', compact('apartment', 'services'));
+        $nations = config('nation');
+        return view('admin.apartments.edit', compact('apartment', 'services', 'nations'));
     }
 
     /**

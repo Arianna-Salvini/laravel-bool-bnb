@@ -77,33 +77,19 @@
 
             {{-- country code --}}
 
-            <div>
-                <div class="mb-3">
-                    <label for="country_code" class="form-label"><strong>Country</strong></label>
-                    <input type="text" class="form-control @error('country_code') is-invalid @enderror"
-                        name="country_code" id="country_code" aria-describedby="country_codeHelper" placeholder="US"
-                        value="{{ old('country_code') }}" />
-                    <small id="country_codeHelper" class="form-text text-muted">Insert the country code of the apartment,
-                        ex: Italy = IT</small>
-                    @error('country_code')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                </div>
-            </div>
-
-            {{-- <label for="country_code" class="form-label">Select a Country</label>
-            <select class="form-select" id="country_code">
+            <label for="country_code" class="form-label">Select a Country</label>
+            <select class="form-select" id="country_code" name="country_code">
+                <option disabled selected>Select Your Country</option>
                 @foreach ($nations as $nation)
-                    <option value="{{ $nation['code'] }}">{{ $nation['name'] }}
+                    <option value="{{ $nation['code'] }}" @if (old('country_code') == $nation['code']) selected @endif>
+                        {{ $nation['name'] }}
                     </option>
                 @endforeach
             </select>
             <small id="country_codeHelper" class="form-text text-muted">Choose your country</small>
             @error('country_code')
                 <div class="text-danger">{{ $message }}</div>
-            @enderror --}}
-
-            {{-- simple try for option list, free time --}}
+            @enderror
 
 
             {{-- city --}}
