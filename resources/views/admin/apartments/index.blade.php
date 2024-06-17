@@ -1,11 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-    <section id="apartment_table">
+    <section id="apartment_table" class="pb-5">
 
 
-        <div class="container mt-5">
+        <div class="container">
             <h2>All Apartments</h2>
+            @include('layouts.partials.session-messages')
+
             <a href="{{ route('admin.apartments.create') }}" class="btn btn-primary">Insert New Apartment</a>
             <div class="table-responsive mt-3">
                 <table class="table table-primary">
@@ -27,7 +29,14 @@
 
 
                                 <td>{{ $apartment->id }}</td>
-                                <td><img src="{{ $apartment->image }}" alt="" width="100"></td>
+                                <td>
+                                    @if (Str::startsWith($apartment->image, 'http'))
+                                        <img src="{{ $apartment->image }}" alt="" width="100">
+                                    @else
+                                        <img src="{{ asset('storage/' . $apartment->image) }}" alt=""
+                                            width="100">
+                                    @endif
+                                </td>
                                 <td>{{ $apartment->title }}</td>
                                 <td>{{ $apartment->address }}</td>
                                 <td>
@@ -42,7 +51,8 @@
 
                                     <a class="btn btn-dark btn-sm " href="#" role="button"> <i class="fa fa-eye"
                                             aria-hidden="true"></i></a>
-                                    <a class="btn btn-warning btn-sm " href="#" role="button"> <i
+                                    <a class="btn btn-warning btn-sm "
+                                        href="{{ route('admin.apartments.edit', $apartment) }}" role="button"> <i
                                             class="fa fa-pencil" aria-hidden="true"></i></a>
                                     <a class="btn btn-danger btn-sm " href="#" role="button"> <i class="fa fa-trash"
                                             aria-hidden="true"></i></a>

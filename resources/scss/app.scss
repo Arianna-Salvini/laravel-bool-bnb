@@ -1,1 +1,5 @@
+@use './partials/variables' as *;
+@use './partials/sidebar';
+@use './partials/navbar';
+@use './partials/apartments';
 @import '~bootstrap/scss/bootstrap'

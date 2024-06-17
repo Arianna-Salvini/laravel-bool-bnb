@@ -1,0 +1,9 @@
+@use "./variables" as *;
+
+#left-sidebar {
+    border-right: 1px solid black;
+
+    .side-header {
+        height: 60px;
+    }
+}
