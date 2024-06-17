@@ -30,8 +30,9 @@ class ApartmentController extends Controller
     public function create()
     {
         $services = Service::all();
+        $nations = config('nation');
         $sponsorships = Sponsorship::all();
-        return view('admin.apartments.create', compact('services', 'sponsorships'));
+        return view('admin.apartments.create', compact('services', 'sponsorships', 'nations'));
     }
 
     /**
@@ -40,13 +41,13 @@ class ApartmentController extends Controller
     public function store(StoreApartmentRequest $request)
     {
         $validated = $request->validated();
-        
+
         /* generate slug based on apartment title */
         $slug = Str::slug($request->title, '-');
         $validated['slug'] = $slug;
 
         /* if I upload an image, save image path */
-        if($request->has('image')){
+        if ($request->has('image')) {
             $img_path = Storage::put('uploads', $validated['image']);
             $validated['image'] = $img_path;
         }
@@ -55,38 +56,38 @@ class ApartmentController extends Controller
         /* https://developer.tomtom.com/geocoding-api/api-explorer   structured geocoding */
 
         /* save data for api call */
-        $api_key= env('TOMTOM_API_KEY');
-        $base_api= 'https://api.tomtom.com/search/2/structuredGeocode.json?';
-        $address= str_replace(' ', '%20', $validated['address']); //20 zoom level
+        $api_key = env('TOMTOM_API_KEY');
+        $base_api = 'https://api.tomtom.com/search/2/structuredGeocode.json?';
+        $address = str_replace(' ', '%20', $validated['address']); //20 zoom level
         $street_number = $validated['street_number'];
-        $country_code= $validated['country_code'];
-        $zip_code= $validated['zip_code'];
+        $country_code = $validated['country_code'];
+        $zip_code = $validated['zip_code'];
         $city = $validated['city'];
 
-        if($request->has('country_code', 'street_number', 'zip_code', 'city') && $country_code !=null && $zip_code != null && $city != null && $street_number != null){
+        if ($request->has('country_code', 'street_number', 'zip_code', 'city') && $country_code != null && $zip_code != null && $city != null && $street_number != null) {
 
             /* create api url */
             $api_url = $base_api . 'countryCode=' . $country_code . '&streetNumber=' . $street_number . '&streetName=' . $address . '&municipality=' . $city . '&postalCode=' . $zip_code . '&view=Unified&key=' . $api_key;
-            
+
             /* save coordinates */
             /* $coordinates = json_decode(file_get_contents($api_url))->results[0]->position; */
             //dd($coordinates);
-    
+
             /* bypass SSL certificate error */
-            $client = new Client(['verify' => false]);       
-            
+            $client = new Client(['verify' => false]);
+
             /* $client->get returns a json response that must be decoded into assoc array -> get results -> 0 */
-           $result = json_decode($client->get($api_url)->getBody(), true)['results'][0]; 
-    
-           /* save coordinates */
-           $coordinates = $result['position'];
-           /* dd($coordinates); */
-    
-           /* save lat and long */
+            $result = json_decode($client->get($api_url)->getBody(), true)['results'][0];
+
+            /* save coordinates */
+            $coordinates = $result['position'];
+            /* dd($coordinates); */
+
+            /* save lat and long */
             $latitude = $coordinates['lat'];
             $longitude = $coordinates['lon'];
             /* dd($latitude, $longitude); */
-                  
+
             /* save in db */
             $validated['latitude'] = $latitude;
             $validated['longitude'] = $longitude;
@@ -97,9 +98,9 @@ class ApartmentController extends Controller
         $apartment = Apartment::create($validated);
 
         /* if I select services, attach selected services to apartment */
-        if($request->has('services')){
+        if ($request->has('services')) {
             $apartment->services()->attach($validated['services']);
-        } 
+        }
 
 
         /* return to index route with success message */
@@ -134,8 +135,8 @@ class ApartmentController extends Controller
         $validated['slug'] = $slug;
 
         /* if I upload a different img, delete the old one from storage and save the new img path */
-        if($request->has('image')){
-            if($apartment->image){
+        if ($request->has('image')) {
+            if ($apartment->image) {
                 Storage::delete($apartment->image);
             }
             $img_path = Storage::put('uploads', $validated['image']);
@@ -143,10 +144,9 @@ class ApartmentController extends Controller
         }
 
         /* if I have services in the request, sync them, otherwise sync an empty array */
-        if($request->has('services')){
+        if ($request->has('services')) {
             $apartment->services()->sync($validated['services']);
-        }
-        else{
+        } else {
             $apartment->services()->sync([]);
         }
 

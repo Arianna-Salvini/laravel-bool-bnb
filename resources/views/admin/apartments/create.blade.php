@@ -91,6 +91,21 @@
                 </div>
             </div>
 
+            {{-- <label for="country_code" class="form-label">Select a Country</label>
+            <select class="form-select" id="country_code">
+                @foreach ($nations as $nation)
+                    <option value="{{ $nation['code'] }}">{{ $nation['name'] }}
+                    </option>
+                @endforeach
+            </select>
+            <small id="country_codeHelper" class="form-text text-muted">Choose your country</small>
+            @error('country_code')
+                <div class="text-danger">{{ $message }}</div>
+            @enderror --}}
+
+            {{-- simple try for option list, free time --}}
+
+
             {{-- city --}}
 
             <div>

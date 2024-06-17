@@ -74,6 +74,69 @@
             </div>
 
             {{-- insert input for postal code and city? --}}
+            {{-- street_number --}}
+
+            <div>
+                <div class="mb-3">
+                    <label for="street_number" class="form-label"><strong>Street number</strong></label>
+                    <input type="text" class="form-control @error('street_number') is-invalid @enderror"
+                        name="street_number" id="street_number" aria-describedby="street_numberHelper"
+                        placeholder="Via MarioRossi 5" value="{{ old('street_number', $apartment->street_number) }}" />
+                    <small id="street_numberHelper" class="form-text text-muted">Insert the street number of your
+                        apartment</small>
+                    @error('street_number')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+
+            {{-- country code --}}
+
+            <div>
+                <div class="mb-3">
+                    <label for="country_code" class="form-label"><strong>Country</strong></label>
+                    <input type="text" class="form-control @error('country_code') is-invalid @enderror"
+                        name="country_code" id="country_code" aria-describedby="country_codeHelper" placeholder="US"
+                        value="{{ old('country_code', $apartment->country_code) }}" />
+                    <small id="country_codeHelper" class="form-text text-muted">Insert the country code of the apartment,
+                        ex: Italy = IT</small>
+                    @error('country_code')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+
+            {{-- city --}}
+
+            <div>
+                <div class="mb-3">
+                    <label for="city" class="form-label"><strong>City</strong></label>
+                    <input type="text" class="form-control @error('city') is-invalid @enderror" name="city"
+                        id="city" aria-describedby="cityHelper" placeholder="Rome"
+                        value="{{ old('city', $apartment->city) }}" />
+                    <small id="cityHelper" class="form-text text-muted">Insert the city of your
+                        apartment</small>
+                    @error('city')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+
+            {{-- zip_code --}}
+
+            <div>
+                <div class="mb-3">
+                    <label for="zip_code" class="form-label"><strong>Zip code</strong></label>
+                    <input type="text" class="form-control @error('zip_code') is-invalid @enderror" name="zip_code"
+                        id="zip_code" aria-describedby="zip_codeHelper" placeholder="00100"
+                        value="{{ old('zip_code', $apartment->zip_code) }}" />
+                    <small id="zip_codeHelper" class="form-text text-muted">Insert the zip_code of your
+                        apartment</small>
+                    @error('zip_code')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
 
             {{-- div containing all the number inputs --}}
             <div class="mb-3">
@@ -116,8 +179,8 @@
                     </div>
                     <div class="n_bathrooms w-25">
                         <label for="bathrooms" class="form-label">Bathrooms</label>
-                        <input type="number" class="form-control @error('bathrooms') is-invalid @enderror" name="bathrooms"
-                            id="bathrooms" aria-describedby="bathroomsHelper" placeholder="1"
+                        <input type="number" class="form-control @error('bathrooms') is-invalid @enderror"
+                            name="bathrooms" id="bathrooms" aria-describedby="bathroomsHelper" placeholder="1"
                             value="{{ old('bathrooms', $apartment->bathrooms) }}" />
                         @error('bathrooms')
                             <div class="text-danger">{{ $message }}</div>
