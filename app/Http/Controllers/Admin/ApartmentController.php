@@ -8,6 +8,8 @@ use App\Http\Requests\UpdateApartmentRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Service;
 use App\Models\Sponsorship;
+use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -52,6 +54,31 @@ class ApartmentController extends Controller
         /* if I have the address in the request, I have to update latitude and longitude of that address ->api call to tom tom */
         /* https://developer.tomtom.com/geocoding-api/api-explorer   structured geocoding */
 
+        /* save data for api call */
+        $api_key= env('TOMTOM_API_KEY');
+        $base_api= 'https://api.tomtom.com/search/2/structuredGeocode.json?';
+        $address= str_replace(' ', '%20', $validated['address']); //20 zoom level
+        $street_number = $validated['street_number'];
+        $country_code= $validated['country_code'];
+        $zip_code= $validated['zip_code'];
+        $city = $validated['city'];
+
+        /* create api url */
+        $sn= 6;
+        $api_url = $base_api . 'countryCode=' . $country_code . '&streetNumber=' . $sn . '&streetName=' . $address . '&municipality=' . $city . '&postalCode=' . $zip_code . '&view=Unified&key=' . $api_key;
+        
+
+        $test = json_decode(file_get_contents($api_url))->results;
+        //dd($test);
+        /* bypass SSL certificate error */
+        $client = new Client(['verify' => false]);
+       
+        //dd($client->get($api_url)->getBody());
+        /* $client->get returns a json response that must be decoded into assoc array */
+        $result = json_decode($client->get($api_url)->getBody(), true);
+        dd($result);
+        /* $json = json_decode($result->getBody(), true);
+        dd($json); */       
 
 
 
