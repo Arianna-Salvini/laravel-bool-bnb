@@ -20,7 +20,7 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-        $apartments = Apartment::all();
+        $apartments = Apartment::orderByDesc('id')->get();
         return view('admin.apartments.index', compact('apartments'));
     }
 
@@ -63,23 +63,34 @@ class ApartmentController extends Controller
         $zip_code= $validated['zip_code'];
         $city = $validated['city'];
 
-        /* create api url */
-        $sn= 6;
-        $api_url = $base_api . 'countryCode=' . $country_code . '&streetNumber=' . $sn . '&streetName=' . $address . '&municipality=' . $city . '&postalCode=' . $zip_code . '&view=Unified&key=' . $api_key;
-        
+        if($request->has('country_code', 'street_number', 'zip_code', 'city') && $country_code !=null && $zip_code != null && $city != null && $street_number != null){
 
-        $test = json_decode(file_get_contents($api_url))->results;
-        //dd($test);
-        /* bypass SSL certificate error */
-        $client = new Client(['verify' => false]);
-       
-        //dd($client->get($api_url)->getBody());
-        /* $client->get returns a json response that must be decoded into assoc array */
-        $result = json_decode($client->get($api_url)->getBody(), true);
-        dd($result);
-        /* $json = json_decode($result->getBody(), true);
-        dd($json); */       
-
+            /* create api url */
+            $api_url = $base_api . 'countryCode=' . $country_code . '&streetNumber=' . $street_number . '&streetName=' . $address . '&municipality=' . $city . '&postalCode=' . $zip_code . '&view=Unified&key=' . $api_key;
+            
+            /* save coordinates */
+            /* $coordinates = json_decode(file_get_contents($api_url))->results[0]->position; */
+            //dd($coordinates);
+    
+            /* bypass SSL certificate error */
+            $client = new Client(['verify' => false]);       
+            
+            /* $client->get returns a json response that must be decoded into assoc array -> get results -> 0 */
+           $result = json_decode($client->get($api_url)->getBody(), true)['results'][0]; 
+    
+           /* save coordinates */
+           $coordinates = $result['position'];
+           /* dd($coordinates); */
+    
+           /* save lat and long */
+            $latitude = $coordinates['lat'];
+            $longitude = $coordinates['lon'];
+            /* dd($latitude, $longitude); */
+                  
+            /* save in db */
+            $validated['latitude'] = $latitude;
+            $validated['longitude'] = $longitude;
+        }
 
 
         /* create new apartment using validated data*/
@@ -88,8 +99,7 @@ class ApartmentController extends Controller
         /* if I select services, attach selected services to apartment */
         if($request->has('services')){
             $apartment->services()->attach($validated['services']);
-        }    
-
+        } 
 
 
         /* return to index route with success message */
