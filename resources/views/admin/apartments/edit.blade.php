@@ -94,7 +94,7 @@
 
             <label for="country_code" class="form-label">Select a Country</label>
             <select class="form-select" id="country_code" name="country_code">
-                <option disabled selected>Select Your Country</option>
+                <option value="" disabled selected>Select Your Country</option>
                 @foreach ($nations as $nation)
                     <option value="{{ $nation['code'] }}" @if (old('country_code', $apartment->country_code) == $nation['code']) selected @endif>
                         {{ $nation['name'] }}
