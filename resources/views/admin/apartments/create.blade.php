@@ -59,6 +59,10 @@
                 </div>
             </div>
 
+            <ul id="address-list">Lista
+
+            </ul>
+
             {{-- street_number --}}
 
             <div>
