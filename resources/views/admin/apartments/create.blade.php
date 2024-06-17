@@ -291,3 +291,7 @@
         </form>
     </div>
 @endsection
+
+@section('script')
+    @vite(['resources/js/address-search.js'])
+@endsection

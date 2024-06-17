@@ -38,6 +38,11 @@
 
 
     </div>
+
+
+
+    @yield('script')
+
 </body>
 
 </html>
