@@ -42,10 +42,15 @@
         </li>
         {{-- logout --}}
         <li class="nav-item px-4">
-            <a class="nav-link d-flex gap-3 align-items-center" href="{{ route('logout') }}">
+            <a class="nav-link d-flex gap-3 align-items-center" href="{{ route('logout') }}"
+                onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                 <i class="fa-solid fa-right-from-bracket"></i>
                 {{ __('Logout') }}
             </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
+
         </li>
     </ul>
 </aside>
