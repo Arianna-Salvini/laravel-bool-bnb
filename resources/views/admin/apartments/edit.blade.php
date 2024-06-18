@@ -64,7 +64,8 @@
 
             <div>
                 <div class="mb-3">
-                    <label for="address" class="form-label"><strong>Address</strong></label>
+                    <label for="address" class="form-label"><strong>Address</strong>
+                        <span class="text-danger">*</span></label>
                     <input type="text" class="form-control @error('address') is-invalid @enderror" name="address"
                         id="address" aria-describedby="addressHelper" placeholder="Via MarioRossi 5"
                         value="{{ old('address', $apartment->address) }}" />
@@ -95,7 +96,9 @@
 
             {{-- country code --}}
 
-            <label for="country_code" class="form-label">Select a Country</label>
+            <label for="country_code" class="form-label">Select a Country
+                <span class="text-danger">*</span>
+            </label>
             <select class="form-select" id="country_code" name="country_code">
                 <option value="" disabled selected>Select Your Country</option>
                 @foreach ($nations as $nation)
@@ -113,7 +116,9 @@
 
             <div>
                 <div class="mb-3">
-                    <label for="city" class="form-label"><strong>City</strong></label>
+                    <label for="city" class="form-label"><strong>City</strong>
+                        <span class="text-danger">*</span>
+                    </label>
                     <input type="text" class="form-control @error('city') is-invalid @enderror" name="city"
                         id="city" aria-describedby="cityHelper" placeholder="Rome"
                         value="{{ old('city', $apartment->city) }}" />
@@ -261,4 +266,7 @@
 
         </form>
     </div>
+@endsection
+@section('script')
+    @vite(['resources/js/input-validation.js'])
 @endsection
