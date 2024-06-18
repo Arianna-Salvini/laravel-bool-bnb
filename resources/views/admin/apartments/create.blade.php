@@ -9,7 +9,7 @@
 
     <div class="container py-3">
         <form action="{{ route('admin.apartments.store') }}" method="POST" enctype="multipart/form-data"
-            class="form-control p-4">
+            class="form-control p-4" id="apartment-form">
             @csrf
 
             {{-- title --}}
@@ -231,7 +231,7 @@
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
-
+            <div id="number_error" class="is-invalid"></div>
             <button type="submit" class="btn btn-primary">
                 Add
             </button>
