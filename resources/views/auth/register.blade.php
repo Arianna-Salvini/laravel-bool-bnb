@@ -18,7 +18,7 @@
                                 <div class="col-md-6">
                                     <input id="name" type="text"
                                         class="form-control @error('name') is-invalid @enderror" name="name"
-                                        value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                        value="{{ old('name') }}" autocomplete="name" autofocus>
 
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
@@ -35,7 +35,7 @@
                                 <div class="col-md-6">
                                     <input id="lastname" type="text"
                                         class="form-control @error('lastname') is-invalid @enderror" name="lastname"
-                                        value="{{ old('lastname') }}" required autocomplete="lastname" autofocus>
+                                        value="{{ old('lastname') }}" autocomplete="lastname" autofocus>
 
                                     @error('lastname')
                                         <span class="invalid-feedback" role="alert">
@@ -52,7 +52,7 @@
                                 <div class="col-md-6">
                                     <input id="birth_date" type="date"
                                         class="form-control @error('birth_date') is-invalid @enderror" name="birth_date"
-                                        value="{{ old('birth_date') }}" required autocomplete="birth_date" autofocus>
+                                        value="{{ old('birth_date') }}" autocomplete="birth_date" autofocus>
 
                                     @error('birth_date')
                                         <span class="invalid-feedback" role="alert">
@@ -69,7 +69,7 @@
                                 <div class="col-md-6">
                                     <input id="email" type="email"
                                         class="form-control @error('email') is-invalid @enderror" name="email"
-                                        value="{{ old('email') }}" required autocomplete="email">
+                                        value="{{ old('email') }}" autocomplete="email">
 
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
@@ -86,7 +86,7 @@
                                 <div class="col-md-6">
                                     <input id="password" type="password"
                                         class="form-control @error('password') is-invalid @enderror" name="password"
-                                        required autocomplete="new-password">
+                                        autocomplete="new-password">
 
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
@@ -102,13 +102,13 @@
 
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control"
-                                        name="password_confirmation" required autocomplete="new-password">
+                                        name="password_confirmation" autocomplete="new-password">
                                 </div>
                             </div>
 
                             <div class="mb-4 row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
+                                    <button type="submit" id="submit" class="btn btn-primary">
                                         {{ __('Register') }}
                                     </button>
                                 </div>
@@ -119,4 +119,8 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    @vite(['resources/js/register-validate.js'])
 @endsection
