@@ -102,11 +102,9 @@ function removeErrorMessages() {
 function CheckCorrectInputs() {
     let error = document.getElementsByClassName('is-valid');
     if (error.length !== inputElements.length) {
-        submit.classList.remove('text-success');
-        submit.classList.add('text-danger');
+        submit.setAttribute('disabled', true);
     }
     else {
-        submit.classList.remove('text-danger');
-        submit.classList.add('text-success');
+        submit.removeAttribute('disabled');
     }
 }
