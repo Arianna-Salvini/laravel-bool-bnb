@@ -1,4 +1,6 @@
 let street_number = document.getElementById('street_number');
+let formCreate = document.getElementById('apartment-form');
+let streetNumberErrorDiv = document.getElementById('number_error');
 
 
 function validatedInput(input) {
@@ -7,16 +9,16 @@ function validatedInput(input) {
     return regex.test(input);
 }
 
-street_number.addEventListener('input', function () {
+formCreate.addEventListener('submit', function (e) {
     let inputValue = street_number.value;
     let isValid = validatedInput(inputValue);
 
-    if (isValid) {
-        street_number.classList.remove('is-invalid');
-        street_number.classList.add('is-valid');
-    } else {
-        event.preventDefault(); // interrompe l invio del form
-        street_number.classList.remove('is-valid');
+    if (!isValid) {
+        e.preventDefault(); // prevent form submission
         street_number.classList.add('is-invalid');
+        streetNumberErrorDiv.textContent = 'Attention!!! Invalid street number format';
+    } else {
+        street_number.classList.remove('is-invalid');
+        streetNumberErrorDiv.textContent = '';
     }
 });
