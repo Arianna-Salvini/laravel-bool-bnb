@@ -69,7 +69,7 @@
                     <label for="street_number" class="form-label"><strong>Street number</strong></label>
                     <input type="text" class="form-control @error('street_number') is-invalid @enderror"
                         name="street_number" id="street_number" aria-describedby="street_numberHelper" placeholder="5"
-                        value="{{ old('street_number') }}" required />
+                        value="{{ old('street_number') }}" />
                     <small id="street_numberHelper" class="form-text text-muted">Insert the street number of your
                         apartment</small>
                     @error('street_number')
@@ -222,7 +222,7 @@
             <div class="mb-3">
                 <label for="description" class="form-label"><strong>Description</strong></label>
                 <textarea class="form-control @error('description') is-invalid @enderror" name="description" id="description"
-                    rows="6" placeholder="Add a brief description of your apartment" required>{{ old('description') }}</textarea>
+                    rows="6" placeholder="Add a brief description of your apartment">{{ old('description') }}</textarea>
                 @error('description')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
