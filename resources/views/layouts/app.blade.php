@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
@@ -14,6 +14,11 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <script src="https://kit.fontawesome.com/5da565da38.js" crossorigin="anonymous"></script>
+
+    {{-- TomTom map CDN --}}
+    <link rel="stylesheet" type="text/css"
+        href="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.25.0/maps/maps.css" />
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.25.0/maps/maps-web.min.js"></script>
 
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
@@ -39,9 +44,9 @@
 
     </div>
 
-
-
     @yield('script')
+  {{-- TomTom Services --}}
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.25.0/services/services-web.min.js"></script>
 
 </body>
 

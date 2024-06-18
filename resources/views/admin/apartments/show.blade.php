@@ -2,8 +2,8 @@
 
 @section('content')
     <div class="container py-4">
-        <div class="row">
-            <div class="col-md-6">
+        <div class="row d-flex">
+            <div class="col ">
                 <div class="card shadow">
                     <div class="card-header bg-dark text-white">
                         <h2>{{ $apartment->title }}</h2>
@@ -22,7 +22,7 @@
                         @endif
 
                         {{-- Description --}}
-                        <div class="mb-3">
+                        <div class="mb-3 ">
                             <strong>Description:</strong>
                             <p>{{ $apartment->description }}</p>
                         </div>
@@ -71,9 +71,34 @@
                     </div>
                 </div>
             </div>
+            {{-- Add Map --}}
+            <div id="map" style="height:500px" class="my-4 rounded-5"></div>
         </div>
         <a class="btn btn-outline-dark text-decoration-none m-1" href="{{ route('admin.apartments.index') }}"
             class="">See All</a>
 
     </div>
+
+
+    {{-- Script for map initialization --}}
+    <script>
+        // let latitude = {{ $apartment->latitude }};
+        // let longitude = {{ $apartment->longitude }};
+        let center = [{{ $apartment->longitude }}, {{ $apartment->latitude }}]
+        // console.log(tt.map);
+        let map = tt.map({
+            key: "{{ env('TOMTOM_API_KEY') }}",
+            container: "map",
+            // center: [longitude, latitude],
+            center: center,
+            zoom: 15
+        })
+
+        console.log(map);
+
+        map.on('load', () => {
+            new tt.Marker().setLngLat(center).addTo(map)
+        })
+    </script>
+
 @endsection
