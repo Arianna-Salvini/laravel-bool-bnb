@@ -1,9 +1,22 @@
 @use "./variables" as *;
 
 #left-sidebar {
-    border-right: 1px solid black;
+    border-right: 1px solid rgb(220, 220, 220);
 
     .side-header {
         height: 60px;
+    }
+    .nav-item {
+        
+        margin: 0 10px;
+        border-radius: 20px;
+    }
+    .nav-item:hover {
+        transition: 0.3s;
+        background-color: #ebebeb;
+    }
+
+    hr {
+        border-top: 2px solid rgb(225, 225, 225);
     }
 }
