@@ -34,7 +34,7 @@
                 <div class="mb-3">
                     <label for="image" class="form-label"><strong>Image</strong></label>
                     <input type="file" class="form-control @error('image') is-invalid @enderror" name="image"
-                        id="image" aria-describedby="imageHelper" />
+                        id="image" aria-describedby="imageHelper" accept="image/png, image/jpeg" />
                     <small id="imageHelper" class="form-text text-muted">Add a cover image for your apartment</small>
                     @error('image')
                         <div class="text-danger">{{ $message }}</div>
