@@ -11,7 +11,7 @@ let country_code = document.getElementById('country_code');
 let addressList = document.getElementById('address-list');
 
 /* save api_key */
-let api_key = 'TubXmNyzFnYoGMpgu1RAnYEHnVO24pfI';
+let api_key = 'blAntt9IDWjWngFuEhuqtet43DeCQr65';
 
 /* add event listener on address input. Event to listen for: input (keyup) */
 address.addEventListener('input', function () {

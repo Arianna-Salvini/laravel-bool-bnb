@@ -28,7 +28,10 @@
     <div id="app" class="h-100">
 
         <div class="wrapper d-flex h-100">
-            @include('layouts.partials.sidebar')
+            @auth
+                @include('layouts.partials.sidebar')
+            @endauth
+
 
             <main class=" main-admin h-100 w-100 overflow-y-hidden">
                 {{-- top-bar --}}
@@ -45,7 +48,7 @@
     </div>
 
     @yield('script')
-  {{-- TomTom Services --}}
+    {{-- TomTom Services --}}
     <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.25.0/services/services-web.min.js"></script>
 
 </body>
