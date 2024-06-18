@@ -59,15 +59,19 @@ address.addEventListener('input', function () {
 
                     if (response.results[i].address.streetNumber) {
                         street_number.value = response.results[i].address.streetNumber;
+                        street_number.setAttribute('disabled', true);
                     }
                     if (response.results[i].address.postalCode) {
                         zip_code.value = response.results[i].address.postalCode;
+                        zip_code.setAttribute('disabled', true);
                     }
                     if (response.results[i].address.municipality) {
                         city.value = response.results[i].address.municipality;
+                        city.setAttribute('disabled', true);
                     }
                     if (response.results[i].address.countryCode) {
                         country_code.value = response.results[i].address.countryCode;
+                        country_code.setAttribute('disabled', true);
                     }
 
                     /* when I select a suggestion, the other suggestions disappear */

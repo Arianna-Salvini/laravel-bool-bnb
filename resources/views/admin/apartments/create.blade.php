@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    
 
     <div class="container py-5">
         <div class="bg-dark text-white py-3 rounded-5 d-flex align-items-center mb-5">
@@ -10,7 +9,7 @@
                 <img src="https://i.ibb.co/gDbnBwQ/01.png" class="position-absolute img-fluid image-banner" width="200" alt="">
             </div>
         </div>
-        <form action="{{ route('admin.apartments.store') }}" method="POST" enctype="multipart/form-data" class="form-control p-4 mb-3">
+        <form action="{{ route('admin.apartments.store') }}" method="POST" enctype="multipart/form-data" class="form-control p-4 mb-3" id="apartment-form">
                 @csrf
         
                 {{-- Title --}}
@@ -29,22 +28,31 @@
                 {{-- Image --}}
                 <div class="mb-3">
                     <label for="image" class="form-label"><strong>Image</strong></label>
-                    <input type="file" class="form-control @error('image') is-invalid @enderror" name="image" id="image" aria-describedby="imageHelper">
+        
+
+                    <input type="file" class="form-control @error('image') is-invalid @enderror" name="image"
+                        id="image" aria-describedby="imageHelper" accept="image/png, image/jpeg" />
+
                     <small id="imageHelper" class="form-text text-muted">Add a cover image for your apartment</small>
                     @error('image')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
+
         
                 {{-- Address --}}
                 <div class="address-street_number d-flex gap-2">
                     <div class="mb-3 w-75">
-                        <label for="address" class="form-label"><strong>Address</strong></label>
+                        <label for="address" class="form-label"><strong>Address</strong>  <span class="text-danger">*</span> </label>
                         <input type="text" class="form-control @error('address') is-invalid @enderror" name="address" id="address" aria-describedby="addressHelper" placeholder="Via MarioRossi 5" value="{{ old('address') }}" required>
                         <small id="addressHelper" class="form-text text-muted">Insert the address of your apartment</small>
                         @error('address')
+
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
+                        <ul id="address-list" class="list-unstyled">
+
+                        </ul>
                     </div>
         
                     {{-- Street Number --}}
@@ -62,7 +70,7 @@
                 <div class="country-zip-city d-flex gap-2">
                     {{-- Country Code --}}
                     <div class="mb-3 w-50">
-                        <label for="country_code" class="form-label"><strong>Select a Country</strong></label>
+                        <label for="country_code" class="form-label"><strong>Select a Country</strong> <span class="text-danger">*</span></label>
                         <select class="form-select @error('country_code') is-invalid @enderror" id="country_code" name="country_code">
                             <option value="" selected>Select Your Country</option>
                             @foreach ($nations as $nation)
@@ -136,6 +144,7 @@
                         </div>
                     </div>
                 </div>
+
         
                 {{-- Visibility --}}
                 <div class="mb-3">
@@ -175,9 +184,10 @@
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
-        
+                 <div id="number_error" class="is-invalid"></div>
                 {{-- Submit Button --}}
                 <button type="submit" class="btn btn-primary">Add</button>
+
         </form>
         
     </div>
@@ -186,4 +196,5 @@
 
 @section('script')
     @vite(['resources/js/address-search.js'])
+    @vite(['resources/js/input-validation.js'])
 @endsection

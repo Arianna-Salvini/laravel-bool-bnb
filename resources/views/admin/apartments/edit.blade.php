@@ -9,7 +9,7 @@
 
     <div class="container py-3">
         <form action="{{ route('admin.apartments.update', $apartment) }}" method="POST" enctype="multipart/form-data"
-            class="form-control p-4">
+            class="form-control p-4" id="apartment-form">
             @csrf
             @method('PUT')
 
@@ -35,7 +35,7 @@
             <div>
                 <div class="mb-3 d-flex gap-3 align-items-center">
                     @if ($apartment->image)
-                        <div class="old-img ">
+                        <div class="old-img">
                             @if (Str::startsWith($apartment->image, 'http'))
                                 <img src="{{ $apartment->image }}" alt="" width="100">
                             @elseif(Str::startsWith($apartment->image, 'uploads/'))
@@ -49,7 +49,7 @@
                     <div class="img-input w-100">
                         <label for="image" class="form-label"><strong>Image</strong></label>
                         <input type="file" class="form-control @error('image') is-invalid @enderror" name="image"
-                            id="image" aria-describedby="imageHelper" />
+                            id="image" aria-describedby="imageHelper" accept="image/png, image/jpeg" />
                         <small id="imageHelper" class="form-text text-muted">Change the cover image of your
                             apartment</small>
                         @error('image')
@@ -64,7 +64,8 @@
 
             <div>
                 <div class="mb-3">
-                    <label for="address" class="form-label"><strong>Address</strong></label>
+                    <label for="address" class="form-label"><strong>Address</strong>
+                        <span class="text-danger">*</span></label>
                     <input type="text" class="form-control @error('address') is-invalid @enderror" name="address"
                         id="address" aria-describedby="addressHelper" placeholder="Via MarioRossi 5"
                         value="{{ old('address', $apartment->address) }}" />
@@ -95,7 +96,9 @@
 
             {{-- country code --}}
 
-            <label for="country_code" class="form-label">Select a Country</label>
+            <label for="country_code" class="form-label">Select a Country
+                <span class="text-danger">*</span>
+            </label>
             <select class="form-select" id="country_code" name="country_code">
                 <option value="" disabled selected>Select Your Country</option>
                 @foreach ($nations as $nation)
@@ -113,7 +116,9 @@
 
             <div>
                 <div class="mb-3">
-                    <label for="city" class="form-label"><strong>City</strong></label>
+                    <label for="city" class="form-label"><strong>City</strong>
+                        <span class="text-danger">*</span>
+                    </label>
                     <input type="text" class="form-control @error('city') is-invalid @enderror" name="city"
                         id="city" aria-describedby="cityHelper" placeholder="Rome"
                         value="{{ old('city', $apartment->city) }}" />
@@ -254,11 +259,14 @@
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
-
+            <div id="number_error" class="is-invalid"></div>
             <button type="submit" class="btn btn-primary">
                 Edit
             </button>
 
         </form>
     </div>
+@endsection
+@section('script')
+    @vite(['resources/js/input-validation.js'])
 @endsection
