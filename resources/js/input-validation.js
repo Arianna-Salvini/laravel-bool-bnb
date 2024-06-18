@@ -20,6 +20,7 @@ formCreate.addEventListener('keyup', function (e) {
     } else {
         street_number.classList.remove('is-invalid');
         street_number.classList.add('is-valid');
+
         streetNumberErrorDiv.textContent = '';
     }
 });
