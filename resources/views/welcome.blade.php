@@ -14,7 +14,7 @@
                 Welcome to Laravel+Bootstrap <i class="bi bi-box"></i>
             </h1>
 
-            <p class="col fs-4">
+            <p class="col-8 fs-4">
                 This is a preset package with Bootstrap 5 views for laravel projects including laravel breeze/blade. It
                 works from laravel 9.x to the latest release 11.x.
                 You can also use bootstrap icons out of the box.

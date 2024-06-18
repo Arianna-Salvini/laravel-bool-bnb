@@ -3,7 +3,7 @@
 @section('content')
     <div class="container py-4">
         <div class="row d-flex">
-            <div class="col ">
+            <div class="-8 ">
                 <div class="card shadow">
                     <div class="card-header bg-dark text-white">
                         <h2>{{ $apartment->title }}</h2>
