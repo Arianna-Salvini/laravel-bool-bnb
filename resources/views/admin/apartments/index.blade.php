@@ -29,12 +29,16 @@
 
 
                                 <td>{{ $apartment->id }}</td>
+
                                 <td>
                                     @if (Str::startsWith($apartment->image, 'http'))
                                         <img src="{{ $apartment->image }}" alt="" width="100">
-                                    @else
+                                    @elseif(Str::startsWith($apartment->image, 'uploads/'))
                                         <img src="{{ asset('storage/' . $apartment->image) }}" alt=""
                                             width="100">
+                                    @else
+                                        <img src="https://media-assets.wired.it/photos/615f1f69cd947bb96c08e6db/4:3/w_784,h_588,c_limit/1512472812_404error.jpg"
+                                            alt="" width="100">
                                     @endif
                                 </td>
                                 <td>{{ $apartment->title }}</td>
