@@ -58,7 +58,7 @@
                     <div class="container d-flex justify-content-center align-items-center flex-column text-center py-5">
                         <img class="img-fluid mb-3" src="https://i.ibb.co/gyzBgd3/no-apartments-illustration.png" alt="No apartments illustration">
                         <span class="mb-3">No apartments registered!</span>
-                        <a class="btn btn-dark btn-sm" href="#" role="button">Register your apartment</a>
+                        <a class="btn btn-dark btn-sm" href="{{ route('admin.apartments.create') }}" role="button">Register your apartment</a>
                     </div>
                 @endforelse
                 
