@@ -38,7 +38,9 @@
                         {{-- Address --}}
                         <div class="mb-3">
                             <strong>Address:</strong> {{ $apartment->address }}
+                            {{ $apartment->street_number }} , {{ $apartment->zip_code }}
                         </div>
+
 
                         {{-- Apartment Details --}}
                         <div class="mb-3">

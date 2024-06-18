@@ -42,8 +42,8 @@
                                     @endif
                                 </td>
                                 <td>{{ $apartment->title }}</td>
-                                <td>{{ $apartment->address }}</td>
-                                <td>
+                                <td>{{ $apartment->address }} {{ $apartment->street_number }}</td>
+                                <td class="text-center">
                                     @if ($apartment->visibility)
                                         <i class="fa-solid fa-check"></i>
                                     @else
@@ -51,7 +51,7 @@
                                     @endif
 
                                 </td>
-                                <td>
+                                <td class="text-center">
 
                                     <a class="btn btn-dark btn-sm "href="{{ route('admin.apartments.show', $apartment) }}"
                                         role="button"> <i class="fa fa-eye" aria-hidden="true"></i></a>

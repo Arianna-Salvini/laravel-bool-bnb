@@ -68,9 +68,10 @@
 
                     <label for="street_number" class="form-label"><strong>Street number</strong></label>
                     <input type="text" class="form-control @error('street_number') is-invalid @enderror"
-                        name="street_number" id="street_number" aria-describedby="street_numberHelper"
-                        placeholder="5" value="{{ old('street_number') }}" required />
-                    <small id="street_numberHelper" class="form-text text-muted">Insert the street number of your apartment</small>
+                        name="street_number" id="street_number" aria-describedby="street_numberHelper" placeholder="5"
+                        value="{{ old('street_number') }}" />
+                    <small id="street_numberHelper" class="form-text text-muted">Insert the street number of your
+                        apartment</small>
                     @error('street_number')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
@@ -105,7 +106,8 @@
 
                     <label for="city" class="form-label"><strong>City</strong></label>
                     <input type="text" class="form-control @error('city') is-invalid @enderror" name="city"
-                        id="city" aria-describedby="cityHelper" placeholder="Rome" value="{{ old('city') }}" required />
+                        id="city" aria-describedby="cityHelper" placeholder="Rome" value="{{ old('city') }}"
+                        required />
                     <small id="cityHelper" class="form-text text-muted">Insert the city of your apartment</small>
                     @error('city')
                         <div class="text-danger">{{ $message }}</div>
@@ -118,9 +120,10 @@
 
                     <label for="zip_code" class="form-label"><strong>Zip code</strong></label>
                     <input type="text" class="form-control @error('zip_code') is-invalid @enderror" name="zip_code"
-                        id="zip_code" aria-describedby="zip_codeHelper" placeholder="00100"
-                        value="{{ old('zip_code') }}" minlength="2" maxlength="15" required />
-                    <small id="zip_codeHelper" class="form-text text-muted">Insert the zip code of your apartment (min 2 characters, max 15 characters)</small>
+                        id="zip_code" aria-describedby="zip_codeHelper" placeholder="00100" value="{{ old('zip_code') }}"
+                        minlength="2" maxlength="15" required />
+                    <small id="zip_codeHelper" class="form-text text-muted">Insert the zip code of your apartment (min 2
+                        characters, max 15 characters)</small>
                     @error('zip_code')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
@@ -140,7 +143,7 @@
                         <div class="d-flex align-items-center gap-2">
                             <input type="number" class="form-control @error('square_meters') is-invalid @enderror"
                                 name="square_meters" id="square_meters" aria-describedby="square_metersHelper"
-                                placeholder="60" value="{{ old('square_meters') }}" min="1" required />
+                                placeholder="60" value="{{ old('square_meters') }}" min="1" />
                             <span id="square_metersHelper" class="form-text text-muted">m²</span>
                         </div>
                         @error('square_meters')
@@ -151,7 +154,8 @@
                     <div class="n_rooms w-25">
                         <label for="rooms" class="form-label">Rooms</label>
                         <input type="number" class="form-control @error('rooms') is-invalid @enderror" name="rooms"
-                            id="rooms" aria-describedby="roomsHelper" placeholder="1" value="{{ old('rooms') }}" min="1" required />
+                            id="rooms" aria-describedby="roomsHelper" placeholder="1" value="{{ old('rooms') }}"
+                            min="1" />
                         @error('rooms')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
@@ -160,7 +164,8 @@
                     <div class="n_beds w-25">
                         <label for="beds" class="form-label">Beds</label>
                         <input type="number" class="form-control @error('beds') is-invalid @enderror" name="beds"
-                            id="beds" aria-describedby="bedsHelper" placeholder="1" value="{{ old('beds') }}" min="1" required />
+                            id="beds" aria-describedby="bedsHelper" placeholder="1" value="{{ old('beds') }}"
+                            min="1" />
                         @error('beds')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
@@ -170,7 +175,7 @@
                         <label for="bathrooms" class="form-label">Bathrooms</label>
                         <input type="number" class="form-control @error('bathrooms') is-invalid @enderror"
                             name="bathrooms" id="bathrooms" aria-describedby="bathroomsHelper" placeholder="1"
-                            value="{{ old('bathrooms') }}" min="1" required />
+                            value="{{ old('bathrooms') }}" min="1" />
                         @error('bathrooms')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
@@ -216,8 +221,8 @@
             {{-- description --}}
             <div class="mb-3">
                 <label for="description" class="form-label"><strong>Description</strong></label>
-                <textarea class="form-control @error('description') is-invalid @enderror" name="description" id="description" rows="6"
-                    placeholder="Add a brief description of your apartment" required>{{ old('description') }}</textarea>
+                <textarea class="form-control @error('description') is-invalid @enderror" name="description" id="description"
+                    rows="6" placeholder="Add a brief description of your apartment">{{ old('description') }}</textarea>
                 @error('description')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror

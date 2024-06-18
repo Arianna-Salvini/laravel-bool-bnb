@@ -35,11 +35,14 @@
             <div>
                 <div class="mb-3 d-flex gap-3 align-items-center">
                     @if ($apartment->image)
-                        <div class="old-img">
+                        <div class="old-img ">
                             @if (Str::startsWith($apartment->image, 'http'))
                                 <img src="{{ $apartment->image }}" alt="" width="100">
+                            @elseif(Str::startsWith($apartment->image, 'uploads/'))
+                                <img src="{{ asset('storage/' . $apartment->image) }}" alt="" width="100">
                             @else
-                                <img src="{{ asset('storage/' . $apartment->image) }}" alt="">
+                                <img src="https://media-assets.wired.it/photos/615f1f69cd947bb96c08e6db/4:3/w_784,h_588,c_limit/1512472812_404error.jpg"
+                                    alt="" width="100">
                             @endif
                         </div>
                     @endif
