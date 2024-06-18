@@ -9,7 +9,7 @@ function validatedInput(input) {
     return regex.test(input);
 }
 
-formCreate.addEventListener('submit', function (e) {
+formCreate.addEventListener('keyup', function (e) {
     let inputValue = street_number.value;
     let isValid = validatedInput(inputValue);
 
@@ -19,6 +19,7 @@ formCreate.addEventListener('submit', function (e) {
         streetNumberErrorDiv.textContent = 'Attention!!! Invalid street number format';
     } else {
         street_number.classList.remove('is-invalid');
+        street_number.classList.add('is-valid');
         streetNumberErrorDiv.textContent = '';
     }
 });
