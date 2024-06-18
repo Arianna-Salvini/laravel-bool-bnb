@@ -35,7 +35,7 @@
             <div>
                 <div class="mb-3 d-flex gap-3 align-items-center">
                     @if ($apartment->image)
-                        <div class="old-img ">
+                        <div class="old-img">
                             @if (Str::startsWith($apartment->image, 'http'))
                                 <img src="{{ $apartment->image }}" alt="" width="100">
                             @elseif(Str::startsWith($apartment->image, 'uploads/'))
@@ -49,7 +49,7 @@
                     <div class="img-input w-100">
                         <label for="image" class="form-label"><strong>Image</strong></label>
                         <input type="file" class="form-control @error('image') is-invalid @enderror" name="image"
-                            id="image" aria-describedby="imageHelper" />
+                            id="image" aria-describedby="imageHelper" accept="image/png, image/jpeg" />
                         <small id="imageHelper" class="form-text text-muted">Change the cover image of your
                             apartment</small>
                         @error('image')
