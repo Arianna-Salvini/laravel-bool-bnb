@@ -48,7 +48,9 @@
 
                 <div class="mb-3 w-75">
 
-                    <label for="address" class="form-label"><strong>Address</strong></label>
+                    <label for="address" class="form-label"><strong>Address</strong>
+                        <span class="text-danger">*</span>
+                    </label>
                     <input type="text" class="form-control @error('address') is-invalid @enderror" name="address"
                         id="address" aria-describedby="addressHelper" placeholder="Via MarioRossi 5"
                         value="{{ old('address') }}" required />
@@ -84,7 +86,9 @@
                 {{-- country code --}}
 
                 <div class="mb-3 w-50">
-                    <label for="country_code" class="form-label"><strong>Select a Country</strong></label>
+                    <label for="country_code" class="form-label"><strong>Select a Country</strong>
+                        <span class="text-danger">*</span>
+                    </label>
                     <select class="form-select" id="country_code" name="country_code">
                         <option value="" selected>Select Your Country</option>
                         @foreach ($nations as $nation)
@@ -237,4 +241,5 @@
 
 @section('script')
     @vite(['resources/js/address-search.js'])
+    @vite(['resources/js/input-validation.js'])
 @endsection
