@@ -1,11 +1,11 @@
 <aside id="left-sidebar" class="w-auto h-100 d-flex flex-column position-relative d-none d-md-flex">
     {{-- title: top --}}
-    <div class="side-header px-5 py-2 d-flex justify-content-center align-items-center">
-        BOOLBNB
+    <div class="side-header d-flex justify-content-center align-items-center">
+        <img class="mt-5 image-fluid" src="https://i.ibb.co/MgFsztp/boolbnb-for-owners.png" width="80" alt="">
     </div>
 
     {{-- opt --}}
-    <ul class="navbar-nav mb-auto pt-5">
+    <ul class="navbar-nav mb-auto mt-5 pt-5">
         {{-- dashboard --}}
         <li class="nav-item px-4 ">
             <a class="nav-link d-flex gap-3 align-items-center" href="{{ url('admin') }}">
