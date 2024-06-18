@@ -5,8 +5,8 @@
         {{-- config('app.name', 'Laravel') --}}
     </a>
     @auth
-        <div class="logo-sm px-3 d-flex justify-content-center align-items-center d-md-none">
-            <img src="https://i.ibb.co/MgFsztp/boolbnb-for-owners.png" alt="">
+        <div class="logo-sm d-flex justify-content-center align-items-center d-md-none">
+            <img class="img-fluid" src="https://i.ibb.co/MgFsztp/boolbnb-for-owners.png"  width="40%" alt="">
         </div>
     @endauth
 
