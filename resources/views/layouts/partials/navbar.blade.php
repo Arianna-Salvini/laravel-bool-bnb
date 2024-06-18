@@ -6,7 +6,7 @@
     </a>
     @auth
         <div class="logo-sm px-3 d-flex justify-content-center align-items-center d-md-none">
-            BOOLBNB
+            <img src="https://i.ibb.co/MgFsztp/boolbnb-for-owners.png" alt="">
         </div>
     @endauth
 
