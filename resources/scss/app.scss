@@ -8,5 +8,6 @@
 @use './partials/apartments';
 
 // UI components
-
+@use './components/headers.scss';
 @use './components/buttons.scss';
+@use './components/forms.scss';
