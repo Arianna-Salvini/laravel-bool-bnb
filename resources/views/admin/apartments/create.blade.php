@@ -43,10 +43,11 @@
                 </div>
             </div>
 
-            {{-- address --}}
+            <div class="address-street_number d-flex gap-2">
 
-            <div>
-                <div class="mb-3">
+                {{-- address --}}
+
+                <div class="mb-3 w-75">
                     <label for="address" class="form-label"><strong>Address</strong></label>
                     <input type="text" class="form-control @error('address') is-invalid @enderror" name="address"
                         id="address" aria-describedby="addressHelper" placeholder="Via MarioRossi 5"
@@ -56,17 +57,14 @@
                     @error('address')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
+                    <ul id="address-list" class="list-unstyled">
+
+                    </ul>
                 </div>
-            </div>
 
-            <ul id="address-list">Lista
+                {{-- street_number --}}
 
-            </ul>
-
-            {{-- street_number --}}
-
-            <div>
-                <div class="mb-3">
+                <div class="mb-3 w-25">
                     <label for="street_number" class="form-label"><strong>Street number</strong></label>
                     <input type="text" class="form-control @error('street_number') is-invalid @enderror"
                         name="street_number" id="street_number" aria-describedby="street_numberHelper"
@@ -77,29 +75,33 @@
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
+
             </div>
 
-            {{-- country code --}}
+            <div class="country-zip-city d-flex gap-2">
 
-            <label for="country_code" class="form-label">Select a Country</label>
-            <select class="form-select" id="country_code" name="country_code">
-                <option value="" selected>Select Your Country</option>
-                @foreach ($nations as $nation)
-                    <option value="{{ $nation['code'] }}" @if (old('country_code') == $nation['code']) selected @endif>
-                        {{ $nation['name'] }}
-                    </option>
-                @endforeach
-            </select>
-            <small id="country_codeHelper" class="form-text text-muted">Choose your country</small>
-            @error('country_code')
-                <div class="text-danger">{{ $message }}</div>
-            @enderror
+                {{-- country code --}}
 
+                <div class="mb-3 w-50">
+                    <label for="country_code" class="form-label"><strong>Select a Country</strong></label>
+                    <select class="form-select" id="country_code" name="country_code">
+                        <option value="" selected>Select Your Country</option>
+                        @foreach ($nations as $nation)
+                            <option value="{{ $nation['code'] }}" @if (old('country_code') == $nation['code']) selected @endif>
+                                {{ $nation['name'] }}
+                            </option>
+                        @endforeach
+                    </select>
+                    <small id="country_codeHelper" class="form-text text-muted">Choose your country</small>
+                    @error('country_code')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
 
-            {{-- city --}}
+                </div>
 
-            <div>
-                <div class="mb-3">
+                {{-- city --}}
+
+                <div class="mb-3 w-25">
                     <label for="city" class="form-label"><strong>City</strong></label>
                     <input type="text" class="form-control @error('city') is-invalid @enderror" name="city"
                         id="city" aria-describedby="cityHelper" placeholder="Rome" value="{{ old('city') }}" />
@@ -109,12 +111,10 @@
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
-            </div>
 
-            {{-- zip_code --}}
+                {{-- zip_code --}}
 
-            <div>
-                <div class="mb-3">
+                <div class="mb-3 w-25">
                     <label for="zip_code" class="form-label"><strong>Zip code</strong></label>
                     <input type="text" class="form-control @error('zip_code') is-invalid @enderror" name="zip_code"
                         id="zip_code" aria-describedby="zip_codeHelper" placeholder="00100"
@@ -126,6 +126,8 @@
                     @enderror
                 </div>
             </div>
+
+
 
             {{-- div containing all the number inputs --}}
             <div class="mb-3">
@@ -178,65 +180,6 @@
 
 
             </div>
-
-            {{-- rooms --}}
-            {{-- <div>
-                <div class="mb-3">
-                    <label for="rooms" class="form-label">Rooms</label>
-                    <input type="number" class="form-control @error('rooms') is-invalid @enderror" name="rooms"
-                        id="rooms" aria-describedby="roomsHelper" placeholder="Insert the rooms of your apartment"
-                        value="{{ old('rooms') }}" />
-                    <small id="roomsHelper" class="form-text text-muted">Insert the rooms of your apartment</small>
-                    @error('rooms')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                </div>
-            </div> --}}
-
-            {{-- beds --}}
-            {{-- <div>
-                <div class="mb-3">
-                    <label for="beds" class="form-label">Beds</label>
-                    <input type="number" class="form-control @error('beds') is-invalid @enderror" name="beds"
-                        id="beds" aria-describedby="bedsHelper" placeholder="Insert the beds of your apartment"
-                        value="{{ old('beds') }}" />
-                    <small id="bedsHelper" class="form-text text-muted">Insert the beds of your apartment</small>
-                    @error('beds')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                </div>
-            </div> --}}
-
-            {{-- bathrooms --}}
-            {{-- <div>
-                <div class="mb-3">
-                    <label for="bathrooms" class="form-label">Bathrooms</label>
-                    <input type="number" class="form-control @error('bathrooms') is-invalid @enderror" name="bathrooms"
-                        id="bathrooms" aria-describedby="bathroomsHelper"
-                        placeholder="Insert the bathrooms of your apartment" value="{{ old('bathrooms') }}" />
-                    <small id="bathroomsHelper" class="form-text text-muted">Insert the bathrooms of your
-                        apartment</small>
-                    @error('bathrooms')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                </div>
-            </div> --}}
-
-            {{-- square_meters --}}
-            {{--  <div>
-                <div class="mb-3">
-                    <label for="square_meters" class="form-label">Square Meters</label>
-                    <input type="number" class="form-control @error('square_meters') is-invalid @enderror"
-                        name="square_meters" id="square_meters" aria-describedby="square_metersHelper"
-                        placeholder="Insert the square meters of your apartment" value="{{ old('square_meters') }}" />
-                    <small id="square_metersHelper" class="form-text text-muted">Insert the square meters of your
-                        apartment</small>
-                    @error('square_meters')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                </div>
-            </div> --}}
-
 
             {{-- visibility --}}
             <div class="mb-3" data-bs-toggle="buttons">
