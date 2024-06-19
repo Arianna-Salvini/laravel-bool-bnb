@@ -44,23 +44,7 @@ class ApartmentController extends Controller
 
             /* haversine formula? */
             $earth_radius= 6371; //km
-            $range_radius= 20;
-    
-            /* haversine formula:
-                d= 2r ⋅ arcsin(sqrt (sin^2(Δlat/2) + cos(lat1) ⋅ cos(lat2) ⋅ sin^2(Δlong/2) ))
-                where d=distance between 2 points
-                r= earth radius in km
-                Δlat = lat2 - lat1
-                Δlong = long2 - long1
-                lat and long must be in RADIANS
-    
-                use arccos to compact formula: 
-                d= r ⋅ arccos( cos(lat1) ⋅ cos(lat2) ⋅ cos(Δlong) + sin(lat1) ⋅ sin(lat2) )
-    
-                calculates the distance between 2 points
-    
-                I need to filter apartments inside a given radius from a point, given lat and long of that point
-            */       
+            $range_radius= 20;    
     
             /* given lat and long to radians */
             $rad_lat=deg2rad($latitude);
