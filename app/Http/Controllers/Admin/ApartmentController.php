@@ -166,10 +166,7 @@ class ApartmentController extends Controller
         /* if I have services in the request, sync them, otherwise sync an empty array */
         if ($request->has('services')) {
             $apartment->services()->sync($validated['services']);
-        } else {
-            $apartment->services()->sync([]);
-        }
-
+        } ;
         /* if I change the address in the request, I have to update latitude and longitude of that address ->api call to tom tom */
 
         /* update apartment data */
