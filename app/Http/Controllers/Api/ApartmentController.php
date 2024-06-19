@@ -40,9 +40,7 @@ class ApartmentController extends Controller
             $coordinates = $result['position'];
             $latitude = $coordinates['lat'];
             $longitude = $coordinates['lon'];
-
-
-            /* haversine formula? */
+            
             $earth_radius= 6371; //km
             $range_radius= 20;    
     
@@ -52,10 +50,10 @@ class ApartmentController extends Controller
     
             /* range_radius must be converted to radians before being converted to degrees */
             $rad_radius= ($range_radius / $earth_radius);
-            /* convert to degrees */
+            /* convert range radius to degrees */
             $deg_radius= rad2deg($rad_radius);
     
-            /* limits */
+            /* limits (googled)*/
             $lat_min= ($latitude - $deg_radius);
             $lat_max= ($latitude + $deg_radius);
             $long_min= ($longitude - $deg_radius / cos($rad_lat));
@@ -68,6 +66,12 @@ class ApartmentController extends Controller
             return response()->json([
                 'success' => true,
                 'response' => $apartments
+            ]);
+        }
+        else{
+            return response()->json([
+                'success' => false,
+                'message' => 'Insert an address'
             ]);
         }
 
