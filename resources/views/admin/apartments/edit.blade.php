@@ -260,6 +260,10 @@
                 @enderror
             </div>
             <div id="number_error" class="is-invalid"></div>
+            <div id="rooms_error" class="is-invalid"></div>
+            <div id="beds_error" class="is-invalid"></div>
+            <div id="bathrooms_error" class="is-invalid"></div>
+            <div id="square_meters_error" class="is-invalid"></div>
             <button type="submit" class="btn btn-primary">
                 Edit
             </button>
