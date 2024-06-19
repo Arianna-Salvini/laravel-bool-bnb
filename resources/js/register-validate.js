@@ -30,19 +30,17 @@ inputElements.forEach(inputElement => {
         if (inputElement.value.trim() === '') {
             inputElement.insertAdjacentHTML("afterend", '<div class="error-message" style="color: red;">You must fill the field</div>');
             inputElement.classList.add("is-invalid");
-
         }
         else {
             /* remove prev error messages, remove is-invalid class and add is-valid class */
             removeErrorMessages();
-            inputElement.classList.remove("is-invalid")
+            inputElement.classList.remove("is-invalid");
             inputElement.classList.add("is-valid");
 
             /* if inputEmail is email, check match with pattern */
             if (inputElement == email && !emailPattern.test(email.value)) {
                 inputElement.insertAdjacentHTML("afterend", '<div class="error-message" style="color: red;">Invalid email address</div>');
                 inputElement.classList.add("is-invalid");
-
             }
 
             /* if inputElement is birthDate */
@@ -58,6 +56,7 @@ inputElements.forEach(inputElement => {
                 /* if age < 18 return error */
                 if (age < 18) {
                     birthDate.insertAdjacentHTML("afterend", '<div class="error-message" style="color: red;">You must be at least 18 years old</div>');
+                    inputElement.classList.remove("is-valid");
                     inputElement.classList.add("is-invalid");
                 }
             }
@@ -84,9 +83,7 @@ inputElements.forEach(inputElement => {
                 }
             }
 
-
         }
-
         CheckCorrectInputs();
     })
 });
