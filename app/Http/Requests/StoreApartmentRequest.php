@@ -24,10 +24,10 @@ class StoreApartmentRequest extends FormRequest
         return [
             'title' => 'required|min:5|max:255',
             'user_id' => 'nullable|exists:users,id',
-            'services' => 'required|array|min:1',//prima definisci la struttura
+            'image' => 'nullable|image|max:1000',
+         'services' => 'required|array|min:1',//prima definisci la struttura
             'services.*' => 'exists:services,id',//assegno ad ogni elemento dal array
             'description' => 'nullable|max:1000',
-            'image' => 'nullable|image|max:1000',
             'rooms' => 'nullable|integer|min:1',
             'beds' => 'nullable|integer|min:1',
             'bathrooms' => 'nullable|integer|min:1',
