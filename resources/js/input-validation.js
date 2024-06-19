@@ -28,10 +28,23 @@ function validateNumberInput(input) {
     return regex.test(input);
 }
 
+formCreate.addEventListener('keyup', function (e) {
+    let inputValue = street_number.value;
+    let isValid = validatedInput(inputValue);
 
-formCreate.addEventListener('click', function (e) {
+    if (!isValid) {
+        e.preventDefault(); // prevent form submission
+        street_number.classList.add('is-invalid');
+        streetNumberErrorDiv.textContent = 'Attention!!! Invalid street number format';
+    } else {
+        street_number.classList.remove('is-invalid');
+        street_number.classList.add('is-valid');
+        streetNumberErrorDiv.textContent = '';
+    }
+});
+
+formCreate.addEventListener('submit', function (e) {
     let servicesChecked = false;
-
     services.forEach(checkbox => {
         if (checkbox.checked) {
             servicesChecked = true;
@@ -47,20 +60,6 @@ formCreate.addEventListener('click', function (e) {
 });
 
 
-formCreate.addEventListener('keyup', function (e) {
-    let inputValue = street_number.value;
-    let isValid = validatedInput(inputValue);
-
-    if (!isValid) {
-        e.preventDefault(); // prevent form submission
-        street_number.classList.add('is-invalid');
-        streetNumberErrorDiv.textContent = 'Attention!!! Invalid street number format';
-    } else {
-        street_number.classList.remove('is-invalid');
-        street_number.classList.add('is-valid');
-        streetNumberErrorDiv.textContent = '';
-    }
-});
 
 
 roomsInput.addEventListener('keyup', function (e) {
