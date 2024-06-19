@@ -40,27 +40,9 @@ class ApartmentController extends Controller
             $coordinates = $result['position'];
             $latitude = $coordinates['lat'];
             $longitude = $coordinates['lon'];
-
-
-            /* haversine formula? */
+            
             $earth_radius= 6371; //km
-            $range_radius= 20;
-    
-            /* haversine formula:
-                d= 2r ⋅ arcsin(sqrt (sin^2(Δlat/2) + cos(lat1) ⋅ cos(lat2) ⋅ sin^2(Δlong/2) ))
-                where d=distance between 2 points
-                r= earth radius in km
-                Δlat = lat2 - lat1
-                Δlong = long2 - long1
-                lat and long must be in RADIANS
-    
-                use arccos to compact formula: 
-                d= r ⋅ arccos( cos(lat1) ⋅ cos(lat2) ⋅ cos(Δlong) + sin(lat1) ⋅ sin(lat2) )
-    
-                calculates the distance between 2 points
-    
-                I need to filter apartments inside a given radius from a point, given lat and long of that point
-            */       
+            $range_radius= 20;    
     
             /* given lat and long to radians */
             $rad_lat=deg2rad($latitude);
@@ -68,10 +50,10 @@ class ApartmentController extends Controller
     
             /* range_radius must be converted to radians before being converted to degrees */
             $rad_radius= ($range_radius / $earth_radius);
-            /* convert to degrees */
+            /* convert range radius to degrees */
             $deg_radius= rad2deg($rad_radius);
     
-            /* limits */
+            /* limits (googled)*/
             $lat_min= ($latitude - $deg_radius);
             $lat_max= ($latitude + $deg_radius);
             $long_min= ($longitude - $deg_radius / cos($rad_lat));
@@ -84,6 +66,12 @@ class ApartmentController extends Controller
             return response()->json([
                 'success' => true,
                 'response' => $apartments
+            ]);
+        }
+        else{
+            return response()->json([
+                'success' => false,
+                'message' => 'Insert an address'
             ]);
         }
 
