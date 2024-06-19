@@ -1,15 +1,18 @@
 let street_number = document.getElementById('street_number');
 let formCreate = document.getElementById('apartment-form');
-let streetNumberErrorDiv = document.getElementById('number_error');
 let roomsInput = document.getElementById('rooms');
 let bedsInput = document.getElementById('beds');
 let inputBathrooms = document.getElementById('bathrooms');
 let squareMetersInput = document.getElementById('square_meters');
+let services = document.getElementsByName('services[]');
+
+
+let streetNumberErrorDiv = document.getElementById('number_error');
 let roomsErrorDiv = document.getElementById('rooms_error');
 let bedsErrorDiv = document.getElementById('beds_error');
 let bathroomsErrorDiv = document.getElementById('bathrooms_error');
 let squareMetersErorrDiv = document.getElementById('square_meters_error');
-
+let servicesErrorDiv = document.getElementById('services_error');
 
 
 
@@ -24,6 +27,25 @@ function validateNumberInput(input) {
     const regex = /^[0-9]+$/;
     return regex.test(input);
 }
+
+
+formCreate.addEventListener('click', function (e) {
+    let servicesChecked = false;
+
+    services.forEach(checkbox => {
+        if (checkbox.checked) {
+            servicesChecked = true;
+        }
+    });
+
+    if (!servicesChecked) {
+        e.preventDefault();
+        servicesErrorDiv.textContent = 'Please select at least one service.';
+    } else {
+        servicesErrorDiv.textContent = '';
+    }
+});
+
 
 formCreate.addEventListener('keyup', function (e) {
     let inputValue = street_number.value;
