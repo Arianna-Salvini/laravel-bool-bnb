@@ -9,7 +9,7 @@
         {{-- dashboard --}}
         <li class="nav-item px-4 ">
             <a class="nav-link d-flex gap-3 align-items-center" href="{{ url('admin') }}">
-                <i class="fa-solid fa-house-user"></i>
+                <i class="fa-solid fa-house"></i>
                 {{ __('Dashboard') }}
             </a>
         </li>
@@ -23,7 +23,7 @@
         {{-- sponsorships --}}
         <li class="nav-item px-4">
             <a class="nav-link d-flex gap-3 align-items-center" href="#">
-                <i class="fa-solid fa-cubes"></i>
+                <i class="fa-solid fa-arrow-trend-up"></i>
                 {{ __('Sponsorships') }}
             </a>
         </li>

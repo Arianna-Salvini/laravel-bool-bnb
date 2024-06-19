@@ -10,7 +10,7 @@
         </div>
         <div class="row d-flex">
             <div class="col-md-8 mb-4">
-                <div class="card shadow-lg position-relative overflow-hidden">
+                <div class="card shadow-lg position-relative overflow-hidden rounded-5">
                     @if ($apartment->image)
                         <div class="card-img-overlay d-flex align-items-center p-0">
                             <div class="w-100 h-100 bg-dark bg-opacity-25 p-4">
@@ -28,12 +28,12 @@
                     <strong>Description:</strong>
                     <p>{{ $apartment->description }}</p>
                     {{-- Add Map --}}
-                <div id="map" style="height: 400px; width: 100%;" class="mt-4 rounded-3 shadow-lg"></div>
+                <div id="map" style="height: 400px; width: 100%;" class="mt-4 rounded-5"></div>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="card shadow">
-                    <div class="card-header bg-dark text-white">
+                <div class="card shadow mb-4 rounded-5">
+                    <div class="card-header bg-dark text-white rounded-5 d-flex align-items-center justify-content-center">
                         <h2>Details:</h2>
                     </div>
                     <div class="card-body">
@@ -71,6 +71,19 @@
                             </ul>
                         </div>
                     </div>
+                </div>
+
+                {{-- Sponsor button --}}
+                <div class="mb-3 sponsor-container">
+                    <a href="">
+                        <div class="sponsor-button d-flex flex-column justify-content-between position-relative">
+                            <div class="icon">
+                                <i class="fa-solid fa-arrow-trend-up"></i>
+                            </div>
+                            <span>Advertise your apartment!</span>
+                            <img class="img-button" src="https://i.ibb.co/rxZs9mM/04.png" alt="">
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
