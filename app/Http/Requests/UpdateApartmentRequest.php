@@ -23,19 +23,20 @@ class UpdateApartmentRequest extends FormRequest
     {
         return [
             'title' => 'required|min:5|max:255',
-            'user_id' => 'nullable|exists:user,id',
-            'services' => 'exists:services,id',
+            'user_id' => 'nullable|exists:users,id',
+            'services' => 'required|array|min:1',
+            'services.*' => 'exists:services,id',
             'description' => 'nullable|max:1000',
             'image' => 'nullable|image|max:1000',
             'rooms' => 'nullable|integer|min:1',
             'beds' => 'nullable|integer|min:1',
             'bathrooms' => 'nullable|integer|min:1',
-            'square_meters' => 'nullable|integer',
-            'address' => 'nullable',
-            'street_number' => 'nullable',
-            'country_code' => 'nullable',
-            'zip_code' => 'nullable',
-            'city' => 'nullable',
+            'square_meters' => 'nullable|integer|min:1',
+            'address' => 'required',
+            'street_number' => 'required|regex:/^[a-zA-Z0-9\/]+$/',
+            'country_code' => 'required',
+            'zip_code' => 'required',
+            'city' => 'required',
             'visibility' => 'required|boolean',
         ];
     }
