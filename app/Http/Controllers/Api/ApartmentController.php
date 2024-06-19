@@ -10,7 +10,7 @@ class ApartmentController extends Controller
 {
     public function index()
     {
-        $apartments = Apartment::all()->where('user_id', auth()->id());
+        $apartments = Apartment::all();
         return response()->json([
             'success' => true,
             'results' => $apartments
