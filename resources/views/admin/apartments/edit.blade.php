@@ -264,6 +264,7 @@
             <div id="beds_error" class="is-invalid"></div>
             <div id="bathrooms_error" class="is-invalid"></div>
             <div id="square_meters_error" class="is-invalid"></div>
+            <div id="services_error" class="is-invalid"></div>
             <button type="submit" class="btn btn-primary">
                 Edit
             </button>
