@@ -1,0 +1,48 @@
+.form-control {
+    background-color: #f8f9fa;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+}
+
+
+.container {
+    max-width: 1400px;
+    margin: auto;
+}
+
+.bg-dark {
+    background-color: #343a40;
+}
+
+.text-white {
+    color: #fff;
+}
+
+.form-label {
+    font-weight: bold;
+}
+
+.services .form-check {
+    margin-right: 10px;
+}
+
+
+@media (max-width: 768px) {
+
+    .gap-2,
+    .gap-5 {
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .image-banner {
+        display: none;
+    }
+}

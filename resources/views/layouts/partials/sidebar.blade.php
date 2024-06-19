@@ -1,11 +1,11 @@
 <aside id="left-sidebar" class="w-auto h-100 d-flex flex-column position-relative d-none d-md-flex">
     {{-- title: top --}}
     <div class="side-header d-flex justify-content-center align-items-center">
-        <img class="mt-5 image-fluid" src="https://i.ibb.co/MgFsztp/boolbnb-for-owners.png" width="80" alt="">
+        <img class="mt-5 img-fluid" src="https://i.ibb.co/MgFsztp/boolbnb-for-owners.png" width="80" alt="">
     </div>
 
     {{-- opt --}}
-    <ul class="navbar-nav mb-auto mt-5 pt-5">
+    <ul class="navbar-nav mb-auto mt-5 pt-5 d-flex gap-2">
         {{-- dashboard --}}
         <li class="nav-item px-4 ">
             <a class="nav-link d-flex gap-3 align-items-center" href="{{ url('admin') }}">
@@ -42,10 +42,15 @@
         </li>
         {{-- logout --}}
         <li class="nav-item px-4">
-            <a class="nav-link d-flex gap-3 align-items-center" href="{{ route('logout') }}">
+            <a class="nav-link d-flex gap-3 align-items-center" href="{{ route('logout') }}"
+                onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                 <i class="fa-solid fa-right-from-bracket"></i>
                 {{ __('Logout') }}
             </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
+
         </li>
     </ul>
 </aside>

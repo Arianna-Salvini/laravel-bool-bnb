@@ -1,10 +1,13 @@
-// Page partials
+//Bootstrap import
+@use '~bootstrap/scss/bootstrap';
 
+// Page partials
 @use './partials/variables' as *;
 @use './partials/sidebar';
 @use './partials/navbar';
 @use './partials/apartments';
 
 // UI components
+@use './components/headers.scss';
 @use './components/buttons.scss';
-@use '~bootstrap/scss/bootstrap'
+@use './components/forms.scss';

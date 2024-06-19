@@ -59,19 +59,19 @@ address.addEventListener('input', function () {
 
                     if (response.results[i].address.streetNumber) {
                         street_number.value = response.results[i].address.streetNumber;
-                        street_number.setAttribute('disabled', true);
+                        street_number.setAttribute('readonly', true);
                     }
                     if (response.results[i].address.postalCode) {
                         zip_code.value = response.results[i].address.postalCode;
-                        zip_code.setAttribute('disabled', true);
+                        zip_code.setAttribute('readonly', true);
                     }
                     if (response.results[i].address.municipality) {
                         city.value = response.results[i].address.municipality;
-                        city.setAttribute('disabled', true);
+                        city.setAttribute('readonly', true);
                     }
                     if (response.results[i].address.countryCode) {
                         country_code.value = response.results[i].address.countryCode;
-                        country_code.setAttribute('disabled', true);
+                        country_code.setAttribute('readonly', true);
                     }
 
                     /* when I select a suggestion, the other suggestions disappear */
