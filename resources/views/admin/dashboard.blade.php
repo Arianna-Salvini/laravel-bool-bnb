@@ -5,24 +5,43 @@
         <h2 class="fs-4 text-secondary my-4">
             {{ __('Dashboard') }}
         </h2>
-        {{-- <div class="row justify-content-center">
-        <div class="col-8">
-            <div class="card">
-                <div class="card-header">{{ __('User Dashboard') }}</div>
 
-                <div class="card-body">
-                    @if (session('status'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('status') }}
-                    </div>
-                    @endif
+        <div class="d-flex justify-content-between align-items-center">
+            <h1>👋 Hi {{Auth::user()->name}}!</h1>
+            <a class="btn btn-primary btn-sm " href="http://localhost:5180/"   role="button" target="_BLANK">Search</a>
+        </div>
 
-                    {{ __('You are logged in!') }}
+        
+
+
+        <div class="row d-flex">
+            <div class="col">
+                <div class="mb-3 button-container">
+                    <a href="{{ route('admin.apartments.create') }}">
+                        <div class="create-button d-flex flex-column justify-content-between position-relative">
+                            <div class="icon">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                            </div>
+                            <span class="text-fluid">Add new apartment!</span>
+                            <img class="img-button" src="https://i.ibb.co/7JhQ30Q/05.png" alt="">
+                        </div>
+                    </a>
+                </div>
+            </div>
+    
+            <div class="col">
+                <div class="mb-3 button-container">
+                    <a href="">
+                        <div class="sponsor-button d-flex flex-column justify-content-between position-relative">
+                            <div class="icon">
+                                <i class="fa-solid fa-arrow-trend-up"></i>
+                            </div>
+                            <span class="text-fluid">Sponsor your apartment!</span>
+                            <img class="img-button" src="https://i.ibb.co/rxZs9mM/04.png" alt="">
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
-    </div> --}}
-
-        user dashboard preview
     </div>
 @endsection
