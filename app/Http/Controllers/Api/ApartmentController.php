@@ -64,43 +64,53 @@ class ApartmentController extends Controller
             $client = new Client(['verify' => false]);
             $result = json_decode($client->get($api_url)->getBody(), true)['results'][0];
 
-            /* save coordinates */
-            $coordinates = $result['position'];
-            $latitude = $coordinates['lat'];
-            $longitude = $coordinates['lon'];
+            if(isset($result['results'])){
 
-            $earth_radius = 6371; //km
+                /* save coordinates */
+                $coordinates = $result['position'];
+                $latitude = $coordinates['lat'];
+                $longitude = $coordinates['lon'];
+    
+                $earth_radius = 6371; //km
+    
+                $range_radius = 20;  // $range_radius = 20;
+    
+    
+                /* given lat and long to radians */
+                $rad_lat = deg2rad($latitude);
+                $rad_long = deg2rad($longitude);
+    
+                /* range_radius must be converted to radians before being converted to degrees */
+                // $rad_radius = ($range_radius / $earth_radius);
+    
+                //use range_distance in order base on given range from user and calculate the radius
+                $rad_radius = ($range_distance / $earth_radius);
+    
+    
+                /* convert range radius to degrees */
+                $deg_radius = rad2deg($rad_radius);
+    
+                /* limits (googled)*/
+                $lat_min = ($latitude - $deg_radius);
+                $lat_max = ($latitude + $deg_radius);
+                $long_min = ($longitude - $deg_radius / cos($rad_lat));
+                $long_max = ($longitude + $deg_radius / cos($rad_lat));
+    
+                $query = Apartment::query();
+                $apartments = $query->whereBetween('latitude', [$lat_min, $lat_max])->whereBetween('longitude', [$long_min, [$long_max]])->with('services', 'sponsorships', 'user')->orderByDesc('id')->paginate(4);
 
-            $range_radius = 20;  // $range_radius = 20;
+                return response()->json([
+                    'success' => true,
+                    'response' => $apartments,
+                ]);
+            }
+            else{
+                return response()->json([
+                    'success' => false,
+                    'message' => 'No apartments found within the given range'
+                ]);
+            }
 
-
-            /* given lat and long to radians */
-            $rad_lat = deg2rad($latitude);
-            $rad_long = deg2rad($longitude);
-
-            /* range_radius must be converted to radians before being converted to degrees */
-            // $rad_radius = ($range_radius / $earth_radius);
-
-            //use range_distance in order base on given range from user and calculate the radius
-            $rad_radius = ($range_distance / $earth_radius);
-
-
-            /* convert range radius to degrees */
-            $deg_radius = rad2deg($rad_radius);
-
-            /* limits (googled)*/
-            $lat_min = ($latitude - $deg_radius);
-            $lat_max = ($latitude + $deg_radius);
-            $long_min = ($longitude - $deg_radius / cos($rad_lat));
-            $long_max = ($longitude + $deg_radius / cos($rad_lat));
-
-            $query = Apartment::query();
-            $apartments = $query->whereBetween('latitude', [$lat_min, $lat_max])->whereBetween('longitude', [$long_min, [$long_max]])->with('services', 'sponsorships', 'user')->orderByDesc('id')->paginate(4);
-
-            return response()->json([
-                'success' => true,
-                'response' => $apartments,
-            ]);
         } else {
             return response()->json([
                 'success' => false,
