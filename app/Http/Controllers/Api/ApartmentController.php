@@ -11,7 +11,7 @@ class ApartmentController extends Controller
 {
     public function index()
     {
-        $apartments = Apartment::with('services', 'sponsorships', 'user')->orderByDesc('id')->paginate(10);
+        $apartments = Apartment::with('services', 'sponsorships', 'user')->orderByDesc('id')->paginate(4);
 
         return response()->json([
             'success' => true,
