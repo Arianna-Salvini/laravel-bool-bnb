@@ -19,21 +19,6 @@ class ApartmentController extends Controller
         ]);
     }
 
-
-    public function searchApartments(Request $request)
-    {
-
-        $api_key = env('TOMTOM_API_KEY');
-        $base_api = 'https://api.tomtom.com/search/2/geocode/';
-
-        $address = str_replace(' ', '%20', $request['address']);
-
-        // Add range distance dynamically from range input in FE
-        $range_distance = $request->input('range_distance', 20);
-
-        /* https://api.tomtom.com/search/2/geocode/Via%20degli%20anemoni%206%2000172%20Roma.json?storeResult=false&view=Unified&key=***** */
-        $api_url = $base_api.$address.'.json?storeResult=false&view=Unified&key='.$api_key;
-    }
     public function show($slug)
     {
         $apartment = Apartment::with('services', 'sponsorships', 'user')->where('slug', $slug)->first();
@@ -54,6 +39,21 @@ class ApartmentController extends Controller
             );
         }
     }
+
+
+    public function searchApartments(Request $request)
+    {
+
+        $api_key = env('TOMTOM_API_KEY');
+        $base_api = 'https://api.tomtom.com/search/2/geocode/';
+
+        $address = str_replace(' ', '%20', $request['address']);
+
+        // Add range distance dynamically from range input in FE
+        $range_distance = $request->input('range_distance', 20);
+
+        /* https://api.tomtom.com/search/2/geocode/Via%20degli%20anemoni%206%2000172%20Roma.json?storeResult=false&view=Unified&key=***** */
+        $api_url = $base_api.$address.'.json?storeResult=false&view=Unified&key='.$api_key;   
 
 
         /* if request has address filled */
