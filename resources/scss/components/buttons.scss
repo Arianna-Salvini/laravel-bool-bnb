@@ -1,5 +1,6 @@
 .btn {
     border-radius: 60px;
+    
 }
 
 .btn-action {
@@ -54,9 +55,21 @@
 
 
 // SPONSOR SPECIAL BUTTON
-.sponsor-container {
+.button-container {
 
-    margin-top: 40px
+    margin-top: 40px;
+
+    i {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+    }
+
+    span {
+        width: 50%;
+    }
 }
 
 a {
@@ -114,3 +127,45 @@ a {
         background-clip: border-box;
         opacity: 40%;
     }
+
+
+
+
+    .create-button {
+        background-color: #693fac;
+        height: 400px;
+        padding: 20px;
+        border-radius: 30px;
+        cursor: pointer;
+        overflow: hidden;
+        transition: 1.2s;
+    
+        i {
+            color: white;
+            background-color: #5f228e;
+            border-radius: 30px;
+        }
+        span {
+            color:white;
+            font-weight: 900;
+            font-size: 30px;
+            text-transform: uppercase;
+            z-index: 4;
+    
+            .text-fluid {
+                font-size: calc(1rem + 1vw);
+            }
+    
+        }
+        
+    }
+    
+    .create-button:hover {
+            background-color: #af45c2 ;
+            transition: 0.3s;
+    
+            .img-button {
+                transform: scale(120%);
+                transition: 1.2s;
+            }
+        }

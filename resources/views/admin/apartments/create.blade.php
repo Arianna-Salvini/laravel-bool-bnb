@@ -10,7 +10,7 @@
             </div>
         </div>
         <form action="{{ route('admin.apartments.store') }}" method="POST" enctype="multipart/form-data"
-            class="form-control p-4 mb-3" id="apartment-form">
+            class="form-control p-4 mb-5" id="apartment-form">
             @csrf
 
             {{-- Title --}}
