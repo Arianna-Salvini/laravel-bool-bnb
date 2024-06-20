@@ -46,14 +46,16 @@
                                         <i class="fa-solid fa-x"></i>
                                     @endif
                                 </td>
-                                <td class="text-center">
-                                    <a class="btn btn-dark btn-sm btn-action" href="{{ route('admin.apartments.show', $apartment) }}" role="button">
-                                        <i class="fa fa-eye" aria-hidden="true"></i>
-                                    </a>
-                                    <a class="btn btn-warning btn-sm btn-action" href="{{ route('admin.apartments.edit', $apartment) }}" role="button">
-                                        <i class="fa fa-pencil" aria-hidden="true"></i>
-                                    </a>
-                                    @include('partials.delete-apartments')
+                                <td class="text-center my-2">
+                                    <div class="d-flex">
+                                        <a class="btn btn-dark btn-sm btn-action" href="{{ route('admin.apartments.show', $apartment) }}" role="button">
+                                            <i class="fa fa-eye" aria-hidden="true"></i>
+                                        </a>
+                                        <a class="btn btn-warning btn-sm btn-action" href="{{ route('admin.apartments.edit', $apartment) }}" role="button">
+                                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                                        </a>
+                                        @include('partials.delete-apartments')
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
