@@ -19,6 +19,7 @@ class ApartmentController extends Controller
         ]);
     }
 
+
     public function searchApartments(Request $request)
     {
 
@@ -32,6 +33,28 @@ class ApartmentController extends Controller
 
         /* https://api.tomtom.com/search/2/geocode/Via%20degli%20anemoni%206%2000172%20Roma.json?storeResult=false&view=Unified&key=***** */
         $api_url = $base_api.$address.'.json?storeResult=false&view=Unified&key='.$api_key;
+
+    public function show($slug)
+    {
+        $apartment = Apartment::with('services', 'sponsorships', 'user')->where('slug', $slug)->first();
+
+        if ($apartment) {
+            return response()->json(
+                [
+                    'success' => true,
+                    'response' => $apartment,
+                ]
+            );
+        } else {
+            return response()->json(
+                [
+                    'success' => false,
+                    'response' => 'Sorry there is not your apartment',
+                ]
+            );
+        }
+    }
+
 
         /* if request has address filled */
         if ($request->has('address') && $request['address'] != '') {
@@ -47,7 +70,9 @@ class ApartmentController extends Controller
             $longitude = $coordinates['lon'];
 
             $earth_radius = 6371; //km
-            // $range_radius = 20;
+
+            $range_radius = 20;  // $range_radius = 20;
+
 
             /* given lat and long to radians */
             $rad_lat = deg2rad($latitude);
@@ -59,6 +84,7 @@ class ApartmentController extends Controller
             //use range_distance in order base on given range from user and calculate the radius
             $rad_radius = ($range_distance / $earth_radius);
 
+
             /* convert range radius to degrees */
             $deg_radius = rad2deg($rad_radius);
 
@@ -69,11 +95,7 @@ class ApartmentController extends Controller
             $long_max = ($longitude + $deg_radius / cos($rad_lat));
 
             $query = Apartment::query();
-            $apartments = $query->whereBetween('latitude', [$lat_min, $lat_max])
-                ->whereBetween('longitude', [$long_min, $long_max])
-                ->with('services', 'sponsorships', 'user')
-                ->orderByDesc('id')
-                ->paginate(4);
+            $apartments = $query->whereBetween('latitude', [$lat_min, $lat_max])->whereBetween('longitude', [$long_min, [$long_max]])->with('services', 'sponsorships', 'user')->orderByDesc('id')->paginate(4);
 
             return response()->json([
                 'success' => true,
@@ -85,6 +107,5 @@ class ApartmentController extends Controller
                 'message' => 'Insert an address',
             ]);
         }
-
     }
 }
