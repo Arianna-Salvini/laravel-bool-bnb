@@ -64,7 +64,7 @@ class ApartmentController extends Controller
             $client = new Client(['verify' => false]);
             $result = json_decode($client->get($api_url)->getBody(), true)['results'][0];
 
-            if(isset($result['results'])){
+            /* if(isset($result['results'])){ */
 
                 /* save coordinates */
                 $coordinates = $result['position'];
@@ -103,13 +103,13 @@ class ApartmentController extends Controller
                     'success' => true,
                     'response' => $apartments,
                 ]);
-            }
+            /* }
             else{
                 return response()->json([
                     'success' => false,
                     'message' => 'No apartments found within the given range'
                 ]);
-            }
+            } */
 
         } else {
             return response()->json([
