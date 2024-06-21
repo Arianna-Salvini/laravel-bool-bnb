@@ -7,10 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Apartment extends Model
 {
-    use HasFactory;
+    // Add SoftDeletes and remember to import it (use)
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'title',
@@ -34,8 +36,6 @@ class Apartment extends Model
 
     /**
      * Get the user that owns the Apartment
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user(): BelongsTo
     {
@@ -44,8 +44,6 @@ class Apartment extends Model
 
     /**
      * The services that belong to the Apartment
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function services(): BelongsToMany
     {
@@ -54,8 +52,6 @@ class Apartment extends Model
 
     /**
      * The sponsorships that belong to the Apartment
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function sponsorships(): BelongsToMany
     {
@@ -64,8 +60,6 @@ class Apartment extends Model
 
     /**
      * Get all of the messages for the Apartment
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function messages(): HasMany
     {
@@ -74,8 +68,6 @@ class Apartment extends Model
 
     /**
      * Get all of the statistics for the Apartment
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function statistics(): HasMany
     {
