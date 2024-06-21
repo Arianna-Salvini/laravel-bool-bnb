@@ -10,6 +10,12 @@ class Message extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'lastname',
+        'sender_email',
+        'content',
+    ];
     /**
      * Get the apartment that owns the Message
      *
