@@ -1,10 +1,10 @@
 
 /* get all address inputs from document */
 let address = document.getElementById('address');
-let street_number = document.getElementById('street_number');
+/* let street_number = document.getElementById('street_number');
 let zip_code = document.getElementById('zip_code');
 let city = document.getElementById('city');
-let country_code = document.getElementById('country_code');
+let country_code = document.getElementById('country_code'); */
 //console.log(address, street_number);
 
 /* get list element from document (this is where I'll show address suggestions) */
@@ -55,7 +55,9 @@ address.addEventListener('input', function () {
                     //console.log(response.results[i].address.streetName);
 
                     /* when I click, I get all fields autocomplete with response data */
-                    address.value = response.results[i].address.streetName;
+
+                    address.value = response.results[i].address.freeformAddress
+                    /* address.value = response.results[i].address.streetName;
 
                     if (response.results[i].address.streetNumber) {
                         street_number.value = response.results[i].address.streetNumber;
@@ -72,7 +74,7 @@ address.addEventListener('input', function () {
                     if (response.results[i].address.countryCode) {
                         country_code.value = response.results[i].address.countryCode;
                         country_code.setAttribute('readonly', true);
-                    }
+                    } */
 
                     /* when I select a suggestion, the other suggestions disappear */
                     addressList.innerHTML = '';
