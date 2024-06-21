@@ -5,7 +5,9 @@ let bedsInput = document.getElementById('beds');
 let inputBathrooms = document.getElementById('bathrooms');
 let squareMetersInput = document.getElementById('square_meters');
 let services = document.getElementsByName('services[]');
+let submit = document.getElementById('submit-btn')
 
+console.log(submit)
 
 /* let streetNumberErrorDiv = document.getElementById('number_error'); */
 let roomsErrorDiv = document.getElementById('rooms_error');
@@ -45,6 +47,8 @@ function validateNumberInput(input) {
 
 formCreate.addEventListener('submit', function (e) {
     let servicesChecked = false;
+    submit.disabled = true
+    submit.innerText = "Loading...";
     services.forEach(checkbox => {
         if (checkbox.checked) {
             servicesChecked = true;
@@ -54,6 +58,8 @@ formCreate.addEventListener('submit', function (e) {
     if (!servicesChecked) {
         e.preventDefault();
         servicesErrorDiv.textContent = 'Please select at least one service.';
+        submit.disabled = false
+        submit.innerText = "Add";
     } else {
         servicesErrorDiv.textContent = '';
     }
