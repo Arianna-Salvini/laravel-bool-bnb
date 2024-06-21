@@ -21,7 +21,8 @@ address.addEventListener('input', function () {
     let addressValue = this.value.replace(' ', '%20');
 
     /* create url using search api */
-    let url = `https://api.tomtom.com/search/2/search/${addressValue}.json?view=Unified&relatedPois=off&key=${api_key}`;
+    //let url = `https://api.tomtom.com/search/2/search/${addressValue}.json?view=Unified&relatedPois=off&key=${api_key}`;
+    let url = `https://api.tomtom.com/search/2/search/${addressValue}.json?countrySet=IT&view=Unified&relatedPois=off&key=${api_key}`;
 
     /* use async function to get result: the function returns a promise resolved with result data transformed in json */
     async function getResults(url) {
