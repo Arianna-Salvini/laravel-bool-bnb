@@ -17,10 +17,10 @@ class ApartmentForm extends Component
     public $isEditForm;
     public $oldTitle;
     public $oldAddress;
-    public $oldStreetNumber;
+    /* public $oldStreetNumber;
     public $oldCountry;
     public $oldCity;
-    public $oldZip;
+    public $oldZip; */
     public $oldSqm;
     public $oldRooms;
     public $oldBeds;
@@ -31,7 +31,7 @@ class ApartmentForm extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct($route, $method, $nations, $services, $apartment, $isEditForm, $oldTitle, $oldAddress, $oldStreetNumber, $oldCountry, $oldCity, $oldZip, $oldSqm, $oldRooms, $oldBeds, $oldBathrooms, $oldVisibility, $oldDescription)
+    public function __construct($route, $method, $nations, $services, $apartment, $isEditForm, $oldTitle, $oldAddress, /* $oldStreetNumber, $oldCountry, $oldCity, $oldZip, */ $oldSqm, $oldRooms, $oldBeds, $oldBathrooms, $oldVisibility, $oldDescription)
     {
         $this->route = $route;
         $this->method = $method;
@@ -41,10 +41,10 @@ class ApartmentForm extends Component
         $this->isEditForm = $isEditForm;
         $this->oldTitle = $oldTitle;
         $this->oldAddress = $oldAddress;
-        $this->oldStreetNumber = $oldStreetNumber;
+        /* $this->oldStreetNumber = $oldStreetNumber;
         $this->oldCountry = $oldCountry;
         $this->oldCity = $oldCity;
-        $this->oldZip = $oldZip;
+        $this->oldZip = $oldZip; */
         $this->oldSqm = $oldSqm;
         $this->oldRooms = $oldRooms;
         $this->oldBeds = $oldBeds;

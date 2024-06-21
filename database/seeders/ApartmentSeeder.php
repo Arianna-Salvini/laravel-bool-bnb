@@ -27,10 +27,10 @@ class ApartmentSeeder extends Seeder
             $newApartment->bathrooms = $apartment['bathrooms'];
             $newApartment->square_meters = $apartment['square_meters'];
             $newApartment->address = $apartment['address'];
-            $newApartment->street_number = $apartment['street_number'];
+            /* $newApartment->street_number = $apartment['street_number'];
             $newApartment->country_code = $apartment['country_code'];
             $newApartment->city = $apartment['city'];
-            $newApartment->zip_code = $apartment['zip_code'];
+            $newApartment->zip_code = $apartment['zip_code']; */
             $newApartment->latitude = $apartment['latitude'];
             $newApartment->longitude = $apartment['longitude'];
             $newApartment->visibility = $apartment['visibility'];

@@ -64,20 +64,24 @@ class ApartmentController extends Controller
 
         /* if I have the address in the request, I have to update latitude and longitude of that address ->api call to tom tom */
         /* https://developer.tomtom.com/geocoding-api/api-explorer   structured geocoding */
+        if ($request->has('address') && $request['address'] != '') {
+            /* save data for api call NORMAL */
+            $api_key = env('TOMTOM_API_KEY');
+            $base_api = 'https://api.tomtom.com/search/2/geocode/';
+            $address = str_replace(' ', '%20', $validated['address']); //20 zoom level
 
-        /* save data for api call */
-        $api_key = env('TOMTOM_API_KEY');
-        $base_api = 'https://api.tomtom.com/search/2/structuredGeocode.json?';
-        $address = str_replace(' ', '%20', $validated['address']); //20 zoom level
-        $street_number = $validated['street_number'];
-        $country_code = $validated['country_code'];
-        $zip_code = $validated['zip_code'];
-        $city = $validated['city'];
+            /* EDGE CASE: some addresses aren't present in tomtom */
+            /* $base_api = 'https://api.tomtom.com/search/2/structuredGeocode.json?'; */
+            /* $street_number = $validated['street_number'];
+            $country_code = $validated['country_code'];
+            $zip_code = $validated['zip_code'];
+            $city = $validated['city']; */
 
-        if ($request->has('country_code', 'street_number', 'zip_code', 'city') && $country_code != null && $zip_code != null && $city != null && $street_number != null) {
+            /* if ($request->has('country_code', 'street_number', 'zip_code', 'city') && $country_code != null && $zip_code != null && $city != null && $street_number != null) { */
 
             /* create api url */
-            $api_url = $base_api.'countryCode='.$country_code.'&streetNumber='.$street_number.'&streetName='.$address.'&municipality='.$city.'&postalCode='.$zip_code.'&view=Unified&key='.$api_key;
+            /* $api_url = $base_api.'countryCode='.$country_code.'&streetNumber='.$street_number.'&streetName='.$address.'&municipality='.$city.'&postalCode='.$zip_code.'&view=Unified&key='.$api_key; */
+            $api_url = $base_api . $address . '.json?storeResult=false&view=Unified&key=' . $api_key;
 
             /* save coordinates */
             /* $coordinates = json_decode(file_get_contents($api_url))->results[0]->position; */
@@ -101,6 +105,7 @@ class ApartmentController extends Controller
             /* save in db */
             $validated['latitude'] = $latitude;
             $validated['longitude'] = $longitude;
+            /* } */
         }
 
         /* create new apartment using validated data*/
@@ -163,10 +168,42 @@ class ApartmentController extends Controller
             $validated['image'] = $img_path;
         }
 
+        if ($request->has('address') && $request['address'] != '') {
+            /* save data for api call NORMAL */
+            $api_key = env('TOMTOM_API_KEY');
+            $base_api = 'https://api.tomtom.com/search/2/geocode/';
+            $address = str_replace(' ', '%20', $validated['address']); //20 zoom level            
+
+            /* create api url */
+            //$api_url = $base_api . $address . '.json?storeResult=false&view=Unified&key=' . $api_key;
+            $api_url = $base_api . $address . '.json?storeResult=false&countrySet=IT&view=Unified&key=' . $api_key;
+
+            /* save coordinates */
+
+            /* bypass SSL certificate error */
+            $client = new Client(['verify' => false]);
+
+            /* $client->get returns a json response that must be decoded into assoc array -> get results -> 0 */
+            $result = json_decode($client->get($api_url)->getBody(), true)['results'][0];
+
+            /* save coordinates */
+            $coordinates = $result['position'];
+            /* dd($coordinates); */
+
+            /* save lat and long */
+            $latitude = $coordinates['lat'];
+            $longitude = $coordinates['lon'];
+            /* dd($latitude, $longitude); */
+
+            /* save in db */
+            $validated['latitude'] = $latitude;
+            $validated['longitude'] = $longitude;
+        }
+
         /* if I have services in the request, sync them, otherwise sync an empty array */
         if ($request->has('services')) {
             $apartment->services()->sync($validated['services']);
-        } ;
+        }
         /* if I change the address in the request, I have to update latitude and longitude of that address ->api call to tom tom */
 
         /* update apartment data */

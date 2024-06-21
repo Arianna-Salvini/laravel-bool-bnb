@@ -59,7 +59,7 @@
 
         {{-- Address --}}
         <div class="address-street_number d-flex gap-2">
-            <div class="mb-3 w-75">
+            <div class="mb-3 {{-- w-75 --}} w-100">
                 <label for="address" class="form-label"><strong>Address</strong> <span class="text-danger">*</span>
                 </label>
                 <input type="text" class="form-control @error('address') is-invalid @enderror" name="address"
@@ -75,7 +75,7 @@
             </div>
 
             {{-- Street Number --}}
-            <div class="mb-3 w-25">
+            {{-- <div class="mb-3 w-25">
                 <label for="street_number" class="form-label"><strong>Street number</strong> <span
                         class="text-danger">*</span></label>
                 <input type="text" class="form-control @error('street_number') is-invalid @enderror"
@@ -86,13 +86,13 @@
                 @error('street_number')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
-            </div>
+            </div> --}}
         </div>
 
         {{-- Country, City, Zip Code --}}
-        <div class="country-zip-city d-flex gap-2">
-            {{-- Country Code --}}
-            <div class="mb-3 w-50">
+        {{-- <div class="country-zip-city d-flex gap-2"> --}}
+        {{-- Country Code --}}
+        {{-- <div class="mb-3 w-50">
                 <label for="country_code" class="form-label"><strong>Select a Country</strong> <span
                         class="text-danger">*</span></label>
                 <select class="form-select @error('country_code') is-invalid @enderror" id="country_code"
@@ -108,10 +108,10 @@
                 @error('country_code')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
-            </div>
+            </div> --}}
 
-            {{-- City --}}
-            <div class="mb-3 w-25">
+        {{-- City --}}
+        {{-- <div class="mb-3 w-25">
                 <label for="city" class="form-label"><strong>City</strong> <span
                         class="text-danger">*</span></label>
                 <input type="text" class="form-control @error('city') is-invalid @enderror" name="city"
@@ -121,10 +121,10 @@
                 @error('city')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
-            </div>
+            </div> --}}
 
-            {{-- Zip Code --}}
-            <div class="mb-3 w-25">
+        {{-- Zip Code --}}
+        {{-- <div class="mb-3 w-25">
                 <label for="zip_code" class="form-label"><strong>Zip code</strong> <span
                         class="text-danger">*</span></label>
                 <input type="text" class="form-control @error('zip_code') is-invalid @enderror" name="zip_code"
@@ -135,7 +135,7 @@
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
-        </div>
+        </div> --}}
 
         {{-- Apartment Details --}}
         <div class="mb-3">

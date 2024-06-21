@@ -32,13 +32,15 @@
                                     @if (Str::startsWith($apartment->image, 'http'))
                                         <img src="{{ $apartment->image }}" alt="" width="100">
                                     @elseif(Str::startsWith($apartment->image, 'uploads/'))
-                                        <img src="{{ asset('storage/' . $apartment->image) }}" alt="" width="100">
+                                        <img src="{{ asset('storage/' . $apartment->image) }}" alt=""
+                                            width="100">
                                     @else
-                                        <img src="https://media-assets.wired.it/photos/615f1f69cd947bb96c08e6db/4:3/w_784,h_588,c_limit/1512472812_404error.jpg" alt="" width="100">
+                                        <img src="https://media-assets.wired.it/photos/615f1f69cd947bb96c08e6db/4:3/w_784,h_588,c_limit/1512472812_404error.jpg"
+                                            alt="" width="100">
                                     @endif
                                 </td>
                                 <td>{{ $apartment->title }}</td>
-                                <td>{{ $apartment->address }} {{ $apartment->street_number }}</td>
+                                <td>{{ $apartment->address }} {{-- {{ $apartment->street_number }} --}}</td>
                                 <td class="text-center">
                                     @if ($apartment->visibility)
                                         <i class="fa-solid fa-check"></i>
@@ -48,10 +50,12 @@
                                 </td>
                                 <td class="text-center my-2">
                                     <div class="d-flex">
-                                        <a class="btn btn-dark btn-sm btn-action" href="{{ route('admin.apartments.show', $apartment) }}" role="button">
+                                        <a class="btn btn-dark btn-sm btn-action"
+                                            href="{{ route('admin.apartments.show', $apartment) }}" role="button">
                                             <i class="fa fa-eye" aria-hidden="true"></i>
                                         </a>
-                                        <a class="btn btn-warning btn-sm btn-action" href="{{ route('admin.apartments.edit', $apartment) }}" role="button">
+                                        <a class="btn btn-warning btn-sm btn-action"
+                                            href="{{ route('admin.apartments.edit', $apartment) }}" role="button">
                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                         </a>
                                         @include('partials.delete-apartments')
@@ -63,9 +67,11 @@
                 </table>
             @else
                 <div class="container d-flex justify-content-center align-items-center flex-column text-center py-5">
-                    <img class="img-fluid mb-3" src="https://i.ibb.co/gyzBgd3/no-apartments-illustration.png" alt="No apartments illustration">
+                    <img class="img-fluid mb-3" src="https://i.ibb.co/gyzBgd3/no-apartments-illustration.png"
+                        alt="No apartments illustration">
                     <span class="mb-3">No apartments registered!</span>
-                    <a class="btn btn-principal" href="{{ route('admin.apartments.create') }}" role="button">Register now your apartment</a>
+                    <a class="btn btn-principal" href="{{ route('admin.apartments.create') }}" role="button">Register now
+                        your apartment</a>
                 </div>
             @endif
         </section>
