@@ -15,9 +15,9 @@
                 <strong>Title</strong>
                 <span class="text-danger">*</span>
             </label>
-            <input type="text" class="form-control bg-white @error('title') is-invalid @enderror" name="title" id="title"
-                aria-describedby="titleHelper" placeholder="Insert the title of your apartment" minlength="5"
-                value="{{ $oldTitle }}" required>
+            <input type="text" class="form-control bg-white @error('title') is-invalid @enderror" name="title"
+                id="title" aria-describedby="titleHelper" placeholder="Insert the title of your apartment"
+                minlength="5" value="{{ $oldTitle }}" required>
             <small id="titleHelper" class="form-text text-muted">A title describing your apartment</small>
             @error('title')
                 <div class="text-danger">{{ $message }}</div>
@@ -62,8 +62,8 @@
             <div class="mb-3 {{-- w-75 --}} w-100">
                 <label for="address" class="form-label"><strong>Address</strong> <span class="text-danger">*</span>
                 </label>
-                <input type="text" class="form-control bg-white @error('address') is-invalid @enderror" name="address"
-                    id="address" aria-describedby="addressHelper" placeholder="Via MarioRossi 5"
+                <input type="text" class="form-control bg-white @error('address') is-invalid @enderror"
+                    name="address" id="address" aria-describedby="addressHelper" placeholder="Via MarioRossi 5"
                     value="{{ $oldAddress }}" required>
                 <small id="addressHelper" class="form-text text-muted">Address of your apartment</small>
                 @error('address')
@@ -156,9 +156,9 @@
 
                 <div class="n_rooms w-25">
                     <label for="rooms" class="form-label">Rooms</label>
-                    <input type="number" class="form-control bg-white @error('rooms') is-invalid @enderror" name="rooms"
-                        id="rooms" aria-describedby="roomsHelper" placeholder="1" value="{{ $oldRooms }}"
-                        min="1">
+                    <input type="number" class="form-control bg-white @error('rooms') is-invalid @enderror"
+                        name="rooms" id="rooms" aria-describedby="roomsHelper" placeholder="1"
+                        value="{{ $oldRooms }}" min="1">
                     @error('rooms')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
@@ -166,9 +166,9 @@
 
                 <div class="n_beds w-25">
                     <label for="beds" class="form-label">Beds</label>
-                    <input type="number" class="form-control  bg-white @error('beds') is-invalid @enderror" name="beds"
-                        id="beds" aria-describedby="bedsHelper" placeholder="1" value="{{ $oldBeds }}"
-                        min="1">
+                    <input type="number" class="form-control  bg-white @error('beds') is-invalid @enderror"
+                        name="beds" id="beds" aria-describedby="bedsHelper" placeholder="1"
+                        value="{{ $oldBeds }}" min="1">
                     @error('beds')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
@@ -246,8 +246,8 @@
         {{-- Description --}}
         <div class="mb-5">
             <label for="description" class="form-label"><strong>Description</strong></label>
-            <textarea class="form-control bg-white @error('description') is-invalid @enderror" name="description" id="description"
-                rows="6" placeholder="Add a brief description of your apartment">{{ $oldDescription }}</textarea>
+            <textarea class="form-control bg-white @error('description') is-invalid @enderror" name="description"
+                id="description" rows="6" placeholder="Add a brief description of your apartment">{{ $oldDescription }}</textarea>
             @error('description')
                 <div class="text-danger">{{ $message }}</div>
             @enderror
@@ -259,13 +259,10 @@
         <div id="square_meters_error" class="is-invalid"></div>
         <div id="services_error" class="is-invalid"></div>
         {{-- Submit Button --}}
-        <button type="submit" class="btn btn-primary">
+        <button type="submit" id="submit-btn" class="btn btn-primary">
             Add
         </button>
 
     </form>
-
-
-
 
 </div>
