@@ -175,7 +175,8 @@ class ApartmentController extends Controller
             $address = str_replace(' ', '%20', $validated['address']); //20 zoom level            
 
             /* create api url */
-            $api_url = $base_api . $address . '.json?storeResult=false&view=Unified&key=' . $api_key;
+            //$api_url = $base_api . $address . '.json?storeResult=false&view=Unified&key=' . $api_key;
+            $api_url = $base_api . $address . '.json?storeResult=false&countrySet=IT&view=Unified&key=' . $api_key;
 
             /* save coordinates */
 
