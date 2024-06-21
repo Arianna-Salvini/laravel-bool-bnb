@@ -62,9 +62,7 @@ class ApartmentController extends Controller
             /* call tomtom api and get results*/
             /* NB bypass ssl */
             $client = new Client(['verify' => false]);
-            $result = json_decode($client->get($api_url)->getBody(), true)['results'][0];
-
-            /* if(isset($result['results'])){ */
+            $result = json_decode($client->get($api_url)->getBody(), true)['results'][0];            
 
                 /* save coordinates */
                 $coordinates = $result['position'];
@@ -102,14 +100,7 @@ class ApartmentController extends Controller
                 return response()->json([
                     'success' => true,
                     'response' => $apartments,
-                ]);
-            /* }
-            else{
-                return response()->json([
-                    'success' => false,
-                    'message' => 'No apartments found within the given range'
-                ]);
-            } */
+                ]);           
 
         } else {
             return response()->json([
