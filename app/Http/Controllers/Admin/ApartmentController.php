@@ -81,7 +81,7 @@ class ApartmentController extends Controller
 
             /* create api url */
             /* $api_url = $base_api.'countryCode='.$country_code.'&streetNumber='.$street_number.'&streetName='.$address.'&municipality='.$city.'&postalCode='.$zip_code.'&view=Unified&key='.$api_key; */
-            $api_url = $base_api . $address . '.json?storeResult=false&view=Unified&key=' . $api_key;
+            $api_url = $base_api.$address.'.json?storeResult=false&view=Unified&key='.$api_key;
 
             /* save coordinates */
             /* $coordinates = json_decode(file_get_contents($api_url))->results[0]->position; */
@@ -172,11 +172,11 @@ class ApartmentController extends Controller
             /* save data for api call NORMAL */
             $api_key = env('TOMTOM_API_KEY');
             $base_api = 'https://api.tomtom.com/search/2/geocode/';
-            $address = str_replace(' ', '%20', $validated['address']); //20 zoom level            
+            $address = str_replace(' ', '%20', $validated['address']); //20 zoom level
 
             /* create api url */
             //$api_url = $base_api . $address . '.json?storeResult=false&view=Unified&key=' . $api_key;
-            $api_url = $base_api . $address . '.json?storeResult=false&countrySet=IT&view=Unified&key=' . $api_key;
+            $api_url = $base_api.$address.'.json?storeResult=false&countrySet=IT&view=Unified&key='.$api_key;
 
             /* save coordinates */
 
@@ -228,7 +228,7 @@ class ApartmentController extends Controller
             Storage::delete($apartment->image);
         }
 
-        $apartment->delete();
+        $apartment->delete(); //Good for soft delete
 
         return to_route('admin.apartments.index')->with('message', "Your apartment $apartment->title has been deleted successfully");
     }
