@@ -4,10 +4,14 @@ let submit = document.getElementById('submit')
 
 let birthDate = document.getElementById('birth_date');
 
-const currentDate = new Date().toISOString().split('T')[0];
+//const currentDate = new Date().toISOString().split('T')[0];
+let today = new Date();
+let lastyears = new Date(today.setFullYear(today.getFullYear() - 18));
+let date18Ago = lastyears.toISOString().split('T')[0];
 
-//console.log(currentDate)
-birthDate.setAttribute('max', currentDate);
+console.log(date18Ago);
+
+birthDate.setAttribute('max', date18Ago);
 
 /* get all input elements from the page */
 let userName = document.getElementById('name');
