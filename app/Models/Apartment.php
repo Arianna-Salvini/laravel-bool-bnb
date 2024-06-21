@@ -23,10 +23,10 @@ class Apartment extends Model
         'bathrooms',
         'square_meters',
         'address',
-        'street_number',
+        /* 'street_number',
         'country_code',
         'city',
-        'zip_code',
+        'zip_code', */
         'latitude',
         'longitude',
         'visibility',
