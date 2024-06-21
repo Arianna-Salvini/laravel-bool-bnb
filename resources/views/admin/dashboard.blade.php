@@ -11,8 +11,7 @@
             <a class="btn btn-primary btn-sm " href="http://localhost:5180/"   role="button" target="_BLANK">Search</a>
         </div>
 
-        
-
+    
 
         <div class="row d-flex">
             <div class="col">
