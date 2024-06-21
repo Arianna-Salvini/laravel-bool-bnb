@@ -1,4 +1,4 @@
-let street_number = document.getElementById('street_number');
+/* let street_number = document.getElementById('street_number'); */
 let formCreate = document.getElementById('apartment-form');
 let roomsInput = document.getElementById('rooms');
 let bedsInput = document.getElementById('beds');
@@ -7,7 +7,7 @@ let squareMetersInput = document.getElementById('square_meters');
 let services = document.getElementsByName('services[]');
 
 
-let streetNumberErrorDiv = document.getElementById('number_error');
+/* let streetNumberErrorDiv = document.getElementById('number_error'); */
 let roomsErrorDiv = document.getElementById('rooms_error');
 let bedsErrorDiv = document.getElementById('beds_error');
 let bathroomsErrorDiv = document.getElementById('bathrooms_error');
@@ -28,12 +28,12 @@ function validateNumberInput(input) {
     return regex.test(input);
 }
 
-formCreate.addEventListener('keyup', function (e) {
+/* formCreate.addEventListener('keyup', function (e) {
     let inputValue = street_number.value;
     let isValid = validatedInput(inputValue);
 
     if (!isValid) {
-        e.preventDefault(); // prevent form submission
+        e.preventDefault(); 
         street_number.classList.add('is-invalid');
         streetNumberErrorDiv.textContent = 'Attention!!! Invalid street number format';
     } else {
@@ -41,7 +41,7 @@ formCreate.addEventListener('keyup', function (e) {
         street_number.classList.add('is-valid');
         streetNumberErrorDiv.textContent = '';
     }
-});
+}); */
 
 formCreate.addEventListener('submit', function (e) {
     let servicesChecked = false;
