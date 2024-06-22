@@ -54,6 +54,9 @@ class ApartmentController extends Controller
         $range_distance = $request->input('range_distance', 20);
         $services = $request->input('services', []);
 
+        $rooms = $request->input('rooms');
+        $beds = $request->input('beds');
+
         /* https://api.tomtom.com/search/2/geocode/Via%20degli%20anemoni%206%2000172%20Roma.json?storeResult=false&view=Unified&key=***** */
         //$api_url = $base_api.$address.'.json?storeResult=false&view=Unified&key='.$api_key;   
         $api_url = $base_api . $address . '.json?storeResult=false&countrySet=IT&view=Unified&key=' . $api_key;
@@ -73,7 +76,7 @@ class ApartmentController extends Controller
 
             $earth_radius = 6371; //km
 
-            $range_radius = 20;  // $range_radius = 20;
+            //$range_radius = 20;  // $range_radius = 20;
 
 
             /* given lat and long to radians */
@@ -136,6 +139,15 @@ class ApartmentController extends Controller
 
             /* TRANSLATE IN ELOQUENT */
             $query = Apartment::whereBetween('latitude', [$lat_min, $lat_max])->whereBetween('longitude', [$long_min, $long_max]);
+
+            //check for rooms and beds
+            if (!empty($rooms)) {
+                $query->where('rooms', '>=', $rooms);
+            }
+            if (!empty($beds)) {
+                $query->where('beds', '>=', $beds);
+            }
+
             foreach ($services as $service) {
                 $query->whereHas('services', function ($subquery) use ($service) {
                     $subquery->where('service_id', $service);
