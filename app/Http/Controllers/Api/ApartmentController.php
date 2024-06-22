@@ -98,41 +98,31 @@ class ApartmentController extends Controller
 
             /* $query = Apartment::query(); */
             /* $apartments = $query->whereBetween('latitude', [$lat_min, $lat_max])->whereBetween('longitude', [$long_min, [$long_max]])->with('services', 'sponsorships', 'user')->orderByDesc('id')->paginate(4); */
-            /* $query = $query->whereBetween('latitude', [$lat_min, $lat_max])->whereBetween('longitude', [$long_min, $long_max]);
-            if (!empty($services)) {
-                foreach ($services as $service) {
-                    $query->whereHas('services', function ($subquery) use ($service) {
-                        $subquery->whereIn('services.id', $service);
-                    });
-                }
-            }
-
-            $apartments = $query->with('services', 'sponsorships', 'user')->paginate(4); */
 
 
             /* QUERY BUILDER VERSION */
             /* try query builder to fetch apartments */
-            $query = DB::table('apartments')
+            /*  $query = DB::table('apartments')
                 ->select('apartments.*')
                 ->join('apartment_service', 'apartments.id', '=', 'apartment_service.apartment_id')
                 ->join('services', 'apartment_service.service_id', '=', 'services.id')
                 ->whereBetween('apartments.latitude', [$lat_min, $lat_max])
-                ->whereBetween('apartments.longitude', [$long_min, $long_max]);
+                ->whereBetween('apartments.longitude', [$long_min, $long_max]); */
 
             /* use subquery for each service */
-            foreach ($services as $service) {
+            /* if there is at least one record */
+            /*  foreach ($services as $service) {
 
-                /* if there is at least one record */
                 $query->whereExists(function ($subquery) use ($service) {
                     $subquery
                         ->from('apartment_service')
                         ->whereColumn('apartment_service.apartment_id', 'apartments.id')
                         ->where('apartment_service.service_id', $service);
                 });
-            }
+            } */
 
             /* order by distance from given address using haversine formula */
-            $query->select([
+            /* $query->select([
                 'apartments.*',
                 DB::raw("(
                     2 * $earth_radius * ASIN (SQRT (POW (SIN((RADIANS($latitude - apartments.latitude)) / 2), 2) + COS (RADIANS($latitude)) * COS(RADIANS(apartments.latitude)) * POW(SIN ((RADIANS($longitude - apartments.longitude)) / 2), 2)
@@ -140,9 +130,28 @@ class ApartmentController extends Controller
             ])
                 ->orderBy('distance', 'asc');
 
-            $apartments = $query->distinct()->paginate(10);
+            $apartments = $query->distinct()->paginate(10); */
 
             /* recap: I use query builder and apply filter for latitude and longitude. I check if user checked at least one service and, if he did, I use a subquery for each service selected: I verify the record existence and take the records where service_id = $service  */
+
+            /* TRANSLATE IN ELOQUENT */
+            $query = Apartment::whereBetween('latitude', [$lat_min, $lat_max])->whereBetween('longitude', [$long_min, $long_max]);
+            foreach ($services as $service) {
+                $query->whereHas('services', function ($subquery) use ($service) {
+                    $subquery->where('service_id', $service);
+                });
+            }
+            $apartments = $query->with(['services', 'sponsorships', 'user'])
+                ->select([
+                    'apartments.*',
+                    DB::raw("(
+                    2 * $earth_radius * ASIN (SQRT (POW (SIN((RADIANS($latitude - apartments.latitude)) / 2), 2) + COS (RADIANS($latitude)) * COS(RADIANS(apartments.latitude)) * POW(SIN ((RADIANS($longitude - apartments.longitude)) / 2), 2)
+                ))) AS distance")
+                ])
+                ->orderBy('distance', 'asc')
+                ->distinct()
+                ->paginate(10);
+
 
             return response()->json([
                 'success' => true,
