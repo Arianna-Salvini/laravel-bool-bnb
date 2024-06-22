@@ -114,7 +114,6 @@ class ApartmentController extends Controller
             /* try query builder to fetch apartments */
             $query = DB::table('apartments')
                 ->select('apartments.*')
-                ->distinct()
                 ->join('apartment_service', 'apartments.id', '=', 'apartment_service.apartment_id')
                 ->join('services', 'apartment_service.service_id', '=', 'services.id')
                 ->whereBetween('apartments.latitude', [$lat_min, $lat_max])
@@ -127,6 +126,7 @@ class ApartmentController extends Controller
                 $query->whereExists(function ($subquery) use ($service) {
                     $subquery
                         ->from('apartment_service')
+                        ->whereColumn('apartment_service.apartment_id', 'apartments.id')
                         ->where('apartment_service.service_id', $service);
                 });
             }
@@ -140,7 +140,7 @@ class ApartmentController extends Controller
             ])
                 ->orderBy('distance', 'asc');
 
-            $apartments = $query->paginate(10);
+            $apartments = $query->distinct()->paginate(10);
 
             /* recap: I use query builder and apply filter for latitude and longitude. I check if user checked at least one service and, if he did, I use a subquery for each service selected: I verify the record existence and take the records where service_id = $service  */
 
