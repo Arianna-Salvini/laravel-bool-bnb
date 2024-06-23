@@ -14,18 +14,18 @@ return new class extends Migration
         Schema::create('apartment_sponsorship', function (Blueprint $table) {
             $table->unsignedBigInteger('apartment_id');
             $table->foreign('apartment_id')
-            ->references('id')
-            ->on('apartments')
-            ->cascadeOnDelete();
+                ->references('id')
+                ->on('apartments')
+                ->cascadeOnDelete();
 
             $table->unsignedBigInteger('sponsorship_id');
             $table->foreign('sponsorship_id')
-            ->references('id')
-            ->on('sponsorships')
-            ->cascadeOnDelete();
+                ->references('id')
+                ->on('sponsorships')
+                ->cascadeOnDelete();
 
-            $table->date('start_date');
-            $table->date('expiration_date');
+            $table->datetime('start_date');
+            $table->datetime('expiration_date');
         });
     }
 
