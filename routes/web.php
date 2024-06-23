@@ -27,6 +27,9 @@ Route::middleware(['auth', 'verified'])->name('admin.')->prefix('admin')->group(
 
     /* route to get token */
     Route::get('sponsorship/{apartment}', [SponsorshipController::class, 'create'])->name('sponsorship.create');
+
+    /* route to process the payment */
+    Route::post('sponsorship/{apartment}', [SponsorshipController::class, 'store'])->name('sponsorship.store');
 });
 
 Route::middleware('auth')->group(function () {
