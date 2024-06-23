@@ -9,8 +9,9 @@
         </div>
 
         {{-- @dd($clientToken) --}}
-        
-        <form action="{{-- {{ route('admin.sponsorship.store', $apartment->id) }} --}}" method="post" class="form-control p-4 mb-3" id="pay-sponsorship-form">
+
+        <form action="{{ route('admin.sponsorship.store', $apartment) }}" method="post" class="form-control p-4 mb-3"
+            id="pay-sponsorship-form">
             @csrf
 
 
@@ -28,7 +29,10 @@
             {{-- for braintree --}}
             <div id="dropin-container"></div>
 
-            <button type="submit" class="btn btn-primary" id="submit-button">Purchase</button>
+            {{-- nonce? --}}
+            <input type="hidden" name="payment_method_nonce" id="payment_method_nonce">
+
+            <button type="submit" class="btn btn-primary" id="submit-button" value="">Purchase</button>
 
         </form>
 
@@ -37,14 +41,26 @@
     <script src="https://js.braintreegateway.com/web/dropin/1.42.0/js/dropin.js"></script>
     <script>
         let button = document.querySelector('#submit-button');
+        let nonce = document.querySelector('#payment_method_nonce');
+        let form = document.querySelector('#pay-sponsorship-form');
 
         braintree.dropin.create({
-            authorization: 'sandbox_g42y39zw_348pk9cgf3bgyw2b',
+            authorization: '{{ $clientToken }}',
             selector: '#dropin-container'
         }, function(err, instance) {
-            button.addEventListener('click', function() {
+            button.addEventListener('click', function(e) {
+                e.preventDefault()
                 instance.requestPaymentMethod(function(err, payload) {
+                    //console.log(nonce.value);
+                    //console.log(payload.nonce);
+                    if (err) {
+                        console.log(err);
+                        return
+                    }
                     // Submit payload.nonce to your server
+                    nonce.value = payload.nonce
+                    //console.log(nonce.value);
+                    form.submit();
                 });
             })
         });
