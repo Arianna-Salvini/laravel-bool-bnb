@@ -59,6 +59,15 @@ class SponsorshipController extends Controller
         //dd($result);
 
         if ($result->success) {
+
+            /* What if I already have sponsorships active on this apartment? 
+            -get currentSponsorship from relationship table and order expiration date by desc
+            -if there is a current sponsorship active, calc the new expiration date: exp date + hours
+            -otherwise calc normal exp date
+            -update the attachment
+            */
+
+
             /* save sponsorship */
 
             /* I have to pass start date and expiration date */
