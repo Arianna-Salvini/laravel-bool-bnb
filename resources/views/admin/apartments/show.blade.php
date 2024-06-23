@@ -2,10 +2,24 @@
 
 @section('content')
     <div class="container mb-4 pb-3">
+
+        @if (session('error'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                {{ session('error') }}
+
+            </div>
+        @elseif (session('message'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('message') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+
         <div class="btn-actions d-flex justify-content-between align-items-center mb-4">
             <div class="left">
-                <a class="btn btn-outline-secondary text-decoration-none my-3" href="{{ route('admin.apartments.index') }}"><i
-                        class="fa-solid fa-circle-left"></i> Go back</a>
+                <a class="btn btn-outline-secondary text-decoration-none my-3"
+                    href="{{ route('admin.apartments.index') }}"><i class="fa-solid fa-circle-left"></i> Go back</a>
             </div>
             <div class="right">
                 <a class="btn btn-warning btn-sm btn-action" href="{{ route('admin.apartments.edit', $apartment) }}"
