@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Apartment;
 use App\Models\Sponsorship;
+use Braintree\Gateway;
 use Illuminate\Support\Facades\Auth;
 
 class SponsorshipController extends Controller
@@ -24,7 +25,11 @@ class SponsorshipController extends Controller
 
         $sponsorships = Sponsorship::all();
 
-        return view('admin.sponsorships.create', compact('apartment'));
+        /* generate the client token for client auth and send it to client */
+        $gateway = new Gateway(config('braintree'));
+        $clientToken = $gateway->clientToken()->generate();
+
+        return view('admin.sponsorships.create', compact('apartment', 'sponsorships', 'clientToken'));
     }
 
     public function store()
