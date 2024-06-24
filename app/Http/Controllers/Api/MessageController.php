@@ -13,9 +13,10 @@ use App\Mail\MessageReceived;
 class MessageController extends Controller
 {
 
-        public function store(Request $request){
+    public function store(Request $request)
+    {
 
-$data=$request->all();
+        $data = $request->all();
         $validator = Validator::make($data, [
             'name' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
@@ -25,11 +26,11 @@ $data=$request->all();
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['success' => false, 'errors' => $validator->errors()], 422);
+            return response()->json(['success' => false, 'errors' => $validator->errors()]);
         }
 
 
-          /*   $validated = $validator->validated();
+        /*   $validated = $validator->validated();
             $message = new Message();
             $message->name = $validated['name'];
             $message->lastname = $validated['lastname'];
@@ -38,17 +39,17 @@ $data=$request->all();
             $message->apartment_id = $validated['apartment_id'];
             $message->save();
  */
-            // Creazione e salvataggio del messaggio nel database
-        $message = Message::create($data);
+        // Creazione e salvataggio del messaggio nel database
+        $newMessage = Message::create($data);
 
         // Invio dell'email utilizzando il Mailable MessageReceived
-        Mail::to('raluca.bubulina@yahoo.com')->send(new MessageReceived($message));
+        Mail::to('raluca.bubulina@yahoo.com')->send(new MessageReceived($newMessage));
 
-       // Ritorno una risposta JSON di successo
-       return response()->json(['success' => true, 'message' => 'Message received and email sent!']);
+        // Ritorno una risposta JSON di successo
+        return response()->json(['success' => true, 'message' => 'Message received and email sent!']);
     }
 
-    public function sendTestEmail()
+    /* public function sendTestEmail()
     {
         // Dati di esempio per il test
         $data = [
@@ -64,5 +65,5 @@ $data=$request->all();
 
         // ritorna un messaggio di conferma
         return 'Test email sent!';
-    }
+    } */
 }

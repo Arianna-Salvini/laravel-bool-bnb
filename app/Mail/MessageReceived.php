@@ -16,11 +16,11 @@ class MessageReceived extends Mailable
     /**
      * Create a new message instance.
      */
-    public $message;
+    //public $message;
 
-    public function __construct($message)
+    public function __construct(public $message)
     {
-        $this->message = $message;
+        //$this->message = $message;
     }
 
     /**
@@ -30,8 +30,8 @@ class MessageReceived extends Mailable
     {
         return new Envelope(
             //.env
-         //   from: new Address('raluca.bubulina@yahoo.com', 'Raluca Stefan'),
-       /*     replyTo: [
+            //   from: new Address('raluca.bubulina@yahoo.com', 'Raluca Stefan'),
+            /*     replyTo: [
                 new Address('test123@yahoo.com', 'Arianna Salvini'),
             ], */
             subject: 'New message is here',
@@ -44,7 +44,7 @@ class MessageReceived extends Mailable
     public function content(): Content
     {
         return new Content(
-            view:'mail.new-message',
+            markdown: 'mail.new-message',
         );
     }
 
