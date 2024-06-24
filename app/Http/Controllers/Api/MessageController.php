@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Apartment;
 use Illuminate\Http\Request;
 use App\Models\Message;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\MessageReceived;
@@ -30,6 +33,7 @@ class MessageController extends Controller
         }
 
 
+
         /*   $validated = $validator->validated();
             $message = new Message();
             $message->name = $validated['name'];
@@ -49,21 +53,32 @@ class MessageController extends Controller
         return response()->json(['success' => true, 'message' => 'Message received and email sent!']);
     }
 
-    /* public function sendTestEmail()
+    
+
+
+
+       
+    public function index()
     {
-        // Dati di esempio per il test
-        $data = [
-            'sender_email' => 'sender@example.com',
-            'name' => 'lorem',
-            'lastname' => 'lorem',
-            'content' => 'this is a test email.',
-            'apartment_id' => 1,
-        ];
+        // $idApartment = Auth::user()->apartment_id;
+        // $messages = Message::where('apartment_id', $idApartment)->get();
+        // return view('admin.messages.index', compact('messages'));
+        $user = Auth::user();
+        $apartment = Apartment::where('user_id', $user->id)->get();
+        $apartments = $user->apartments->pluck('id');
+        $messages = Message::where('apartment_id', $apartments)->orderByDesc('id')->get();
+        //dd($apartment);
+        return view('admin.messages.index', compact('messages', 'apartment'));
+    }
 
-        // invio l email di test
-        Mail::to('recipient@example.com')->send(new MessageReceived($data));
+    public function show(Message $message)
+    {
+        return view('admin.messages.show', compact('message'));
+    }
+    public function destroy(Message $message)
+    {
+        $message->delete(); //Good for soft delete
 
-        // ritorna un messaggio di conferma
-        return 'Test email sent!';
-    } */
+        return to_route('admin.messages.index')->with('message', "The message of $message->name $message->lastname has been deleted successfully");
+    }
 }
