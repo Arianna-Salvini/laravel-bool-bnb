@@ -68,10 +68,15 @@ class MessageController extends Controller
         // $messages = Message::where('apartment_id', $idApartment)->get();
         // return view('admin.messages.index', compact('messages'));
         $user = Auth::user();
-        $apartments = $user->apartments->pluck('id');
+        $apartmentIds = $user->apartments->pluck('id')->toArray();
         $apartment = Apartment::where('user_id', $user->id)->get();
-        $messages = Message::where('apartment_id', $apartments)->orderByDesc('id')->get();
+        $messages = [];
+
+        if (!empty($apartmentIds)) {
+            $messages = Message::whereIn('apartment_id', $apartmentIds)->orderByDesc('id')->get();
+        }
         //dd($apartment);
+
         return view('admin.messages.index', compact('messages', 'apartment'));
     }
 

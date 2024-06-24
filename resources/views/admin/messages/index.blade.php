@@ -54,6 +54,7 @@
                             </div>
                         </div>
                     @empty
+                        <p>No messages</p>
                 @endforelse
             </div>
         </div>
