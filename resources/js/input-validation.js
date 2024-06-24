@@ -58,7 +58,7 @@ formCreate.addEventListener('submit', function (e) {
     if (!servicesChecked) {
         e.preventDefault();
         servicesErrorDiv.textContent = 'Please select at least one service.';
-        submit.disabled = false
+        submit.disabled = false;
         submit.innerText = "Add";
     } else {
         servicesErrorDiv.textContent = '';

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Apartment;
 use App\Models\Sponsorship;
 use Braintree\Gateway;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class SponsorshipController extends Controller
@@ -56,7 +57,6 @@ class SponsorshipController extends Controller
             ]
         ]);
 
-        //dd($result);
 
         if ($result->success) {
 
@@ -67,6 +67,24 @@ class SponsorshipController extends Controller
             -update the attachment
             */
 
+            //$start_date = Carbon::now();
+            //dd($start_date);
+
+            $currentSponsorship = $apartment->sponsorships()->where('expiration_date', '>', now())->orderByDesc('expiration_date')->first();
+            //dd($start_date);
+            //dd($currentSponsorship->pivot->expiration_date);
+
+            if ($currentSponsorship) {
+                $start_date = Carbon::parse($currentSponsorship->pivot->expiration_date);
+            } else {
+                $start_date = Carbon::now();
+            }
+
+            //$start_date = Carbon::now();
+            //dd($start_date);
+            $duration = $sponsorship->duration;
+            $expiration_date = $start_date->copy()->addHours($duration);
+            //dd($start_date, $expiration_date, $duration);
 
             /* save sponsorship */
 
@@ -74,8 +92,8 @@ class SponsorshipController extends Controller
             $apartment->sponsorships()->attach(
                 $sponsorship_id,
                 [
-                    'start_date' => now(),
-                    'expiration_date' => now()->addHours($sponsorship->duration)
+                    'start_date' => $start_date,
+                    'expiration_date' => $expiration_date //now()->addHours($sponsorship->duration)
                 ]
             );
 

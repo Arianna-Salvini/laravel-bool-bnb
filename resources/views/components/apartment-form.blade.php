@@ -42,7 +42,7 @@
 
             <div class="img-input w-100">
 
-                <label for="image" class="form-label bg-white"><strong>Image</strong></label>
+                <label for="image" class="form-label"><strong>Image</strong></label>
 
 
                 <input type="file" class="form-control bg-white @error('image') is-invalid @enderror" name="image"
@@ -190,11 +190,11 @@
         {{-- Visibility --}}
         <div class="mb-3">
             <div class="pb-2"><strong>Visibility</strong></div>
-            <label class="btn btn-outline-primary">
+            <label class="btn btn-outline-primary bg-white">
                 <input type="radio" class="me-2" name="visibility" id="visible" autocomplete="off"
                     value="1" {{ $oldVisibility == 1 ? 'checked' : '' }} required> Visible
             </label>
-            <label class="btn btn-outline-primary">
+            <label class="btn btn-outline-primary bg-white">
                 <input type="radio" class="me-2" name="visibility" id="not_visible" autocomplete="off"
                     value="0" {{ $oldVisibility == 0 ? 'checked' : '' }} required> Not Visible
             </label>
@@ -203,6 +203,7 @@
         {{-- Services --}}
         <div class="services mb-3">
             <div class="pb-2"><strong>Services</strong></div>
+            <div id="services_error" class="text-danger pb-2"></div>
             <div class="d-flex gap-2 flex-wrap">
 
                 @foreach ($services as $service)
@@ -257,7 +258,6 @@
         <div id="beds_error" class="is-invalid"></div>
         <div id="bathrooms_error" class="is-invalid"></div>
         <div id="square_meters_error" class="is-invalid"></div>
-        <div id="services_error" class="is-invalid"></div>
         {{-- Submit Button --}}
         <button type="submit" id="submit-btn" class="btn btn-primary">
             Add

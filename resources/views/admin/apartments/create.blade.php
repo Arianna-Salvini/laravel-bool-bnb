@@ -17,8 +17,8 @@
             :oldBeds="old('beds')" :oldBathrooms="old('bathrooms')" :oldVisibility="old('visibility', 1)" :oldDescription="old('description')" /> --}}
 
         <x-apartment-form :route="route('admin.apartments.store')" :method="'POST'" :nations="$nations" :apartment=null :services="$services"
-            :isEditForm=false :oldTitle="old('title')" :oldAddress="old('address')" :oldSqm="old('square_meters')" :oldRooms="old('rooms')" :oldBeds="old('beds')"
-            :oldBathrooms="old('bathrooms')" :oldVisibility="old('visibility', 1)" :oldDescription="old('description')" />
+            :isEditForm=false :oldTitle="old('title')" :oldAddress="old('address')" :oldSqm="old('square_meters')" :oldRooms="old('rooms', 1)" :oldBeds="old('beds', 1)"
+            :oldBathrooms="old('bathrooms', 1)" :oldVisibility="old('visibility', 1)" :oldDescription="old('description')" />
     </div>
 @endsection
 

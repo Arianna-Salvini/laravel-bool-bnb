@@ -158,8 +158,10 @@ class ApartmentController extends Controller
                     'apartments.*',
                     DB::raw("(
                     2 * $earth_radius * ASIN (SQRT (POW (SIN((RADIANS($latitude - apartments.latitude)) / 2), 2) + COS (RADIANS($latitude)) * COS(RADIANS(apartments.latitude)) * POW(SIN ((RADIANS($longitude - apartments.longitude)) / 2), 2)
-                ))) AS distance")
+                ))) AS distance"),
+                    DB::raw('IFNULL((SELECT COUNT(*) FROM apartment_sponsorship WHERE apartment_sponsorship.apartment_id = apartments.id), 0) AS is_sponsorship_active')
                 ])
+                ->orderByDesc('is_sponsorship_active')
                 ->orderBy('distance', 'asc')
                 ->distinct()
                 ->paginate(10);
