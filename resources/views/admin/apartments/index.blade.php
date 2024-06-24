@@ -35,8 +35,8 @@
                                         <img src="{{ asset('storage/' . $apartment->image) }}" alt=""
                                             width="100">
                                     @else
-                                        <img src="https://media-assets.wired.it/photos/615f1f69cd947bb96c08e6db/4:3/w_784,h_588,c_limit/1512472812_404error.jpg"
-                                            alt="" width="100">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png"
+                                            alt="" width="100" class="border rounded">
                                     @endif
                                 </td>
                                 <td>{{ $apartment->title }}</td>
@@ -49,7 +49,7 @@
                                     @endif
                                 </td>
                                 <td class="text-center my-2">
-                                    <div class="d-flex">
+                                    <div class="d-flex justify-content-center">
                                         <a class="btn btn-dark btn-sm btn-action"
                                             href="{{ route('admin.apartments.show', $apartment) }}" role="button">
                                             <i class="fa fa-eye" aria-hidden="true"></i>
