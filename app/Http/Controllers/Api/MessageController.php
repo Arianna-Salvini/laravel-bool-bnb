@@ -19,6 +19,7 @@ class MessageController extends Controller
             'lastname' => 'required|string|max:255',
             'sender_email' => 'required|email|max:255',
             'content' => 'required|string',
+            'apartment_id' => 'required|int',
         ]);
 
         if ($validator->fails()) {
@@ -31,6 +32,7 @@ class MessageController extends Controller
             $message->lastname = $validated['lastname'];
             $message->sender_email = $validated['sender_email'];
             $message->content = $validated['content'];
+            $message->apartment_id = $validated['apartment_id'];
             $message->save();
 
             return response()->json(['success' => true, 'message' => 'Message received!']);
