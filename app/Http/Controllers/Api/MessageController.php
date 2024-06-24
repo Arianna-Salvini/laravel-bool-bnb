@@ -43,21 +43,25 @@ class MessageController extends Controller
             $message->apartment_id = $validated['apartment_id'];
             $message->save();
  */
+
+        //get apartment id
+        $apartment = Apartment::find($data['apartment_id']);
+
         // Creazione e salvataggio del messaggio nel database
         $newMessage = Message::create($data);
 
         // Invio dell'email utilizzando il Mailable MessageReceived
-        Mail::to('raluca.bubulina@yahoo.com')->send(new MessageReceived($newMessage));
+        Mail::to($apartment->user->email)->send(new MessageReceived($newMessage));
 
         // Ritorno una risposta JSON di successo
         return response()->json(['success' => true, 'message' => 'Message received and email sent!']);
     }
 
-    
 
 
 
-       
+
+
     public function index()
     {
         // $idApartment = Auth::user()->apartment_id;
