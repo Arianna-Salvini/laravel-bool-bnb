@@ -60,4 +60,10 @@ class MessageController extends Controller
     {
         return view('admin.messages.show', compact('message'));
     }
+    public function destroy(Message $message)
+    {
+        $message->delete(); //Good for soft delete
+
+        return to_route('admin.messages.index')->with('message', "The message of $message->name $message->lastname has been deleted successfully");
+    }
 }

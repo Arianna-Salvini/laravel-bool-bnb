@@ -31,6 +31,8 @@ Route::middleware(['auth', 'verified'])->name('admin.')->prefix('admin')->group(
 
     Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
     Route::get('/messages/{message}', [MessageController::class, 'show'])->name('messages.show');
+    Route::delete('admin/messages/{message}', [MessageController::class, 'destroy'])->name('message.destroy');
+
 
     /* route to process the payment */
     Route::post('sponsorship/{apartment}', [SponsorshipController::class, 'store'])->name('sponsorship.store');
