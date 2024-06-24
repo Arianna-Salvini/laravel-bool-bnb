@@ -1,7 +1,9 @@
 <aside id="left-sidebar" class="w-auto h-100 d-flex flex-column position-relative d-none d-md-flex">
     {{-- title: top --}}
     <div class="side-header d-flex justify-content-center align-items-center">
-        <img class="mt-5 img-fluid" src="https://i.ibb.co/MgFsztp/boolbnb-for-owners.png" width="80" alt="">
+        <a href="http://localhost:5180/" role="button" target="_BLANK">
+            <img class="mt-5 img-fluid" src="https://i.ibb.co/MgFsztp/boolbnb-for-owners.png" width="80" alt="">
+        </a>
     </div>
 
     {{-- opt --}}
