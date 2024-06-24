@@ -15,6 +15,7 @@ class Message extends Model
         'lastname',
         'sender_email',
         'content',
+        'apartment_id'
     ];
     /**
      * Get the apartment that owns the Message
