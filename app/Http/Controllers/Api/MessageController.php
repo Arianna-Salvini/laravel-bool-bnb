@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Apartment;
 use Illuminate\Http\Request;
 use App\Models\Message;
 use App\Models\User;
@@ -37,16 +38,26 @@ class MessageController extends Controller
         $message->lastname = $validated['lastname'];
         $message->sender_email = $validated['sender_email'];
         $message->content = $validated['content'];
-        $idApartment = Auth::user()->apartment_id;
-        $message->apartment_id = $idApartment;
+        $message->apartment_id = $validated['apartment_id'];
         $message->save();
 
         return response()->json(['success' => true, 'message' => 'Message received!']);
     }
     public function index()
     {
-        $idApartment = Auth::user()->apartment_id;
-        $messages = Message::where('apartment_id', $idApartment)->get();
-        return view('admin.messages.index', compact('messages'));
+        // $idApartment = Auth::user()->apartment_id;
+        // $messages = Message::where('apartment_id', $idApartment)->get();
+        // return view('admin.messages.index', compact('messages'));
+        $user = Auth::user();
+        $apartment = Apartment::where('user_id', $user->id)->get();
+        $apartments = $user->apartments->pluck('id');
+        $messages = Message::where('apartment_id', $apartments)->orderByDesc('id')->get();
+        //dd($apartment);
+        return view('admin.messages.index', compact('messages', 'apartment'));
+    }
+
+    public function show(Message $message)
+    {
+        return view('admin.messages.show', compact('message'));
     }
 }

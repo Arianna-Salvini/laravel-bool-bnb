@@ -30,6 +30,7 @@ Route::middleware(['auth', 'verified'])->name('admin.')->prefix('admin')->group(
     Route::get('sponsorship/{apartment}', [SponsorshipController::class, 'create'])->name('sponsorship.create');
 
     Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
+    Route::get('/messages/{message}', [MessageController::class, 'show'])->name('messages.show');
 
     /* route to process the payment */
     Route::post('sponsorship/{apartment}', [SponsorshipController::class, 'store'])->name('sponsorship.store');
