@@ -4,7 +4,7 @@
     <div class="container mt-5">
         <div class="row my-5">
             <div class="col-md-6 d-none d-md-block">
-                <img src="https://i.ibb.co/XCRh2zb/pexels-donaldtong94-189333.jpg" alt="Registration Image" class="img-fluid rounded-5" style="height: 100vh; object-fit: cover;">
+                <img src="https://i.ibb.co/9ZD9Qb5/pexels-falling4utah-1080696.jpg" alt="Registration Image" class="img-fluid rounded-5" style="height: 100vh; object-fit: cover;">
             </div>
             <div class="col-md-6 d-flex align-items-center justify-content-center ">
                 <div class="card shadow-lg rounded-5 w-75">
