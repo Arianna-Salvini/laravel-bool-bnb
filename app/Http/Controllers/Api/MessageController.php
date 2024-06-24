@@ -68,8 +68,8 @@ class MessageController extends Controller
         // $messages = Message::where('apartment_id', $idApartment)->get();
         // return view('admin.messages.index', compact('messages'));
         $user = Auth::user();
-        $apartment = Apartment::where('user_id', $user->id)->get();
         $apartments = $user->apartments->pluck('id');
+        $apartment = Apartment::where('user_id', $user->id)->get();
         $messages = Message::where('apartment_id', $apartments)->orderByDesc('id')->get();
         //dd($apartment);
         return view('admin.messages.index', compact('messages', 'apartment'));
@@ -77,6 +77,10 @@ class MessageController extends Controller
 
     public function show(Message $message)
     {
+        $user = Auth::user();
+        if ($message->apartment->user_id !== $user->id) {
+            abort(403, 'fatti i fatti tuoi');
+        }
         return view('admin.messages.show', compact('message'));
     }
     public function destroy(Message $message)
