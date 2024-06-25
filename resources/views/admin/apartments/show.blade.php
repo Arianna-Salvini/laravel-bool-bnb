@@ -64,7 +64,7 @@
                     <strong>Description:</strong>
                     <p>{{ $apartment->description }}</p>
                     {{-- Add Map --}}
-                    <div id="map" style="height: 400px; width: 100%;" class="mt-4 rounded-5"></div>
+                    <div id="map" style="height: 400px; width: 856px;" class="mt-4 rounded-5"></div>
                 </div>
             </div>
             <div class="col-md-4">
