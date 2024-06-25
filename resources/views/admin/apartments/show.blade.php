@@ -43,9 +43,12 @@
                         @if (Str::startsWith($apartment->image, 'http'))
                             <img src="{{ $apartment->image }}" alt="Apartment Image" class="img-fluid w-100"
                                 style="object-fit: cover; height: 400px;">
-                        @else
+                        @elseif(Str::startsWith($apartment->image, 'uploads/'))
                             <img src="{{ asset('storage/' . $apartment->image) }}" alt="Apartment Image"
                                 class="img-fluid w-100" style="object-fit: cover; height: 400px;">
+                        @else
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png"
+                                alt="" style="object-fit: cover; height: 400px;">
                         @endif
                     @else
                         <div class="card-img-overlay d-flex align-items-center p-0">
@@ -73,7 +76,7 @@
                         <div class="mb-4">
                             <h5 class="text-dark"><i class="fa-solid fa-map-pin me-2"></i>Address</h5>
                             <span class="badge bg-dark rounded-5 p-2 d-block">
-                                {{ $apartment->address }}, {{ $apartment->street_number }}, {{ $apartment->zip_code }}
+                                {{ $apartment->address }}{{-- , {{ $apartment->street_number }}, {{ $apartment->zip_code }} --}}
                             </span>
                         </div>
 
@@ -118,6 +121,12 @@
                                 @endif
                             </span>
                         </div>
+
+                        @if ($apartment->sponsorships)
+                            <div class="mb-4">
+                                Sponsorizzato
+                            </div>
+                        @endif
 
                         <div class="mb-4">
                             <h5 class="text-dark"><i class="fa-solid fa-concierge-bell me-2"></i>Services</h5>

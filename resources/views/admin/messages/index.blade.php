@@ -9,9 +9,7 @@
                         <div class="card-body">
                             <h4 class="card-title">{{ $message->name }} {{ $message->lastname }}</h4>
                             <p class="card-text">{{ $message->sender_email }}</p>
-                            @foreach ($apartment as $key)
-                                <p class="card-text"><strong>Per l'appartamento: </strong>{{ $key->title }}</p>
-                            @endforeach
+                            <p class="card-text"><strong>Per l'appartamento: </strong>{{ $message->apartment->title }}</p>
                             <a name="show" id="show" class="btn btn-dark text-light"
                                 href="{{ route('admin.messages.show', $message) }}" role="button"><i class="fa fa-eye"
                                     aria-hidden="true"></i></a>
