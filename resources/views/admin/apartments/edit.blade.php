@@ -1,9 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="bg-dark text-white">
-        <div class="container">
-            <h2>Edit apartment</h2>
+    <div class="container py-5">
+        <div class="bg-dark text-white py-3 rounded-5 d-flex align-items-center mb-5">
+            <div class="container d-flex justify-content-between align-items-center position-relative">
+                <h1>Edit your Apartment</h1>
+                <img src="https://i.ibb.co/gDbnBwQ/01.png" class="position-absolute img-fluid image-banner" width="200"
+                    alt="">
+                {{-- TODO edit the image maybe something about tools for edit, ask Cascone --}}
+            </div>
         </div>
     </div>
 
