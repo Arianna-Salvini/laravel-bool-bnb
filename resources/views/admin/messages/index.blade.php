@@ -11,10 +11,12 @@
                 @forelse($messages as $message)
                     <div class="card">
                         <div class="card-body">
-                            <div class="card-heading d-flex align-items-center justify-content-between">
-                                <div class="d-flex align-items-center gap-2">
+                            <div
+                                class="card-heading d-flex align-items-md-center justify-content-between flex-column flex-md-row">
+                                <div class="d-flex align-items-md-center gap-2 flex-column flex-lg-row">
                                     <h4 class="card-title">{{ $message->name }} {{ $message->lastname }}</h4>
-                                    <p class="card-text">{{ $message->sender_email }}</p>
+                                    <p class="card-text"><strong class="d-lg-none">From:
+                                        </strong>{{ $message->sender_email }}</p>
                                 </div>
 
                                 <p class="card-text"><strong>Sent: </strong>{{ $message->created_at }}</p>

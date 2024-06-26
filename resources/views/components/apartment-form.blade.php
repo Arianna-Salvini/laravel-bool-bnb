@@ -25,7 +25,7 @@
         </div>
 
         {{-- Image --}}
-        <div class="mb-3 d-flex gap-3 align-items-center">
+        <div class="mb-3 d-flex gap-3 align-items-md-center flex-column flex-md-row">
 
             @if ($isEditForm && $apartment->image)
                 <div class="old-img">
@@ -140,7 +140,7 @@
         {{-- Apartment Details --}}
         <div class="mb-3">
             <div class="form-label"><strong>Apartment details</strong></div>
-            <div class="d-flex gap-5">
+            <div class="d-flex gap-5 flex-column flex-md-row">
                 <div class="sq_meters w-25">
                     <label for="square_meters" class="form-label">Square Meters</label>
                     <div class="d-flex align-items-center gap-2">

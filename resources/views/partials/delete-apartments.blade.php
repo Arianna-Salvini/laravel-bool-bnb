@@ -1,4 +1,5 @@
-<button type="button" class="btn btn-danger btn-sm btn-action" data-bs-toggle="modal" data-bs-target="#modalId-{{ $apartment->id }}">
+<button type="button" class="btn btn-danger btn-sm btn-action" data-bs-toggle="modal"
+    data-bs-target="#modalId-{{ $apartment->id }}">
     <i class="fa fa-trash" aria-hidden="true"></i>
 
 </button>
@@ -30,3 +31,4 @@
         </div>
     </div>
 </div>
+{{-- TODO fix visualization of modal under 576px --}}
