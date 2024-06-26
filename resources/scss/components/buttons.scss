@@ -175,3 +175,9 @@ a {
         transition: 1.2s;
     }
 }
+
+.sponsor-card:has(.select-sponsorship:focus) {
+    border: 1px solid #45C2B1;
+    box-shadow: 0 0 10px 0 #45c2b19d;
+    ;
+}
