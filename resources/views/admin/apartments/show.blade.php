@@ -75,9 +75,17 @@
                         <h2>Details</h2>
                     </div>
                     <div class="card-body">
+
+                        @if (count($apartment->sponsorships) !== 0)
+                            <div class="mb-4 fw-bold fs-4 d-flex align-items-center p-0 sponsorship">
+                                <i class="fa-solid fa-crown me-2"></i>
+                                <span class="ps-2 text-shadow-2">Sponsored </span>
+                            </div>
+                        @endif
+
                         <div class="mb-4">
-                            <h5 class="text-dark"><i class="fa-solid fa-map-pin me-2"></i>Address</h5>
-                            <span class="badge bg-dark rounded-5 p-2 d-block">
+                            <h4 class="text-dark"><i class="fa-solid fa-map-pin me-2"></i>Address</h4>
+                            <span class="rounded-5 p-2 d-block fs-5 text-dark">
                                 {{ $apartment->address }}{{-- , {{ $apartment->street_number }}, {{ $apartment->zip_code }} --}}
                             </span>
                         </div>
@@ -85,27 +93,30 @@
                         <div class="mb-4">
                             <h5 class="text-dark"><i class="fa-solid fa-building me-2"></i>Apartment Details</h5>
                             <div class="row g-2">
+                                @if ($apartment->square_meters != 0)
+                                    <div class="col-6">
+                                        <span class="badge bg_main rounded-5 p-2 d-block">
+                                            <strong><i
+                                                    class="fa-solid fa-ruler-combined me-1"></i></strong>{{ $apartment->square_meters }}
+                                            m²
+                                        </span>
+                                    </div>
+                                @endif
+
                                 <div class="col-6">
-                                    <span class="badge bg-dark rounded-5 p-2 d-block">
-                                        <strong><i
-                                                class="fa-solid fa-ruler-combined me-2"></i></strong>{{ $apartment->square_meters }}
-                                        m²
-                                    </span>
-                                </div>
-                                <div class="col-6">
-                                    <span class="badge bg-dark rounded-5 p-2 d-block">
+                                    <span class="badge bg_main rounded-5 p-2 d-block">
                                         <strong><i
                                                 class="fa-solid fa-person-booth me-2"></i></strong>{{ $apartment->rooms }}
                                         rooms
                                     </span>
                                 </div>
                                 <div class="col-6">
-                                    <span class="badge bg-dark rounded-5 p-2 d-block">
+                                    <span class="badge bg_main rounded-5 p-2 d-block">
                                         <strong><i class="fa-solid fa-bed me-2"></i></strong>{{ $apartment->beds }} beds
                                     </span>
                                 </div>
                                 <div class="col-6">
-                                    <span class="badge bg-dark rounded-5 p-2 d-block">
+                                    <span class="badge bg_main rounded-5 p-2 d-block">
                                         <strong><i class="fa-solid fa-toilet me-2"></i></strong>{{ $apartment->bathrooms }}
                                         bathrooms
                                     </span>
@@ -115,20 +126,14 @@
 
                         <div class="mb-4">
                             <h5 class="text-dark"><i class="fa-solid fa-eye me-2"></i>Visibility</h5>
-                            <span class="badge bg-dark rounded-5 p-2 d-block">
+                            <span class="badge bg_main rounded-5 p-2 d-block">
                                 @if ($apartment->visibility == 0)
-                                    <i class="fa-solid fa-eye-slash me-2"></i>Not Visible
+                                    <i class="fa-solid fa-eye-slash me-2 bg-secondary"></i>Not Visible
                                 @else
                                     <i class="fa-solid fa-eye me-2"></i>Visible
                                 @endif
                             </span>
                         </div>
-
-                        @if ($apartment->sponsorships)
-                            <div class="mb-4">
-                                Sponsorizzato
-                            </div>
-                        @endif
 
                         <div class="mb-4">
                             <h5 class="text-dark"><i class="fa-solid fa-concierge-bell me-2"></i>Services</h5>
@@ -173,9 +178,4 @@
         });
     </script>
 
-    <style>
-        #map {
-            height: 400px;
-        }
-    </style>
 @endsection
