@@ -12,7 +12,12 @@ class ApartmentController extends Controller
 {
     public function index()
     {
-        $apartments = Apartment::with('services', 'sponsorships', 'user')->orderByDesc('id')->paginate(8);
+        $apartments = Apartment::with('services', 'sponsorships', 'user')
+            ->where('visibility', 1)
+            ->select([
+                'apartments.*',
+                DB::raw('IFNULL((SELECT COUNT(*) FROM apartment_sponsorship WHERE apartment_sponsorship.apartment_id = apartments.id), 0) AS is_sponsorship_active')
+            ])->orderByDesc('is_sponsorship_active')->paginate(12);
 
         return response()->json([
             'success' => true,
@@ -154,6 +159,7 @@ class ApartmentController extends Controller
                 });
             }
             $apartments = $query->with(['services', 'sponsorships', 'user'])
+                ->where('visibility', 1)
                 ->select([
                     'apartments.*',
                     DB::raw("(
@@ -164,7 +170,7 @@ class ApartmentController extends Controller
                 ->orderByDesc('is_sponsorship_active')
                 ->orderBy('distance', 'asc')
                 ->distinct()
-                ->paginate(10);
+                ->paginate(8);
 
 
             return response()->json([
