@@ -12,7 +12,7 @@ class ApartmentController extends Controller
 {
     public function index()
     {
-        $apartments = Apartment::with('services', 'sponsorships', 'user')->orderByDesc('id')->paginate(8);
+        $apartments = Apartment::with('services', 'sponsorships', 'user')->orderByDesc('id')->paginate(12);
 
         return response()->json([
             'success' => true,
@@ -41,7 +41,6 @@ class ApartmentController extends Controller
         }
     }
 
-
     public function searchApartments(Request $request)
     {
 
@@ -58,8 +57,8 @@ class ApartmentController extends Controller
         $beds = $request->input('beds');
 
         /* https://api.tomtom.com/search/2/geocode/Via%20degli%20anemoni%206%2000172%20Roma.json?storeResult=false&view=Unified&key=***** */
-        //$api_url = $base_api.$address.'.json?storeResult=false&view=Unified&key='.$api_key;   
-        $api_url = $base_api . $address . '.json?storeResult=false&countrySet=IT&view=Unified&key=' . $api_key;
+        //$api_url = $base_api.$address.'.json?storeResult=false&view=Unified&key='.$api_key;
+        $api_url = $base_api.$address.'.json?storeResult=false&countrySet=IT&view=Unified&key='.$api_key;
 
         /* if request has address filled */
         if ($request->has('address') && $request['address'] != '') {
@@ -78,7 +77,6 @@ class ApartmentController extends Controller
 
             //$range_radius = 20;  // $range_radius = 20;
 
-
             /* given lat and long to radians */
             $rad_lat = deg2rad($latitude);
             $rad_long = deg2rad($longitude);
@@ -88,7 +86,6 @@ class ApartmentController extends Controller
 
             //use range_distance in order base on given range from user and calculate the radius
             $rad_radius = ($range_distance / $earth_radius);
-
 
             /* convert range radius to degrees */
             $deg_radius = rad2deg($rad_radius);
@@ -101,7 +98,6 @@ class ApartmentController extends Controller
 
             /* $query = Apartment::query(); */
             /* $apartments = $query->whereBetween('latitude', [$lat_min, $lat_max])->whereBetween('longitude', [$long_min, [$long_max]])->with('services', 'sponsorships', 'user')->orderByDesc('id')->paginate(4); */
-
 
             /* QUERY BUILDER VERSION */
             /* try query builder to fetch apartments */
@@ -141,10 +137,10 @@ class ApartmentController extends Controller
             $query = Apartment::whereBetween('latitude', [$lat_min, $lat_max])->whereBetween('longitude', [$long_min, $long_max]);
 
             //check for rooms and beds
-            if (!empty($rooms)) {
+            if (! empty($rooms)) {
                 $query->where('rooms', '>=', $rooms);
             }
-            if (!empty($beds)) {
+            if (! empty($beds)) {
                 $query->where('beds', '>=', $beds);
             }
 
@@ -159,13 +155,12 @@ class ApartmentController extends Controller
                     DB::raw("(
                     2 * $earth_radius * ASIN (SQRT (POW (SIN((RADIANS($latitude - apartments.latitude)) / 2), 2) + COS (RADIANS($latitude)) * COS(RADIANS(apartments.latitude)) * POW(SIN ((RADIANS($longitude - apartments.longitude)) / 2), 2)
                 ))) AS distance"),
-                    DB::raw('IFNULL((SELECT COUNT(*) FROM apartment_sponsorship WHERE apartment_sponsorship.apartment_id = apartments.id), 0) AS is_sponsorship_active')
+                    DB::raw('IFNULL((SELECT COUNT(*) FROM apartment_sponsorship WHERE apartment_sponsorship.apartment_id = apartments.id), 0) AS is_sponsorship_active'),
                 ])
                 ->orderByDesc('is_sponsorship_active')
                 ->orderBy('distance', 'asc')
                 ->distinct()
-                ->paginate(10);
-
+                ->paginate(8);
 
             return response()->json([
                 'success' => true,
