@@ -22,17 +22,18 @@
                 {{ __('Apartments') }}
             </a>
         </li>
-        {{-- sponsorships --}}
+        {{-- messages --}}
         <li class="nav-item px-4">
-            <a class="nav-link d-flex gap-3 align-items-center" href="#">
-                <i class="fa-solid fa-arrow-trend-up"></i>
-                {{ __('Sponsorships') }}
+            <a class="nav-link d-flex gap-3 align-items-center" href="{{ route('admin.messages.index') }}">
+                <i class="fa-solid fa-envelope"></i>
+                {{ __('Messages') }}
             </a>
         </li>
+        {{-- statistics --}}
         <li class="nav-item px-4">
             <a class="nav-link d-flex gap-3 align-items-center" href="{{ route('admin.messages.index') }}">
                 <i class="fa-solid fa-arrow-trend-up"></i>
-                {{ __('Messages') }}
+                {{ __('Statistics') }}
             </a>
         </li>
 

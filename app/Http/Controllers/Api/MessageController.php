@@ -84,7 +84,7 @@ class MessageController extends Controller
     {
         $user = Auth::user();
         if ($message->apartment->user_id !== $user->id) {
-            abort(403, 'fatti i fatti tuoi');
+            abort(403, 'This is not your apartment!');
         }
         return view('admin.messages.show', compact('message'));
     }
