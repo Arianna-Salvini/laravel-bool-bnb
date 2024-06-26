@@ -31,3 +31,4 @@
         </div>
     </div>
 </div>
+{{-- TODO fix visualization of modal under 576px --}}
