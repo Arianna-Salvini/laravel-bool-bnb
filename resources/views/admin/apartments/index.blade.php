@@ -81,7 +81,7 @@
                                                     alt="" width="100" class="border rounded">
                                             @endif
                                         </div>
-                                        <div class="accordion_text">
+                                        <div class="accordion_text position-relative">
                                             <p><strong>Visibility: </strong>
                                                 @if ($apartment->visibility)
                                                     <i class="fa-solid fa-check"></i>
@@ -101,6 +101,7 @@
                                                     <i class="fa fa-pencil" aria-hidden="true"></i>
                                                 </a>
                                                 @include('partials.delete-apartments')
+
                                             </div>
 
                                         </div>
