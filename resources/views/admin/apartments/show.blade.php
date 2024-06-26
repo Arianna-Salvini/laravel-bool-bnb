@@ -65,7 +65,7 @@
                     <p>{{ $apartment->description }}</p>
 
                     {{-- Add Map --}}
-                    <div id="map" class="mt-4 rounded-5"></div>
+                    <div id="map" class="map mt-4 rounded-5"></div>
 
                 </div>
             </div>
