@@ -30,7 +30,7 @@
 
             <div class="col">
                 <div class="mb-3 button-container">
-                    <a href="">
+                    <a href="{{ route('admin.apartments.index') }}">
                         <div class="sponsor-button d-flex flex-column justify-content-between position-relative">
                             <div class="icon">
                                 <i class="fa-solid fa-arrow-trend-up"></i>
