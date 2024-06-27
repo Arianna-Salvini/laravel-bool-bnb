@@ -1,1 +1,13 @@
 @use "./variables" as *;
+
+.crown {
+    width: 2rem;
+    height: 2rem;
+    background-color: #6282f4b9;
+    border: 1px solid #4c6b9f;
+    border-radius: 50%;
+    box-shadow: 0 0 10px inset #24224a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

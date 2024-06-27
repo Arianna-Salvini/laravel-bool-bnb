@@ -1,8 +1,10 @@
-<button type="button" class="btn btn-danger btn-sm btn-action" data-bs-toggle="modal"
+<button type="button" class="btn btn-outline-danger btn-sm btn-act" data-bs-toggle="modal"
     data-bs-target="#modalId-{{ $apartment->id }}">
     <i class="fa fa-trash" aria-hidden="true"></i>
+    <span class="d-md-none"></span>
 
 </button>
+
 <div class="modal fade" id="modalId-{{ $apartment->id }}" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
     role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md" role="document">
@@ -31,4 +33,7 @@
         </div>
     </div>
 </div>
+
+
+
 {{-- TODO fix visualization of modal under 576px --}}
