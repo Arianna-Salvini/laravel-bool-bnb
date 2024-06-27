@@ -2,9 +2,8 @@ let value = document.getElementById('count');
 let interval = 1500;
 let startValue = 0;
 let endValue = parseInt(value.getAttribute("data-val"));
-let duration = Math.floor(interval / endValue);
+let duration = endValue > 0 ? Math.floor(interval / endValue) : interval;
 let slowDownDuration = 500;
-
 
 function updateValue() {
     startValue += 1;
@@ -17,4 +16,10 @@ function updateValue() {
     }
 }
 
-let counter = setInterval(updateValue, duration);
+// Check if endValue is greater than 0 before starting the interval
+let counter;
+if (endValue > 0) {
+    counter = setInterval(updateValue, duration);
+} else {
+    value.textContent = startValue;
+}

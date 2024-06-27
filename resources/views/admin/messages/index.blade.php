@@ -4,7 +4,8 @@
     <div class="container">
         <div class="d-flex mb-3">
             <h4>Tot. Messaggi: </h4>
-            <h4 id="count" data-val="{{ $messages->count() }}" class="px-1"> 000</h4>
+            <h4 id="count" data-val="{{ is_array($messages) ? count($messages) : $messages->count() }}" class="px-1"> 000
+            </h4>
         </div>
         <div class="row">
             <div class="col d-flex flex-column gap-3">
