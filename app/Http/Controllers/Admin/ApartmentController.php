@@ -9,6 +9,7 @@ use App\Models\Apartment;
 use App\Models\Message;
 use App\Models\Service;
 use App\Models\Sponsorship;
+use App\Models\Statistic;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Auth;
@@ -172,7 +173,26 @@ class ApartmentController extends Controller
         $msgNumber = array_values($msgCounter);
         //dd($msgNumber);
 
-        return view('admin.apartments.show', compact('apartment', 'msgNumber'));
+
+
+        /* VIEWS */
+        /* get views */
+        $views = Statistic::select('created_at')->where('apartment_id', $apartment->id)->get();
+
+        /* same as messages */
+        $viewsCounter = [];
+        foreach ($months as $month) {
+            $viewsCounter[$month] = 0;
+        }
+        foreach ($views as $view) {
+            $month = Carbon::parse($message->created_at)->format('F');
+            if (isset($viewsCounter[$month])) {
+                $viewsCounter[$month]++;
+            }
+        }
+        $viewsNumber = array_values($viewsCounter);
+
+        return view('admin.apartments.show', compact('apartment', 'msgNumber', 'viewsNumber'));
     }
 
     /**

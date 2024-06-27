@@ -290,7 +290,7 @@
                 ],
                 datasets: [{
                     label: 'Views',
-                    data: [2, 3, 4, 1, 6, 3, 2, 5, 6, 7, 2, 4],
+                    data: {!! json_encode($viewsNumber) !!},
                     backgroundColor: '#809ef1',
                     borderColor: 'rgba(0 0 0 0.2)',
                     borderRadius: 20,
