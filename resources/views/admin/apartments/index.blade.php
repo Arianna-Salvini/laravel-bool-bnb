@@ -152,7 +152,7 @@
                                                     role="button">
                                                     <i class="fa fa-pencil" aria-hidden="true"></i>
                                                 </a>
-                                                <button type="button" class="btn btn-danger btn-sm btn-action"
+                                                <button type="button" class="btn btn-outline-danger btn-sm btn-act"
                                                     data-bs-toggle="modal" data-bs-target="#modal-{{ $apartment->id }}">
                                                     <i class="fa fa-trash" aria-hidden="true"></i>
 
