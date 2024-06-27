@@ -78,7 +78,7 @@
 
                         @if (count($apartment->sponsorships) !== 0)
                             <div class="mb-4 fw-bold fs-4 d-flex align-items-center p-0 sponsorship">
-                                <i class="fa-solid fa-crown me-2"></i>
+                                <i class="fa-solid fa-crown me-2 crown-icon"></i>
                                 <span class="ps-2 text-shadow-2">Sponsored </span>
                             </div>
                         @endif
@@ -165,17 +165,20 @@
 
     {{-- Script for map initialization --}}
     <script>
-        let center = [{{ $apartment->longitude }}, {{ $apartment->latitude }}];
-        let map = tt.map({
-            key: "{{ env('TOMTOM_API_KEY') }}",
-            container: "map",
-            center: center,
-            zoom: 15
-        });
+        document.addEventListener('DOMContentLoaded', function() {
+            let center = [{{ $apartment->longitude }}, {{ $apartment->latitude }}];
+            let map = tt.map({
+                key: "{{ env('TOMTOM_API_KEY') }}",
+                container: "map",
+                center: center,
+                zoom: 15
+            });
 
-        map.on('load', () => {
-            new tt.Marker().setLngLat(center).addTo(map);
-        });
+            map.on('load', () => {
+                new tt.Marker().setLngLat(center).addTo(map);
+            });
+
+        })
     </script>
 
 @endsection
