@@ -30,7 +30,7 @@
             </div>
         </div>
         <div class="row d-flex">
-            <div class="col-md-8 mb-4">
+            <div class="col-lg-8 mb-4">
                 <h2 class="">{{ $apartment->title }}</h2>
 
                 <div class="card position-relative overflow-hidden rounded-5">
@@ -69,7 +69,7 @@
 
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-lg-4">
                 <div class="card shadow mb-4 rounded-5">
                     <div class="card-header bg-dark text-white rounded-5 d-flex align-items-center justify-content-center">
                         <h2>Details</h2>
@@ -161,33 +161,38 @@
                 </div>
             </div>
         </div>
-    </div>
 
 
-
-    <div class="col-lg-8 offset-2">
-        <div class="col-12 my-5 mx-2">
-            <div class="card">
-                <div class="card-body">
-                    <h3> Messages </h3>
-                    <hr>
-                    <canvas id="messagesChart"></canvas>
+        <div class="row">
+            <div class="col-xl-6">
+                <div class="col-12 my-5 mx-2">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3> Messages </h3>
+                            <hr>
+                            <canvas id="messagesChart"></canvas>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <div class="col-lg-8 offset-2 pb-5">
-        <div class="col-12 my-5 mx-2">
-            <div class="card">
-                <div class="card-body ">
-                    <h3> Views </h3>
-                    <hr>
-                    <canvas id="viewsChart"></canvas>
+            <div class="col-xl-6 pb-5">
+                <div class="col-12 my-5 mx-2">
+                    <div class="card">
+                        <div class="card-body ">
+                            <h3> Views </h3>
+                            <hr>
+                            <canvas id="viewsChart"></canvas>
+                        </div>
+                    </div>
                 </div>
             </div>
+
         </div>
+
     </div>
+
+
 
 
     {{--  @dd($msgNumber) --}}
@@ -281,7 +286,7 @@
                     'June', 'July', 'August', 'September', 'October', 'November', 'December'
                 ],
                 datasets: [{
-                    label: 'Massagges',
+                    label: 'Views',
                     data: [2, 3, 4, 1, 6, 3, 2, 5, 6, 7, 2, 4],
                     backgroundColor: '#809ef1',
                     borderColor: 'rgba(0 0 0 0.2)',
