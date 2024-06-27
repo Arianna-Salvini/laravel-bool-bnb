@@ -16,7 +16,7 @@ $main-color: #45C2B1;
 }
 
 .bg_main {
-    background-color: $main-color !important;
+    background-color: $main-color ;
 }
 
 .sponsorship {
@@ -25,7 +25,7 @@ $main-color: #45C2B1;
     border-radius: 2rem;
 }
 
-.fa-crown {
+.crown-icon {
     color: gold;
     font-size: 1.2rem;
     width: 3rem;

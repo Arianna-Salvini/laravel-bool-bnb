@@ -21,8 +21,8 @@
                 <a class="btn btn-outline-secondary text-decoration-none my-3"
                     href="{{ route('admin.apartments.index') }}"><i class="fa-solid fa-circle-left"></i> Go back</a>
             </div>
-            <div class="right">
-                <a class="btn btn-warning btn-sm btn-action" href="{{ route('admin.apartments.edit', $apartment) }}"
+            <div class="right d-flex gap-2">
+                <a class="btn btn-outline-warning btn-act" href="{{ route('admin.apartments.edit', $apartment) }}"
                     role="button">
                     <i class="fa fa-pencil" aria-hidden="true"></i>
                 </a>
@@ -30,8 +30,8 @@
             </div>
         </div>
         <div class="row d-flex">
-            <div class="col-md-8 mb-4">
-                <h2 class="">{{ $apartment->title }}</h2>
+            <div class="col-lg-8 mb-4">
+                <h2 class="pb-3">{{ $apartment->title }}</h2>
 
                 <div class="card position-relative overflow-hidden rounded-5">
                     @if ($apartment->image)
@@ -51,25 +51,22 @@
                                 alt="" style="object-fit: cover; height: 400px;">
                         @endif
                     @else
-                        <div class="card-img-overlay d-flex align-items-center p-0">
-                            <div class="w-100 h-100 bg-dark bg-opacity-25 p-4">
-                                <h2 class="text-white">{{ $apartment->title }}</h2>
-                            </div>
-                        </div>
                         <img src="https://via.placeholder.com/400x300?text=No+Image+Available" alt="Default Image"
                             class="img-fluid w-100" style="object-fit: cover; height: 400px;">
                     @endif
                 </div>
                 <div class="mt-3">
-                    <strong>Description:</strong>
-                    <p>{{ $apartment->description }}</p>
+                    @if ($apartment->description)
+                        <strong>Description:</strong>
+                        <p>{{ $apartment->description }}</p>
+                    @endif
 
                     {{-- Add Map --}}
                     <div id="map" class="map mt-4 rounded-5"></div>
 
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-lg-4">
                 <div class="card shadow mb-4 rounded-5">
                     <div class="card-header bg-dark text-white rounded-5 d-flex align-items-center justify-content-center">
                         <h2>Details</h2>
@@ -78,7 +75,7 @@
 
                         @if (count($apartment->sponsorships) !== 0)
                             <div class="mb-4 fw-bold fs-4 d-flex align-items-center p-0 sponsorship">
-                                <i class="fa-solid fa-crown me-2"></i>
+                                <i class="fa-solid fa-crown me-2 crown-icon"></i>
                                 <span class="ps-2 text-shadow-2">Sponsored </span>
                             </div>
                         @endif
@@ -126,9 +123,10 @@
 
                         <div class="mb-4">
                             <h5 class="text-dark"><i class="fa-solid fa-eye me-2"></i>Visibility</h5>
-                            <span class="badge bg_main rounded-5 p-2 d-block">
+                            <span
+                                class="badge bg_main rounded-5 p-2 d-block {{ $apartment->visibility == 0 ? 'bg-secondary' : 'bg_main' }}">
                                 @if ($apartment->visibility == 0)
-                                    <i class="fa-solid fa-eye-slash me-2 bg-secondary"></i>Not Visible
+                                    <i class="fa-solid fa-eye-slash me-2"></i>Not Visible
                                 @else
                                     <i class="fa-solid fa-eye me-2"></i>Visible
                                 @endif
@@ -165,17 +163,20 @@
 
     {{-- Script for map initialization --}}
     <script>
-        let center = [{{ $apartment->longitude }}, {{ $apartment->latitude }}];
-        let map = tt.map({
-            key: "{{ env('TOMTOM_API_KEY') }}",
-            container: "map",
-            center: center,
-            zoom: 15
-        });
+        document.addEventListener('DOMContentLoaded', function() {
+            let center = [{{ $apartment->longitude }}, {{ $apartment->latitude }}];
+            let map = tt.map({
+                key: "{{ env('TOMTOM_API_KEY') }}",
+                container: "map",
+                center: center,
+                zoom: 15
+            });
 
-        map.on('load', () => {
-            new tt.Marker().setLngLat(center).addTo(map);
-        });
+            map.on('load', () => {
+                new tt.Marker().setLngLat(center).addTo(map);
+            });
+
+        })
     </script>
 
 @endsection
