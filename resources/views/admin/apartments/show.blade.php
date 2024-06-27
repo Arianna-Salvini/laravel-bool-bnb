@@ -163,7 +163,6 @@
         </div>
     </div>
 
-    {{ count($messages) }}
 
 
     <div class="col-lg-8 offset-2">
@@ -191,7 +190,7 @@
     </div>
 
 
-
+    {{--  @dd($msgNumber) --}}
 
 
     {{-- Script for map initialization --}}
@@ -225,8 +224,8 @@
                     'June', 'July', 'August', 'September', 'October', 'November', 'December'
                 ],
                 datasets: [{
-                    label: 'Massagges',
-                    data: [2, 3, 4, 1, 6, 3, 2, 5, 6, 7, 2, 4],
+                    label: 'Messagges',
+                    data: {!! json_encode($msgNumber) !!},
                     backgroundColor: '#45C2B1',
                     borderColor: 'rgba(0 0 0 0.2)',
                     borderRadius: 20,

@@ -144,16 +144,35 @@ class ApartmentController extends Controller
         /* get year */
         $year = Carbon::now()->year;
 
+
+        /* MSG */
         /* init msg counter */
         $msgCounter = [];
 
-
-        $messages = Message::select('*')
-            ->whereMonth('created_at', Carbon::now()->month)
+        /* get messages */
+        $messages = Message::select('created_at')
             ->where('apartment_id', $apartment_id)
             ->get();
 
-        return view('admin.apartments.show', compact('apartment', 'messages'));
+        /* I need an assoc array where msg count starts from zero*/
+        foreach ($months as $month) {
+            $msgCounter[$month] = 0;
+        }
+
+        /* for each msg I need to get the date and get the month name, counter++ if month is present as key in assoc array */
+        foreach ($messages as $message) {
+            $month = Carbon::parse($message->created_at)->format('F');
+
+            if (isset($msgCounter[$month])) {
+                $msgCounter[$month]++;
+            }
+        }
+
+        //dd($msgCounter);
+        $msgNumber = array_values($msgCounter);
+        //dd($msgNumber);
+
+        return view('admin.apartments.show', compact('apartment', 'msgNumber'));
     }
 
     /**
