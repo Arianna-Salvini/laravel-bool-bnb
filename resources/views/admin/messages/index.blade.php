@@ -11,45 +11,45 @@
             <div class="col d-flex flex-column gap-3">
                 @forelse($messages as $message)
                     <div class="card">
+                        <div class="card-apartment d-flex gap-3 p-2 rounded text-white justify-content-center"
+                            style="background-color: #45C2B1">
+                            <span><strong>Apartment: </strong></span>
+                            <span>{{ $message->apartment->title }}</span>
+                        </div>
                         <div class="card-body">
-                            <div
-                                class="card-heading d-flex align-items-md-center justify-content-between flex-column flex-md-row">
-                                <div class="d-flex align-items-md-center gap-2 flex-column flex-lg-row">
-                                    <h4 class="card-title">{{ $message->name }} {{ $message->lastname }}</h4>
-                                    <p class="card-text"><strong class="d-lg-none">From:
-                                        </strong>{{ $message->sender_email }}</p>
+                            <div class="card-heading d-flex justify-content-between flex-column flex-md-row mb-3">
+                                <div class="d-flex gap-2 flex-column">
+                                    <div class="card-title">
+                                        <span><strong>From: </strong></span>
+                                        <span class="fs-5">{{ $message->name }} {{ $message->lastname }}</span>
+                                    </div>
+                                    <div class="card-title">
+                                        <span><strong>Email: </strong></span>
+                                        <span>{{ $message->sender_email }}</span>
+                                    </div>
                                 </div>
 
                                 <p class="card-text"><strong>Sent: </strong>{{ $message->created_at }}</p>
                             </div>
-                            <div class="card-info d-flex gap-3">
-                                <p class="card-text"><strong>Apartment: </strong>{{ $message->apartment->title }}</p>
-                            </div>
 
-                            <div class="accordion pb-3" id="accordionExample{{ $message->id }}">
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="heading{{ $message->id }}">
-                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#collapse{{ $message->id }}" aria-expanded="true"
-                                            aria-controls="collapseOne" style="background-color: white">
-                                            Read the Message
-                                        </button>
-                                    </h2>
-                                    <div id="collapse{{ $message->id }}" class="accordion-collapse collapse"
-                                        aria-labelledby="heading{{ $message->id }}"
-                                        data-bs-parent="#accordionExample{{ $message->id }}">
-                                        <div class="accordion-body">
-                                            {{ $message->content }}
-                                        </div>
-                                    </div>
+                            <p class="d-inline-flex gap-1">
+                                <button class="btn btn-principal" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#msg-{{ $message->id }}" aria-expanded="false"
+                                    aria-controls="msg-{{ $message->id }}">
+                                    Read message
+                                </button>
+                            </p>
+                            <div class="collapse" id="msg-{{ $message->id }}">
+                                <div class="card card-body border-0 ps-0">
+                                    {{ $message->content }}
                                 </div>
-
                             </div>
+
                             <div class="d-flex align-items-center justify-content-end">
-                                <a name="show" id="show" class="btn btn-dark text-light"
+                                <a name="show" id="show" class="btn btn-outline-primary btn-sm btn-act me-2"
                                     href="{{ route('admin.messages.show', $message) }}" role="button"><i class="fa fa-eye"
                                         aria-hidden="true" style="height: 10px"></i></a>
-                                <button type="button" class="btn btn-danger btn-sm btn-action" data-bs-toggle="modal"
+                                <button type="button" class="btn btn-outline-danger btn-sm btn-act" data-bs-toggle="modal"
                                     data-bs-target="#modalId-{{ $message->id }}" style="height: 16px margin:auto">
                                     <i class="fa fa-trash" style="font-size: 0.93rem" aria-hidden="true"></i>
                                 </button>
