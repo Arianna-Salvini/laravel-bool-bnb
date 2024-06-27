@@ -6,7 +6,7 @@
     </a>
     @auth
         <div class="logo-sm d-flex justify-content-center align-items-center d-md-none">
-            <img class="img-fluid" src="https://i.ibb.co/MgFsztp/boolbnb-for-owners.png"  width="40%" alt="">
+            <img class="img-fluid" src="https://i.ibb.co/MgFsztp/boolbnb-for-owners.png" width="40%" alt="">
         </div>
     @endauth
 
@@ -25,6 +25,9 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.apartments.index') }}">{{ __('Apartments') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.messages.index') }}">{{ __('Messages') }}</a>
                 </li>
             </ul>
         @endauth
