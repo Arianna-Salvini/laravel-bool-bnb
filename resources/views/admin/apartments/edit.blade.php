@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container py-5">
+    <div class="container-md py-5">
         <div class="bg-dark text-white py-3 rounded-5 d-flex align-items-center mb-5">
             <div class="container d-flex justify-content-between align-items-center position-relative">
                 <h1>Edit your Apartment</h1>
@@ -18,12 +18,16 @@
         <x-apartment-form :route="route('admin.apartments.update', $apartment)" :apartment="$apartment" :method="'PUT'" :nations="$nations" :services="$services"
             :isEditForm=true :oldTitle="old('title', $apartment->title)" :oldAddress="old('address', $apartment->address)" {{-- :oldStreetNumber="old('street_number', $apartment->street_number)" :oldCountry="old('country_code', $apartment->country_code)" :oldCity="old('city', $apartment->city)"
             :oldZip="old('zip_code', $apartment->zip_code)" --}} :oldSqm="old('square_meters', $apartment->square_meters)" :oldRooms="old('rooms', $apartment->rooms)"
-            :oldBeds="old('beds', $apartment->beds)" :oldBathrooms="old('bathrooms', $apartment->bathrooms)" :oldVisibility="old('visibility', $apartment->visibility)" :oldDescription="old('description', $apartment->description)" />
+            :oldBeds="old('beds', $apartment->beds)" :oldBathrooms="old('bathrooms', $apartment->bathrooms)" :oldVisibility="old('visibility', $apartment->visibility)" :oldDescription="old('description', $apartment->description)">
+        @section('btn-name')
+            Edit
+        @endsection
+    </x-apartment-form>
 
 
-    </div>
+</div>
 @endsection
 @section('script')
-    @vite(['resources/js/address-search.js'])
-    @vite(['resources/js/input-validation.js'])
+@vite(['resources/js/address-search.js'])
+@vite(['resources/js/input-validation.js'])
 @endsection
