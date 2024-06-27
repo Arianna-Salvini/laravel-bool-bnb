@@ -33,9 +33,12 @@ Route::middleware(['auth', 'verified'])->name('admin.')->prefix('admin')->group(
     Route::get('/messages/{message}', [MessageController::class, 'show'])->name('messages.show');
     Route::delete('admin/messages/{message}', [MessageController::class, 'destroy'])->name('message.destroy');
 
-
     /* route to process the payment */
     Route::post('sponsorship/{apartment}', [SponsorshipController::class, 'store'])->name('sponsorship.store');
+
+    // route for statistic
+    Route::view('statistics', 'admin.statistics.index')->name('statistics.index');
+
 });
 
 Route::middleware('auth')->group(function () {
@@ -44,4 +47,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

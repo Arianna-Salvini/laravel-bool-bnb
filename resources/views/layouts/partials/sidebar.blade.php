@@ -31,7 +31,7 @@
         </li>
         {{-- statistics --}}
         <li class="nav-item px-4">
-            <a class="nav-link d-flex gap-3 align-items-center" href="{{ route('admin.messages.index') }}">
+            <a class="nav-link d-flex gap-3 align-items-center" href="{{ route('admin.statistics.index') }}">
                 <i class="fa-solid fa-arrow-trend-up"></i>
                 {{ __('Statistics') }}
             </a>
