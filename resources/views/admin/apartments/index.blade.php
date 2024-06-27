@@ -26,6 +26,7 @@
                             <th class="">Address</th>
                             <th class="text-center d-none d-lg-table-cell">Visibility</th>
                             <th class="text-center">Actions</th>
+                            <th class="text-center"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -100,6 +101,15 @@
                                     </button>
 
                                 </td>
+                                <td>
+                                    <a href="{{ route('admin.sponsorship.create', ['apartment' => $apartment->id]) }}"
+                                        class="btn sponsor-me">
+                                        <div>
+                                            <i class="fa-solid fa-arrow-trend-up d-xl-none p-1"></i>
+                                            <span class="text-fluid d-none d-xl-inline">Sponsor me</span>
+                                        </div>
+                                    </a>
+                                </td>
                             </tr>
                             <tr class="collapse border-0" id="collapse{{ $apartment->id }}">
                                 <td colspan="6">
@@ -138,7 +148,8 @@
                                                     <i class="fa fa-eye" aria-hidden="true"></i>
                                                 </a>
                                                 <a class="btn btn-outline-warning btn-act d-md-none"
-                                                    href="{{ route('admin.apartments.edit', $apartment) }}" role="button">
+                                                    href="{{ route('admin.apartments.edit', $apartment) }}"
+                                                    role="button">
                                                     <i class="fa fa-pencil" aria-hidden="true"></i>
                                                 </a>
                                                 @include('partials.delete-apartments')

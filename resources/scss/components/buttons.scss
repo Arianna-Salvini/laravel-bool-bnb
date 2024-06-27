@@ -1,3 +1,5 @@
+@use "../partials/variables" as *;
+
 .btn {
     border-radius: 60px;
 
@@ -194,5 +196,21 @@ a {
 .more {
     &::after {
         margin: 0 !important;
+    }
+}
+
+.sponsor-me {
+    background-color: #45C2B1;
+    border: none;
+    padding: 0.3rem 0.5rem;
+    color: white;
+
+    &:hover {
+        background-color: #3fac9e;
+        color: white;
+    }
+
+    >div {
+        @include d-flex-center;
     }
 }
