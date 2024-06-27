@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreApartmentRequest;
 use App\Http\Requests\UpdateApartmentRequest;
 use App\Models\Apartment;
+use App\Models\Message;
 use App\Models\Service;
 use App\Models\Sponsorship;
+use Carbon\Carbon;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -81,7 +83,7 @@ class ApartmentController extends Controller
 
             /* create api url */
             /* $api_url = $base_api.'countryCode='.$country_code.'&streetNumber='.$street_number.'&streetName='.$address.'&municipality='.$city.'&postalCode='.$zip_code.'&view=Unified&key='.$api_key; */
-            $api_url = $base_api.$address.'.json?storeResult=false&view=Unified&key='.$api_key;
+            $api_url = $base_api . $address . '.json?storeResult=false&view=Unified&key=' . $api_key;
 
             /* save coordinates */
             /* $coordinates = json_decode(file_get_contents($api_url))->results[0]->position; */
@@ -130,7 +132,47 @@ class ApartmentController extends Controller
             abort(403, 'This is not your apartment!');
         }
 
-        return view('admin.apartments.show', compact('apartment'));
+        /* get apartment id */
+        $apartment_id = $apartment->id;
+
+        /* get months array */
+        $months = [
+            'January', 'February', 'March', 'April', 'May',
+            'June', 'July', 'August', 'September', 'October', 'November', 'December'
+        ];
+
+        /* get year */
+        $year = Carbon::now()->year;
+
+
+        /* MSG */
+        /* init msg counter */
+        $msgCounter = [];
+
+        /* get messages */
+        $messages = Message::select('created_at')
+            ->where('apartment_id', $apartment_id)
+            ->get();
+
+        /* I need an assoc array where msg count starts from zero*/
+        foreach ($months as $month) {
+            $msgCounter[$month] = 0;
+        }
+
+        /* for each msg I need to get the date and get the month name, counter++ if month is present as key in assoc array */
+        foreach ($messages as $message) {
+            $month = Carbon::parse($message->created_at)->format('F');
+
+            if (isset($msgCounter[$month])) {
+                $msgCounter[$month]++;
+            }
+        }
+
+        //dd($msgCounter);
+        $msgNumber = array_values($msgCounter);
+        //dd($msgNumber);
+
+        return view('admin.apartments.show', compact('apartment', 'msgNumber'));
     }
 
     /**
@@ -176,7 +218,7 @@ class ApartmentController extends Controller
 
             /* create api url */
             //$api_url = $base_api . $address . '.json?storeResult=false&view=Unified&key=' . $api_key;
-            $api_url = $base_api.$address.'.json?storeResult=false&countrySet=IT&view=Unified&key='.$api_key;
+            $api_url = $base_api . $address . '.json?storeResult=false&countrySet=IT&view=Unified&key=' . $api_key;
 
             /* save coordinates */
 

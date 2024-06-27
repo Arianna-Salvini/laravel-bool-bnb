@@ -5,6 +5,7 @@ use App\Http\Controllers\API\ServiceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\MessageController;
+use App\Http\Controllers\API\StatisticController;
 
 
 
@@ -30,3 +31,4 @@ Route::get('/services', [ServiceController::class, 'index']);
 Route::get('/apartments/search', [ApartmentController::class, 'searchApartments']);
 Route::get('/apartments/{apartment:slug}', [ApartmentController::class, 'show']);
 Route::post('/messages', [MessageController::class, 'store']);
+Route::post('/statistics', [StatisticController::class, 'store']);
