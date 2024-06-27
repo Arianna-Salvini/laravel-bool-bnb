@@ -10,6 +10,8 @@ class Statistic extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['apartment_id', 'ip_address', 'date', 'tot_messages'];
+
     /**
      * Get the apartment that owns the Statistic
      *
