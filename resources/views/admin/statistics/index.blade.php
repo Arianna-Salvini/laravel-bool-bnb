@@ -34,7 +34,7 @@
 
             // MESSAGES
             // configurazione grafico
-            const messagesCtx = document.getElementById('messagesChart').getContext('2d')
+            const messagesCtx = document.getElementById('messagesChart').getContext('2d');
 
             // inserisco i dati per visualizzare il grafico
             const messagesData = {
@@ -46,8 +46,9 @@
                     data: [2, 3, 4, 1, 6, 3, 2, 5, 6, 7, 2, 4],
                     backgroundColor: '#45C2B1',
                     borderColor: 'rgba(0 0 0 0.2)',
+                    borderRadius: 20,
                     borderWidth: 1
-                }, ]
+                }]
             };
 
             // inserisco la configurazione del grafico
@@ -57,10 +58,32 @@
                 options: {
                     scales: {
                         y: {
-                            beginAtZero: true
+                            beginAtZero: true,
+                            ticks: {
+                                font: {
+                                    size: 17,
+                                }
+                            }
+                        },
+                        x: {
+                            beginAtZero: true,
+                            ticks: {
+                                font: {
+                                    size: 17,
+                                }
+                            }
                         }
+                    },
+                    plugins: {
+                        legend: {
+                            labels: {
+                                font: {
+                                    size: 18,
+                                }
+                            }
+                        },
                     }
-                },
+                }
             };
 
             // creazione del grafico
@@ -68,7 +91,7 @@
 
             // VIEWS
             // configurazione grafico
-            const viewsCtx = document.getElementById('viewsChart').getContext('2d')
+            const viewsCtx = document.getElementById('viewsChart').getContext('2d');
 
             // inserisco i dati per visualizzare il grafico
             const viewsData = {
@@ -76,12 +99,13 @@
                     'June', 'July', 'August', 'September', 'October', 'November', 'December'
                 ],
                 datasets: [{
-                    label: 'Views',
-                    data: [5, 7, 3, 5, 7, 8, 9, 3, 4, 1, 6, 3],
+                    label: 'Massagges',
+                    data: [2, 3, 4, 1, 6, 3, 2, 5, 6, 7, 2, 4],
                     backgroundColor: '#809ef1',
                     borderColor: 'rgba(0 0 0 0.2)',
+                    borderRadius: 20,
                     borderWidth: 1
-                }, ]
+                }]
             };
 
             // inserisco la configurazione del grafico
@@ -91,10 +115,32 @@
                 options: {
                     scales: {
                         y: {
-                            beginAtZero: true
+                            beginAtZero: true,
+                            ticks: {
+                                font: {
+                                    size: 17,
+                                }
+                            }
+                        },
+                        x: {
+                            beginAtZero: true,
+                            ticks: {
+                                font: {
+                                    size: 17,
+                                }
+                            }
                         }
+                    },
+                    plugins: {
+                        legend: {
+                            labels: {
+                                font: {
+                                    size: 18,
+                                }
+                            }
+                        },
                     }
-                },
+                }
             };
 
             // creazione del grafico

@@ -38,3 +38,12 @@ $main-color: #45C2B1;
     justify-content: center;
     align-items: center;
 }
+
+
+// CHART CANVAS
+#messagesChart,
+#viewsChart {
+    background: linear-gradient(45deg, #00B1C4, #009CD1, #1C82CF);
+    padding: 1rem;
+    border-radius: 1.2rem;
+}
