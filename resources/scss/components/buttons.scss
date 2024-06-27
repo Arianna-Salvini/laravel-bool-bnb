@@ -1,3 +1,5 @@
+@use "../partials/variables" as *;
+
 .btn {
     border-radius: 60px;
 
@@ -180,4 +182,35 @@ a {
     border: 1px solid #45C2B1;
     box-shadow: 0 0 10px 0 #45c2b19d;
     ;
+}
+
+.btn-act {
+    padding: 1.3rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.more {
+    &::after {
+        margin: 0 !important;
+    }
+}
+
+.sponsor-me {
+    background-color: #45C2B1;
+    border: none;
+    padding: 0.3rem 0.5rem;
+    color: white;
+
+    &:hover {
+        background-color: #3fac9e;
+        color: white;
+    }
+
+    >div {
+        @include d-flex-center;
+    }
 }

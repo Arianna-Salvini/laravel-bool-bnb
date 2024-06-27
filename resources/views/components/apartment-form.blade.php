@@ -140,49 +140,58 @@
         {{-- Apartment Details --}}
         <div class="mb-3">
             <div class="form-label"><strong>Apartment details</strong></div>
-            <div class="d-flex gap-5 flex-column flex-md-row">
-                <div class="sq_meters w-25">
-                    <label for="square_meters" class="form-label">Square Meters</label>
-                    <div class="d-flex align-items-center gap-2">
-                        <input type="number" class="form-control bg-white @error('square_meters') is-invalid @enderror"
-                            name="square_meters" id="square_meters" aria-describedby="square_metersHelper"
-                            placeholder="60" value="{{ $oldSqm }}" min="1">
-                        <span id="square_metersHelper" class="form-text text-muted">m²</span>
+            <div class="d-flex gap-5 flex-column flex-lg-row">
+                <div class="d-flex gap-5 w-100 w-lg-50">
+                    <div class="sq_meters w-50">
+                        <label for="square_meters" class="form-label">Square Meters</label>
+                        <div class="d-flex align-items-center gap-2">
+                            <input type="number"
+                                class="form-control bg-white @error('square_meters') is-invalid @enderror"
+                                name="square_meters" id="square_meters" aria-describedby="square_metersHelper"
+                                placeholder="60" value="{{ $oldSqm }}" min="1">
+                            <span id="square_metersHelper" class="form-text text-muted">m²</span>
+                        </div>
+                        @error('square_meters')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
-                    @error('square_meters')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
+
+                    <div class="n_rooms w-50 w-lg-25">
+                        <label for="rooms" class="form-label">Rooms</label>
+                        <input type="number" class="form-control bg-white @error('rooms') is-invalid @enderror"
+                            name="rooms" id="rooms" aria-describedby="roomsHelper" placeholder="1"
+                            value="{{ $oldRooms }}" min="1">
+                        @error('rooms')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
                 </div>
 
-                <div class="n_rooms w-25">
-                    <label for="rooms" class="form-label">Rooms</label>
-                    <input type="number" class="form-control bg-white @error('rooms') is-invalid @enderror"
-                        name="rooms" id="rooms" aria-describedby="roomsHelper" placeholder="1"
-                        value="{{ $oldRooms }}" min="1">
-                    @error('rooms')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
+                <div class="d-flex gap-5 w-100 w-lg-50">
+
+                    <div class="n_beds w-50 w-lg-25">
+                        <label for="beds" class="form-label">Beds</label>
+                        <input type="number" class="form-control  bg-white @error('beds') is-invalid @enderror"
+                            name="beds" id="beds" aria-describedby="bedsHelper" placeholder="1"
+                            value="{{ $oldBeds }}" min="1">
+                        @error('beds')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="n_bathrooms w-50 w-lg-25">
+                        <label for="bathrooms" class="form-label">Bathrooms</label>
+                        <input type="number" class="form-control  bg-white @error('bathrooms') is-invalid @enderror"
+                            name="bathrooms" id="bathrooms" aria-describedby="bathroomsHelper" placeholder="1"
+                            value="{{ $oldBathrooms }}" min="1">
+                        @error('bathrooms')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
                 </div>
 
-                <div class="n_beds w-25">
-                    <label for="beds" class="form-label">Beds</label>
-                    <input type="number" class="form-control  bg-white @error('beds') is-invalid @enderror"
-                        name="beds" id="beds" aria-describedby="bedsHelper" placeholder="1"
-                        value="{{ $oldBeds }}" min="1">
-                    @error('beds')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                <div class="n_bathrooms w-25">
-                    <label for="bathrooms" class="form-label">Bathrooms</label>
-                    <input type="number" class="form-control  bg-white @error('bathrooms') is-invalid @enderror"
-                        name="bathrooms" id="bathrooms" aria-describedby="bathroomsHelper" placeholder="1"
-                        value="{{ $oldBathrooms }}" min="1">
-                    @error('bathrooms')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                </div>
             </div>
         </div>
 
@@ -245,7 +254,7 @@
         </div>
 
         {{-- Description --}}
-        <div class="mb-5">
+        <div class="mb-3">
             <label for="description" class="form-label"><strong>Description</strong></label>
             <textarea class="form-control bg-white @error('description') is-invalid @enderror" name="description"
                 id="description" rows="6" placeholder="Add a brief description of your apartment">{{ $oldDescription }}</textarea>
@@ -260,7 +269,7 @@
         <div id="square_meters_error" class="is-invalid"></div>
         {{-- Submit Button --}}
         <button type="submit" id="submit-btn" class="btn btn-primary">
-            Add
+            @yield('btn-name')
         </button>
 
     </form>
