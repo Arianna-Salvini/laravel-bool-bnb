@@ -57,7 +57,10 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="payment-modalLabel">{{ $sponsorship->name }} -
+                        //l apartment name
+                        <h1 class="modal-title fs-5" id="payment-modalLabel">Sponsorship: {{ $apartment->title }}</h1>
+
+                        <h1 class="modal-title fs-5 ps-1" id="payment-modalLabel">{{ $sponsorship->name }} -
                             {{ $sponsorship->price }}€</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
@@ -102,10 +105,10 @@
                 @endforeach
             </select>
 
-            
+
             <div id="dropin-container"></div>
 
-            
+
             <input type="hidden" name="payment_method_nonce" id="payment_method_nonce">
 
             <button type="submit" class="btn btn-primary" id="submit-button" value="">Purchase</button>
@@ -149,7 +152,10 @@
                         }
 
                         nonce.value = payload.nonce
-
+                        // metto il valore del nome dell appartamento
+                        let apartmentName = '{{ $apartment->title }}';
+                        form.appendChild(createHiddenInput('apartment_name',
+                            apartmentName));
                         form.submit();
                     });
                 })
