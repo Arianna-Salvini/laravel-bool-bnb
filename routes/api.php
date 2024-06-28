@@ -7,10 +7,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\MessageController;
 use App\Http\Controllers\API\StatisticController;
 
-
-
-
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
