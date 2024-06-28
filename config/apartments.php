@@ -3,6 +3,7 @@
 return [
 
     [
+        'user_id' => 1,
         'title' => 'Appartamento moderno in centro città',
         'description' => 'Appartamento di lusso nel cuore della città con vista panoramica e tutti i comfort.',
         'image' => '',
@@ -18,8 +19,19 @@ return [
         'latitude' => '45.4642',
         'longitude' => '9.1900',
         'visibility' => true,
+        'services' => [
+            [
+                'id' => 1,
+                'service_name' => 'Wifi',
+            ],
+            [
+                'id' => 2,
+                'service_name' => 'Pool',
+            ],
+        ]
     ],
     [
+        'user_id' => 2,
         'title' => 'Bilocale vista mare',
         'description' => 'Accogliente bilocale con vista mozzafiato sul mare, ideale per una coppia.',
         'image' => '',
@@ -35,8 +47,19 @@ return [
         'latitude' => '44.4056',
         'longitude' => '8.9463',
         'visibility' => true,
+        'services' => [
+            [
+                'id' => 1,
+                'service_name' => 'Wifi',
+            ],
+            [
+                'id' => 3,
+                'service_name' => 'Parking spot',
+            ],
+        ]
     ],
     [
+        'user_id' => 2,
         'title' => 'Trilocale spazioso in zona tranquilla',
         'description' => 'Appartamento ideale per famiglie, situato in una zona residenziale e tranquilla.',
         'image' => '',
@@ -52,8 +75,19 @@ return [
         'latitude' => '44.4949',
         'longitude' => '11.3426',
         'visibility' => true,
+        'services' => [
+            [
+                'id' => 1,
+                'service_name' => 'Wifi',
+            ],
+            [
+                'id' => 4,
+                'service_name' => 'Concierge',
+            ],
+        ]
     ],
     [
+        'user_id' => 2,
         'title' => 'Monolocale nel cuore della città',
         'description' => 'Elegante monolocale arredato con gusto, perfetto per single o giovani coppie.',
         'image' => '',
@@ -69,8 +103,29 @@ return [
         'latitude' => '43.7696',
         'longitude' => '11.2558',
         'visibility' => true,
+        'services' => [
+            [
+                'id' => 1,
+                'service_name' => 'Wifi',
+            ],
+            [
+                'id' => 2,
+                'service_name' => 'Pool',
+            ],
+        ],
+        // 'sponsorships' => [
+        //     [
+        //         'id' => 1,
+        //         'name' => 'Standard',
+        //         'price' => 2.99,
+        //         'duration' => 24,
+        //         'start_date' => '2024-06-28 07:46:31',
+        //         'expiration_date' => '2024-06-29 07:46:31',
+        //     ]
+        // ]
     ],
     [
+        'user_id' => 2,
         'title' => 'Appartamento elegante in zona storica',
         'description' => 'Appartamento con finiture di pregio, situato in una delle zone storiche della città.',
         'image' => '',
@@ -86,8 +141,19 @@ return [
         'latitude' => '41.8925',
         'longitude' => '12.4862',
         'visibility' => true,
+        'services' => [
+            [
+                'id' => 1,
+                'service_name' => 'Wifi',
+            ],
+            [
+                'id' => 5,
+                'service_name' => 'Sauna',
+            ],
+        ]
     ],
     [
+        'user_id' => 1,
         'title' => 'Attico con terrazza panoramica',
         'description' => 'Attico di lusso con ampia terrazza e vista panoramica sulla città.',
         'image' => '',
@@ -103,8 +169,19 @@ return [
         'latitude' => '38.1157',
         'longitude' => '13.3615',
         'visibility' => true,
+        'services' => [
+            [
+                'id' => 1,
+                'service_name' => 'Wifi',
+            ],
+            [
+                'id' => 6,
+                'service_name' => 'Sea view',
+            ],
+        ]
     ],
     [
+        'user_id' => 1,
         'title' => 'Appartamento in villa storica',
         'description' => 'Appartamento situato in una villa storica, con giardino privato e piscina.',
         'image' => '',
@@ -120,8 +197,29 @@ return [
         'latitude' => '45.0703',
         'longitude' => '7.6869',
         'visibility' => true,
+        'services' => [
+            [
+                'id' => 1,
+                'service_name' => 'Wifi',
+            ],
+            [
+                'id' => 7,
+                'service_name' => 'Air conditioning',
+            ],
+        ],
+        // 'sponsorships' => [
+        //     [
+        //         'id' => 1,
+        //         'name' => 'Standard',
+        //         'price' => 2.99,
+        //         'duration' => 24,
+        //         'start_date' => '2024-06-28 07:46:31',
+        //         'expiration_date' => '2024-06-29 07:46:31',
+        //     ]
+        // ]
     ],
     [
+        'user_id' => 1,
         'title' => 'Appartamento con giardino',
         'description' => 'Appartamento al piano terra con ampio giardino, ideale per famiglie con bambini.',
         'image' => '',
@@ -137,8 +235,27 @@ return [
         'latitude' => '45.4384',
         'longitude' => '10.9916',
         'visibility' => true,
+        'services' => [
+            [
+                'id' => 1,
+                'service_name' => 'Wifi',
+            ],
+            [
+                'id' => 8,
+                'service_name' => 'Garden',
+            ],
+        ],
+        // 'sponsorships' => [
+        //     [
+        //         'id' => 1,
+        //         'name' => 'Standard',
+        //         'price' => 2.99,
+        //         'duration' => 24,
+        //     ]
+        // ]
     ],
     [
+        'user_id' => 1,
         'title' => 'Appartamento di design in centro',
         'description' => 'Moderno appartamento di design, situato nel cuore della città, vicino a tutti i servizi.',
         'image' => '',
@@ -154,8 +271,19 @@ return [
         'latitude' => '40.8518',
         'longitude' => '14.2681',
         'visibility' => true,
+        'services' => [
+            [
+                'id' => 1,
+                'service_name' => 'Wifi',
+            ],
+            [
+                'id' => 9,
+                'service_name' => 'Elevator',
+            ],
+        ]
     ],
     [
+        'user_id' => 1,
         'title' => 'Appartamento con vista sul lago',
         'description' => 'Incantevole appartamento con vista sul lago, dotato di tutti i comfort.',
         'image' => '',
@@ -171,5 +299,15 @@ return [
         'latitude' => '45.8099',
         'longitude' => '9.0852',
         'visibility' => true,
+        'services' => [
+            [
+                'service_id' => 1,
+                'service_name' => 'Wifi',
+            ],
+            [
+                'id' => 10,
+                'service_name' => 'Furnished',
+            ],
+        ]
     ],
 ];
