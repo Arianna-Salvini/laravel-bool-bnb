@@ -3,21 +3,23 @@
 namespace Database\Seeders;
 
 use App\Models\Apartment;
+use App\Models\Service;
+use App\Models\Sponsorship;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
 class ApartmentSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Run the database seeder
      */
     public function run(): void
     {
-
         $apartments = config('apartments');
 
         foreach ($apartments as $apartment) {
             $newApartment = new Apartment();
+            $newApartment->user_id = $apartment['user_id'];
             $newApartment->title = $apartment['title'];
             $newApartment->slug = Str::slug($apartment['title'], '-');
             $newApartment->description = $apartment['description'];
@@ -35,6 +37,28 @@ class ApartmentSeeder extends Seeder
             $newApartment->longitude = $apartment['longitude'];
             $newApartment->visibility = $apartment['visibility'];
             $newApartment->save();
+
+            if (isset($apartment['services'])) {
+                foreach ($apartment['services'] as $serviceData) {
+                    $service = Service::firstOrCreate([
+                        'service_name' => $serviceData['service_name']
+                    ]);
+                    $newApartment->services()->attach($service->id);
+                }
+            }
+
+            // if (isset($apartment['sponsorships'])) {
+            //     foreach ($apartment['sponsorships'] as $sponsorshipData) {
+            //         $sponsor = Sponsorship::firstOrCreate([
+            //             'name' => $sponsorshipData['name'],
+            //             'duration' => $sponsorshipData['duration'] ?? 24,
+            //             'price' => $sponsorshipData['price'] ?? 2.99,
+            //             'start_date' => $sponsorshipData['start_date'],
+            //             'expiration_date' => $sponsorshipData['expiration_date'],
+            //         ]);
+            //         $newApartment->sponsorships()->attach($sponsor->id);
+            //     }
+            // }
         }
     }
 }
