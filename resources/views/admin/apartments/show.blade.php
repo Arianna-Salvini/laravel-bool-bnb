@@ -74,11 +74,20 @@
                         <h2>Details</h2>
                     </div>
                     <div class="card-body">
-
                         @if (count($apartment->sponsorships) !== 0)
                             <div class="mb-4 fw-bold fs-4 d-flex align-items-center p-0 sponsorship">
                                 <i class="fa-solid fa-crown me-2 crown-icon"></i>
                                 <span class="ps-2 text-shadow-2">Sponsored </span>
+                            </div>
+
+                            <div class="mb-4">
+                                <h5 class="text-dark"><i class="fa-solid fa-calendar-alt me-2"></i>Sponsorship Expiration
+                                    Dates:</h5>
+                                <ul class="list-unstyled">
+                                    @foreach ($apartment->sponsorships as $sponsorship)
+                                        <li class="fs-5 ps-4">{{ $sponsorship->pivot->expiration_date }}</li>
+                                    @endforeach
+                                </ul>
                             </div>
                         @endif
 
