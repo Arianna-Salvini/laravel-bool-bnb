@@ -45,6 +45,8 @@
                                     @elseif(Str::startsWith($apartment->image, 'uploads/'))
                                         <img src="{{ asset('storage/' . $apartment->image) }}" alt=""
                                             width="100">
+                                    @elseif(Str::startsWith($apartment->image, 'apartments/'))
+                                        <img src="{{ asset($apartment->image) }}" alt="" width="100">
                                     @else
                                         <img src="https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png"
                                             alt="" width="100" class="border rounded">
@@ -144,7 +146,8 @@
 
                                             <div class="d-flex justify-content-center gap-2">
                                                 <a class="btn btn-outline-primary btn-act d-md-none"
-                                                    href="{{ route('admin.apartments.show', $apartment) }}" role="button">
+                                                    href="{{ route('admin.apartments.show', $apartment) }}"
+                                                    role="button">
                                                     <i class="fa fa-eye" aria-hidden="true"></i>
                                                 </a>
                                                 <a class="btn btn-outline-warning btn-act d-md-none"

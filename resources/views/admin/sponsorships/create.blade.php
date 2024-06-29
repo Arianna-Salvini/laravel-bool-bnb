@@ -57,7 +57,6 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        //l apartment name
                         <h1 class="modal-title fs-5" id="payment-modalLabel">Sponsorship: {{ $apartment->title }}</h1>
 
                         <h1 class="modal-title fs-5 ps-1" id="payment-modalLabel">{{ $sponsorship->name }} -
@@ -153,9 +152,9 @@
 
                         nonce.value = payload.nonce
                         // metto il valore del nome dell appartamento
-                        let apartmentName = '{{ $apartment->title }}';
+                        /* let apartmentName = '{{ $apartment->title }}';
                         form.appendChild(createHiddenInput('apartment_name',
-                            apartmentName));
+                            apartmentName)); */
                         form.submit();
                     });
                 })

@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Apartment;
 use App\Models\Service;
 use App\Models\Sponsorship;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
@@ -23,7 +24,7 @@ class ApartmentSeeder extends Seeder
             $newApartment->title = $apartment['title'];
             $newApartment->slug = Str::slug($apartment['title'], '-');
             $newApartment->description = $apartment['description'];
-            $newApartment->image = 'http://picsum.photos/300/200';
+            $newApartment->image = $apartment['image'];
             $newApartment->rooms = $apartment['rooms'];
             $newApartment->beds = $apartment['beds'];
             $newApartment->bathrooms = $apartment['bathrooms'];
@@ -44,6 +45,24 @@ class ApartmentSeeder extends Seeder
                         'service_name' => $serviceData['service_name']
                     ]);
                     $newApartment->services()->attach($service->id);
+                }
+            }
+
+            if (isset($apartment['sponsorships'])) {
+                foreach ($apartment['sponsorships'] as $sponsorshipData) {
+                    $sponsorship = Sponsorship::firstOrCreate([
+                        'name' => $sponsorshipData['name'],
+                        'duration' => $sponsorshipData['duration'],
+                        'price' => $sponsorshipData['price']
+                    ]);
+
+                    $start_date = Carbon::now();
+                    $expiration_date = $start_date->copy()->addHours($sponsorshipData['duration']);
+
+                    $newApartment->sponsorships()->attach($sponsorship->id, [
+                        'start_date' => $start_date,
+                        'expiration_date' => $expiration_date
+                    ]);
                 }
             }
 

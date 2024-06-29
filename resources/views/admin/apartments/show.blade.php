@@ -48,6 +48,9 @@
                         @elseif(Str::startsWith($apartment->image, 'uploads/'))
                             <img src="{{ asset('storage/' . $apartment->image) }}" alt="Apartment Image"
                                 class="img-fluid w-100" style="object-fit: cover; height: 400px;">
+                        @elseif(Str::startsWith($apartment->image, 'apartments/'))
+                            <img src="{{ asset($apartment->image) }}" alt="Apartment Image" class="img-fluid w-100"
+                                style="object-fit: cover; height: 400px;">
                         @else
                             <img src="https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png"
                                 alt="" style="object-fit: cover; height: 400px;">
@@ -86,8 +89,8 @@
                             </div>
 
                             <div class="mb-4">
-                                <h5 class="text-dark"><i class="fa-solid fa-calendar-alt me-2"></i>Sponsorship Expiration
-                                    Dates:</h5>
+                                <h5 class="text-dark"><i class="fa-solid fa-calendar-alt me-2"></i>Sponsorship expiration
+                                    date:</h5>
                                 <ul class="list-unstyled">
                                     {{--     @foreach ($apartment->sponsorships as $sponsorship)  --}}
                                     {{--        <li class="fs-5 ps-4">{{ $sponsorship->pivot->expiration_date }}</li>  --}}
