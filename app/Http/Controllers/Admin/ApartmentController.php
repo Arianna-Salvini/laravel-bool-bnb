@@ -185,7 +185,7 @@ class ApartmentController extends Controller
             $viewsCounter[$month] = 0;
         }
         foreach ($views as $view) {
-            $month = Carbon::parse($message->created_at)->format('F');
+            $month = Carbon::parse($view->created_at)->format('F');
             if (isset($viewsCounter[$month])) {
                 $viewsCounter[$month]++;
             }
