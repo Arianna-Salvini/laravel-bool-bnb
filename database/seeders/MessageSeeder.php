@@ -14,15 +14,15 @@ class MessageSeeder extends Seeder
     public function run(): void
     {
 
-        for ($i=0; $i < 50 ; $i++) { 
+        for ($i = 0; $i < 100; $i++) {
             $name = $this->randomName();
             $lastname = $this->randomLastName();
             $sender_email = strtolower($name) . '.' . strtolower($lastname) . '@email.com';
             $content = $this->randomContent();
-            $apartment_id = rand(1, 15);
+            $apartment_id = rand(1, 21);
             $created_at = $this->randomDate();
-    
-    
+
+
             $receivedMessage = new Message();
             $receivedMessage->name = $name;
             $receivedMessage->lastname = $lastname;
@@ -30,7 +30,7 @@ class MessageSeeder extends Seeder
             $receivedMessage->content = $content;
             $receivedMessage->apartment_id = $apartment_id;
             $receivedMessage->created_at = $created_at;
-            $receivedMessage->save();            
+            $receivedMessage->save();
         }
     }
 
