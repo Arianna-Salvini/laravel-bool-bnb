@@ -48,6 +48,9 @@
                         @elseif(Str::startsWith($apartment->image, 'uploads/'))
                             <img src="{{ asset('storage/' . $apartment->image) }}" alt="Apartment Image"
                                 class="img-fluid w-100" style="object-fit: cover; height: 400px;">
+                        @elseif(Str::startsWith($apartment->image, 'apartments/'))
+                            <img src="{{ asset($apartment->image) }}" alt="Apartment Image" class="img-fluid w-100"
+                                style="object-fit: cover; height: 400px;">
                         @else
                             <img src="https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png"
                                 alt="" style="object-fit: cover; height: 400px;">
