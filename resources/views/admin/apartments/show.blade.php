@@ -89,8 +89,8 @@
                             </div>
 
                             <div class="mb-4">
-                                <h5 class="text-dark"><i class="fa-solid fa-calendar-alt me-2"></i>Sponsorship Expiration
-                                    Dates:</h5>
+                                <h5 class="text-dark"><i class="fa-solid fa-calendar-alt me-2"></i>Sponsorship expiration
+                                    date:</h5>
                                 <ul class="list-unstyled">
                                     {{--     @foreach ($apartment->sponsorships as $sponsorship)  --}}
                                     {{--        <li class="fs-5 ps-4">{{ $sponsorship->pivot->expiration_date }}</li>  --}}

@@ -24,7 +24,14 @@ return [
                 'id' => 2,
                 'service_name' => 'Pool',
             ],
-        ]
+        ],
+        'sponsorships' => [
+            [
+                'name' => 'Premium',
+                'duration' => 144,
+                'price' => 9.99,
+            ],
+        ],
     ],
     [
         'user_id' => 2,
@@ -120,7 +127,14 @@ return [
                 'id' => 5,
                 'service_name' => 'Sauna',
             ],
-        ]
+        ],
+        'sponsorships' => [
+            [
+                'name' => 'Premium',
+                'duration' => 144,
+                'price' => 9.99,
+            ],
+        ],
     ],
     [
         'user_id' => 1,
@@ -213,7 +227,7 @@ return [
                 'service_name' => 'Wifi',
             ],
             [
-                'id' => 9,
+                'id' => 10,
                 'service_name' => 'Elevator',
             ],
         ]
@@ -237,7 +251,7 @@ return [
                 'service_name' => 'Wifi',
             ],
             [
-                'id' => 10,
+                'id' => 11,
                 'service_name' => 'Furnished',
             ],
         ]
@@ -264,7 +278,14 @@ return [
                 'id' => 3,
                 'service_name' => 'Parking spot',
             ],
-        ]
+        ],
+        'sponsorships' => [
+            [
+                'name' => 'Premium',
+                'duration' => 144,
+                'price' => 9.99,
+            ],
+        ],
     ],
     [
         'user_id' => 2,
@@ -333,8 +354,8 @@ return [
                 'service_name' => 'Wifi',
             ],
             [
-                'id' => 6,
-                'service_name' => 'Garden',
+                'id' => 9,
+                'service_name' => 'Garage',
             ],
         ]
     ],
@@ -382,7 +403,7 @@ return [
             ],
             [
                 'id' => 8,
-                'service_name' => 'Beach access',
+                'service_name' => 'Garden',
             ],
         ]
     ],
@@ -405,8 +426,8 @@ return [
                 'service_name' => 'Wifi',
             ],
             [
-                'id' => 9,
-                'service_name' => 'River view',
+                'id' => 12,
+                'service_name' => 'TV',
             ],
         ]
     ],
@@ -429,7 +450,7 @@ return [
                 'service_name' => 'Wifi',
             ],
             [
-                'id' => 10,
+                'id' => 2,
                 'service_name' => 'Pool',
             ],
         ]
@@ -453,7 +474,7 @@ return [
                 'service_name' => 'Wifi',
             ],
             [
-                'id' => 6,
+                'id' => 8,
                 'service_name' => 'Garden',
             ],
         ]
@@ -537,7 +558,7 @@ return [
                 'service_name' => 'Parking spot',
             ],
             [
-                'id' => 6,
+                'id' => 8,
                 'service_name' => 'Garden',
             ],
             [
