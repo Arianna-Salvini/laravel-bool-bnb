@@ -6,7 +6,8 @@
 
         @if ($apartments->count() >= 1)
             <div class="d-flex justify-content-between my-3 align-items-center">
-                <h2>All Apartments</h2>
+                <h2>My Apartments <span class="fs-4">({{ count($apartments) }})</span></h2>
+
                 <a href="{{ route('admin.apartments.create') }}" class="btn btn-principal d-none d-md-inline-block">Insert New
                     Apartment</a>
                 <a href="{{ route('admin.apartments.create') }}" class="btn btn-principal d-inline-block d-md-none">
