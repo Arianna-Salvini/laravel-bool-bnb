@@ -184,7 +184,7 @@
 
         {{-- Charts --}}
         {{-- messages chat --}}
-        <div class="">
+        <div class="row">
             <h3 class="statistic_title"> Statistic</h3>
         </div>
         <div class="row m-0">
