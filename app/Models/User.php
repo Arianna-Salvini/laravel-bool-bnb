@@ -55,4 +55,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Apartment::class);
     }
+    public function getTotalApartmentsAttribute()
+    {
+        return $this->apartments()->count();
+    }
+
+protected $appends = ['total_apartments'];
 }
