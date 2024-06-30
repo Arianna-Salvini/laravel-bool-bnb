@@ -32,7 +32,9 @@
                             </div>
                             <div class="card-text pt-3">
                                 <button type="button" class="btn btn-lg btn-primary select-sponsorship border-0"
-                                    data-sponsorship-id="{{ $sponsorship->id }}" style="background-color: #45C2B1;">
+                                    data-sponsorship-id="{{ $sponsorship->id }}"
+                                    data-sponsorship-name="{{ $sponsorship->name }}"
+                                    data-sponsorship-price="{{ $sponsorship->price }}" style="background-color: #45C2B1;">
                                     Select
                                 </button>
                             </div>
@@ -45,7 +47,7 @@
         <!-- Button trigger modal -->
         <div class="button-container text-center">
             <button type="button" class="btn btn-lg w-75 m-auto text-white border-0" data-bs-toggle="modal"
-                data-bs-target="#payment-modal" style="background-color: #45C2B1;">
+                data-bs-target="#payment-modal" style="background-color: #45C2B1;" id="proceed-button" disabled>
                 Proceed
             </button>
 
@@ -57,10 +59,11 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="payment-modalLabel">Sponsorship: {{ $apartment->title }}</h1>
 
-                        <h1 class="modal-title fs-5 ps-1" id="payment-modalLabel">{{ $sponsorship->name }} -
-                            {{ $sponsorship->price }}€</h1>
+                        <h1 class="modal-title fs-5" id="payment-modalLabel">{{ $apartment->title }} - </h1>
+
+                        <h1 class="modal-title fs-5 ps-1" id="modal-sponsorship-name">{{-- {{ $sponsorship->name }} -
+                            {{ $sponsorship->price }}€ --}}</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body p-0">
@@ -74,12 +77,20 @@
 
                             <input type="hidden" name="payment_method_nonce" id="payment_method_nonce">
 
+                            <div id="loading" style="display: none;">
+                                <div class="text-center py-2">
+                                    <span>Processing payment </span>
+                                    <i class="fa-solid fa-circle-notch"></i>
+                                </div>
+                            </div>
+
                             {{-- <button type="submit" class="btn btn-primary" id="submit-button" value="">Purchase</button> --}}
 
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" id="close-modal-btn"
+                            data-bs-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary" id="submit-button" value="">Purchase</button>
                     </div>
                 </div>
@@ -120,11 +131,21 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             let sponsorshipInput = document.querySelector('#sponsorship-id');
+            let sponsorshipCorrectName = document.querySelector('#modal-sponsorship-name');
             let selectedButtons = document.querySelectorAll('.select-sponsorship');
+            let proceedBtn = document.querySelector('#proceed-button');
+            let loading = document.querySelector('#loading');
+            let closeModalBtn = document.querySelector('#close-modal-btn');
 
             selectedButtons.forEach(button => {
                 button.addEventListener('click', function() {
-                    sponsorshipInput.value = this.getAttribute('data-sponsorship-id')
+                    sponsorshipInput.value = this.getAttribute('data-sponsorship-id');
+                    let sponsorName = this.getAttribute('data-sponsorship-name');
+                    let sponsorPrice = this.getAttribute('data-sponsorship-price');
+                    sponsorshipCorrectName.innerText = `${sponsorName} - ${sponsorPrice}€`;
+
+                    /* remove disabled when an option is selected */
+                    proceedBtn.removeAttribute('disabled');
                 })
             });
 
@@ -137,15 +158,26 @@
                 selector: '#dropin-container'
             }, function(err, instance) {
                 button.addEventListener('click', function(e) {
-                    e.preventDefault()
+                    e.preventDefault();
+
+                    /* processing div displaying */
+                    loading.style.display = 'block';
+                    button.setAttribute('disabled', true);
+                    closeModalBtn.setAttribute('disabled', true);
                     instance.requestPaymentMethod(function(err, payload) {
 
                         if (err) {
+                            loading.style.display = 'none';
+                            button.removeAttribute('disabled');
+                            closeModalBtn.removeAttribute('disabled');
                             console.log(err);
                             return;
                         }
 
                         if (sponsorshipInput.value === '') {
+                            loading.style.display = 'none';
+                            button.removeAttribute('disabled');
+                            closeModalBtn.removeAttribute('disabled');
                             alert('Select a sponsorship');
                             return;
                         }

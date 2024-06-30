@@ -48,6 +48,7 @@ address.addEventListener('input', function () {
 
                 /* append list item to list */
                 addressList.appendChild(resultAddress);
+                addressList.classList.add('border', 'rounded', 'px-2', 'bg-white');
 
                 /* add event listener to each suggestion. Event to listen for: click */
                 resultAddress.addEventListener('click', function () {
@@ -79,6 +80,7 @@ address.addEventListener('input', function () {
 
                     /* when I select a suggestion, the other suggestions disappear */
                     addressList.innerHTML = '';
+                    addressList.classList.remove('border', 'rounded', 'p-2');
                 })
             }
         }

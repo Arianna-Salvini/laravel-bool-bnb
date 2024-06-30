@@ -71,9 +71,13 @@
                 @error('address')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
-                <ul id="address-list" class="list-unstyled">
 
-                </ul>
+                <div class="suggestions d-flex">
+                    <ul id="address-list" class="list-unstyled">
+
+                    </ul>
+
+                </div>
             </div>
 
             {{-- Street Number --}}

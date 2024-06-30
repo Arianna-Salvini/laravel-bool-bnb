@@ -1,4 +1,4 @@
-@extends('layouts.app')
+{{-- @extends('layouts.app')
 
 @section('content')
     <div class="container">
@@ -9,3 +9,4 @@
         <p class="card-text">{{ $message->content }}</p>
     </div>
 @endsection
+ --}}

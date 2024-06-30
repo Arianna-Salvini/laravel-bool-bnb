@@ -41,3 +41,18 @@
         display: none;
     }
 }
+
+#address-list {
+    >li {
+        padding: 0.5rem 0;
+
+        &:hover {
+            background: linear-gradient(to right, white, #ced4da98, white) !important;
+            cursor: pointer;
+        }
+    }
+
+    >li:not(:last-of-type) {
+        border-bottom: 1px solid #ced4da;
+    }
+}
