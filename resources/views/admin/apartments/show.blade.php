@@ -182,31 +182,35 @@
         </div>
 
 
-        <div class="row">
+        {{-- Charts --}}
+        {{-- messages chat --}}
+        <div class="">
+            <h3 class="statistic_title"> Statistic</h3>
+        </div>
+        <div class="row m-0">
             <div class="col-xl-6">
                 <div class="col-12 my-5 mx-2">
-                    <div class="card">
+                    <div>
                         <div class="card-body">
-                            <h3> Messages </h3>
+                            <h4> Messages </h4>
                             <hr>
                             <canvas id="messagesChart"></canvas>
                         </div>
                     </div>
                 </div>
             </div>
-
+            {{-- views chart --}}
             <div class="col-xl-6 pb-5">
                 <div class="col-12 my-5 mx-2">
-                    <div class="card">
-                        <div class="card-body ">
-                            <h3> Views </h3>
+                    <div>
+                        <div class="card-body">
+                            <h4> Views </h4>
                             <hr>
                             <canvas id="viewsChart"></canvas>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
 
     </div>
@@ -271,7 +275,8 @@
                             ticks: {
                                 font: {
                                     size: 17,
-                                }
+                                },
+                                stepSize: 1
                             }
                         },
                         x: {
@@ -328,7 +333,9 @@
                             ticks: {
                                 font: {
                                     size: 17,
-                                }
+                                },
+                                stepSize: 1,
+
                             }
                         },
                         x: {
