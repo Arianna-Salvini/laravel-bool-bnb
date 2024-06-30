@@ -183,7 +183,7 @@
 
 
         {{-- messages chat --}}
-        <div class="stats d-flex justify-content-between align-items-center mt-3">
+        <div class="stats d-flex justify-content-between align-items-center mt-5">
             <h3 class="statistic_title m-0"> Statistic</h3>
             {{-- Charts --}}
             <form action="{{ route('admin.apartments.show', ['apartment' => $apartment]) }}" method="get"
