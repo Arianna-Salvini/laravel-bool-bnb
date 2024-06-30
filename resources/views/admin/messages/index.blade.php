@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container pb-5">
         <div class="d-flex mb-3">
             <h4>Tot. Messaggi: </h4>
             <h4 id="count" data-val="{{ is_array($messages) ? count($messages) : $messages->count() }}" class="px-1"> 000
