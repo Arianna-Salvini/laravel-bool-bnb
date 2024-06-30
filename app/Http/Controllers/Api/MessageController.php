@@ -73,14 +73,14 @@ class MessageController extends Controller
         $messages = [];
 
         if (!empty($apartmentIds)) {
-            $messages = Message::whereIn('apartment_id', $apartmentIds)->orderByDesc('id')->get();
+            $messages = Message::whereIn('apartment_id', $apartmentIds)->orderByDesc('created_at')->get();
         }
         //dd($apartment);
 
         return view('admin.messages.index', compact('messages', 'apartment'));
     }
 
-    public function show(Message $message)
+    /* public function show(Message $message)
     {
         $user = Auth::user();
         if ($message->apartment->user_id !== $user->id) {
@@ -93,5 +93,5 @@ class MessageController extends Controller
         $message->delete(); //Good for soft delete
 
         return to_route('admin.messages.index')->with('message', "The message of $message->name $message->lastname has been deleted successfully");
-    }
+    } */
 }
