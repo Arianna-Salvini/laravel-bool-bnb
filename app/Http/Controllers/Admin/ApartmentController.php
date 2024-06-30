@@ -157,7 +157,7 @@ class ApartmentController extends Controller
                 $lastYear->addMonthsNoOverflow(1);
             }
 
-            dd($months);
+            //dd($months);
 
             /* get year */
             $year = Carbon::now()->year;
