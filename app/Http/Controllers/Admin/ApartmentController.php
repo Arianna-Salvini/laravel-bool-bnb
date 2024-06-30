@@ -29,14 +29,8 @@ class ApartmentController extends Controller
         // dd(Auth::user());
 
         $apartments = Apartment::where('user_id', $user->id)->orderByDesc('id')->get();
-        //$apartments = Apartment::with('user')->get();
-        //  $userApartmentCount = auth()->user()->apartments()->count();
-        $userApartmentCount = $apartments->count();
-        return view('admin.apartments.index', compact('apartments', 'userApartmentCount'));
 
-        // dd($apartments);
-
-        //return view('admin.apartments.index', compact('apartments'));
+        return view('admin.apartments.index', compact('apartments'));
     }
 
     /**
@@ -89,7 +83,7 @@ class ApartmentController extends Controller
 
             /* create api url */
             /* $api_url = $base_api.'countryCode='.$country_code.'&streetNumber='.$street_number.'&streetName='.$address.'&municipality='.$city.'&postalCode='.$zip_code.'&view=Unified&key='.$api_key; */
-            $api_url = $base_api . $address . '.json?storeResult=false&view=Unified&key=' . $api_key;
+            $api_url = $base_api.$address.'.json?storeResult=false&view=Unified&key='.$api_key;
 
             /* save coordinates */
             /* $coordinates = json_decode(file_get_contents($api_url))->results[0]->position; */
@@ -147,8 +141,9 @@ class ApartmentController extends Controller
         /* get months array */
         /* $months = [
             'January', 'February', 'March', 'April', 'May',
-            'June', 'July', 'August', 'September', 'October', 'November', 'December'
-        ]; */
+
+            'June', 'July', 'August', 'September', 'October', 'November', 'December',
+        ];*/
 
         if ($requestedPeriod === 'last_12_months') {
             $months = [];
@@ -161,7 +156,6 @@ class ApartmentController extends Controller
 
             /* get year */
             $year = Carbon::now()->year;
-
 
             /* MSG */
             /* init msg counter */
@@ -190,8 +184,6 @@ class ApartmentController extends Controller
             //dd($msgCounter);
             $msgNumber = array_values($msgCounter);
             //dd($msgNumber);
-
-
 
             /* VIEWS */
             /* get views */
@@ -314,7 +306,7 @@ class ApartmentController extends Controller
 
             /* create api url */
             //$api_url = $base_api . $address . '.json?storeResult=false&view=Unified&key=' . $api_key;
-            $api_url = $base_api . $address . '.json?storeResult=false&countrySet=IT&view=Unified&key=' . $api_key;
+            $api_url = $base_api.$address.'.json?storeResult=false&countrySet=IT&view=Unified&key='.$api_key;
 
             /* save coordinates */
 
