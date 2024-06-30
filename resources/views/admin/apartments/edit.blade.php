@@ -4,7 +4,7 @@
     <div class="container-md py-5">
         <div class="bg-dark text-white py-3 rounded-5 d-flex align-items-center mb-5">
             <div class="container d-flex justify-content-between align-items-center position-relative">
-                <h1>Edit your Apartment</h1>
+                <h1 class="ps-3">Edit your Apartment</h1>
                 <img src="https://i.ibb.co/gDbnBwQ/01.png" class="position-absolute img-fluid image-banner" width="200"
                     alt="">
                 {{-- TODO edit the image maybe something about tools for edit, ask Cascone --}}
