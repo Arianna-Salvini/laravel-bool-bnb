@@ -12,6 +12,7 @@ use App\Models\Sponsorship;
 use App\Models\Statistic;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -29,9 +30,9 @@ class ApartmentController extends Controller
 
         $apartments = Apartment::where('user_id', $user->id)->orderByDesc('id')->get();
         //$apartments = Apartment::with('user')->get();
-      //  $userApartmentCount = auth()->user()->apartments()->count();
-    $userApartmentCount = $apartments->count();
- return view('admin.apartments.index', compact('apartments', 'userApartmentCount'));
+        //  $userApartmentCount = auth()->user()->apartments()->count();
+        $userApartmentCount = $apartments->count();
+        return view('admin.apartments.index', compact('apartments', 'userApartmentCount'));
 
         // dd($apartments);
 
@@ -140,11 +141,20 @@ class ApartmentController extends Controller
         /* get apartment id */
         $apartment_id = $apartment->id;
 
+        $lastYear = Carbon::now()->subMonths(11);
+
+
         /* get months array */
-        $months = [
+        /* $months = [
             'January', 'February', 'March', 'April', 'May',
             'June', 'July', 'August', 'September', 'October', 'November', 'December'
-        ];
+        ]; */
+
+        $months = [];
+        for ($i = 0; $i < 12; $i++) {
+            $months[] = $lastYear->format('F');
+            $lastYear->addMonth();
+        }
 
         /* get year */
         $year = Carbon::now()->year;
@@ -157,6 +167,7 @@ class ApartmentController extends Controller
         /* get messages */
         $messages = Message::select('created_at')
             ->where('apartment_id', $apartment_id)
+            ->where('created_at', '>=', Carbon::now()->subMonths(11))
             ->get();
 
         /* I need an assoc array where msg count starts from zero*/
@@ -181,7 +192,7 @@ class ApartmentController extends Controller
 
         /* VIEWS */
         /* get views */
-        $views = Statistic::select('created_at')->where('apartment_id', $apartment->id)->get();
+        $views = Statistic::select('created_at')->where('apartment_id', $apartment->id)->where('created_at', '>=', Carbon::now()->subMonths(11))->get();
 
         /* same as messages */
         $viewsCounter = [];
@@ -196,7 +207,7 @@ class ApartmentController extends Controller
         }
         $viewsNumber = array_values($viewsCounter);
 
-        return view('admin.apartments.show', compact('apartment', 'msgNumber', 'viewsNumber'));
+        return view('admin.apartments.show', compact('apartment', 'msgNumber', 'viewsNumber', 'months'));
     }
 
     /**

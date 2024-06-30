@@ -251,9 +251,7 @@
 
             // inserisco i dati per visualizzare il grafico
             const messagesData = {
-                labels: ['January', 'February', 'March', 'April', 'May',
-                    'June', 'July', 'August', 'September', 'October', 'November', 'December'
-                ],
+                labels: {!! json_encode($months) !!},
                 datasets: [{
                     label: 'Messagges',
                     data: {!! json_encode($msgNumber) !!},
@@ -309,9 +307,7 @@
 
             // inserisco i dati per visualizzare il grafico
             const viewsData = {
-                labels: ['January', 'February', 'March', 'April', 'May',
-                    'June', 'July', 'August', 'September', 'October', 'November', 'December'
-                ],
+                labels: {!! json_encode($months) !!},
                 datasets: [{
                     label: 'Views',
                     data: {!! json_encode($viewsNumber) !!},
