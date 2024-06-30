@@ -11,3 +11,17 @@
 @use './components/headers.scss';
 @use './components/buttons.scss';
 @use './components/forms.scss';
+
+.fa-circle-notch {
+    animation: rotate 1s infinite linear;
+
+    @keyframes rotate {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+}
