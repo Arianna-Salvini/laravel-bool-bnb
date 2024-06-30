@@ -52,7 +52,7 @@
                             </div>
 
                             <div class="mb-0">
-                                <button type="submit" class="btn btn-principal w-100">
+                                <button type="submit" class="btn btn-principal w-100" disabled>
                                     {{ __('Login') }}
                                 </button>
                             </div>
