@@ -183,6 +183,16 @@
 
 
         {{-- Charts --}}
+        <form action="{{ route('admin.apartments.show', ['apartment' => $apartment]) }}" method="get">
+            <label for="period">Select a period:</label>
+            <select name="period" id="period">
+                <option value="2024" {{ $requestedPeriod === 'current_year' ? 'selected' : '' }}>2024
+                </option>
+                <option value="last_12_months" {{ $requestedPeriod === 'last_12_months' ? 'selected' : '' }}>
+                    Last 12 months</option>
+            </select>
+            <button type="submit">Show statistics</button>
+        </form>
         {{-- messages chat --}}
         <div class="row">
             <h3 class="statistic_title"> Statistic</h3>

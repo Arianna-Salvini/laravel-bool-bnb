@@ -131,7 +131,7 @@ class ApartmentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Apartment $apartment)
+    public function show(Apartment $apartment, Request $request)
     {
         // User auth
         if ($apartment->user_id !== Auth::id()) {
@@ -143,71 +143,132 @@ class ApartmentController extends Controller
 
         $lastYear = Carbon::now()->subMonths(11);
 
-
+        $requestedPeriod = $request->input('period');
         /* get months array */
         /* $months = [
             'January', 'February', 'March', 'April', 'May',
             'June', 'July', 'August', 'September', 'October', 'November', 'December'
         ]; */
 
-        $months = [];
-        for ($i = 0; $i < 12; $i++) {
-            $months[] = $lastYear->format('F');
-            $lastYear->addMonth();
-        }
-
-        /* get year */
-        $year = Carbon::now()->year;
-
-
-        /* MSG */
-        /* init msg counter */
-        $msgCounter = [];
-
-        /* get messages */
-        $messages = Message::select('created_at')
-            ->where('apartment_id', $apartment_id)
-            ->where('created_at', '>=', Carbon::now()->subMonths(11))
-            ->get();
-
-        /* I need an assoc array where msg count starts from zero*/
-        foreach ($months as $month) {
-            $msgCounter[$month] = 0;
-        }
-
-        /* for each msg I need to get the date and get the month name, counter++ if month is present as key in assoc array */
-        foreach ($messages as $message) {
-            $month = Carbon::parse($message->created_at)->format('F');
-
-            if (isset($msgCounter[$month])) {
-                $msgCounter[$month]++;
+        if ($requestedPeriod === 'last_12_months') {
+            $months = [];
+            for ($i = 0; $i < 12; $i++) {
+                $months[] = $lastYear->format('F');
+                $lastYear->addMonth();
             }
-        }
 
-        //dd($msgCounter);
-        $msgNumber = array_values($msgCounter);
-        //dd($msgNumber);
+            dd($months);
+
+            /* get year */
+            $year = Carbon::now()->year;
 
 
+            /* MSG */
+            /* init msg counter */
+            $msgCounter = [];
 
-        /* VIEWS */
-        /* get views */
-        $views = Statistic::select('created_at')->where('apartment_id', $apartment->id)->where('created_at', '>=', Carbon::now()->subMonths(11))->get();
+            /* get messages */
+            $messages = Message::select('created_at')
+                ->where('apartment_id', $apartment_id)
+                ->where('created_at', '>=', Carbon::now()->subMonths(11))
+                ->get();
 
-        /* same as messages */
-        $viewsCounter = [];
-        foreach ($months as $month) {
-            $viewsCounter[$month] = 0;
-        }
-        foreach ($views as $view) {
-            $month = Carbon::parse($view->created_at)->format('F');
-            if (isset($viewsCounter[$month])) {
-                $viewsCounter[$month]++;
+            /* I need an assoc array where msg count starts from zero*/
+            foreach ($months as $month) {
+                $msgCounter[$month] = 0;
             }
-        }
-        $viewsNumber = array_values($viewsCounter);
 
-        return view('admin.apartments.show', compact('apartment', 'msgNumber', 'viewsNumber', 'months'));
+            /* for each msg I need to get the date and get the month name, counter++ if month is present as key in assoc array */
+            foreach ($messages as $message) {
+                $month = Carbon::parse($message->created_at)->format('F');
+
+                if (isset($msgCounter[$month])) {
+                    $msgCounter[$month]++;
+                }
+            }
+
+            //dd($msgCounter);
+            $msgNumber = array_values($msgCounter);
+            //dd($msgNumber);
+
+
+
+            /* VIEWS */
+            /* get views */
+            $views = Statistic::select('created_at')->where('apartment_id', $apartment->id)->where('created_at', '>=', Carbon::now()->subMonths(11))->get();
+
+            /* same as messages */
+            $viewsCounter = [];
+            foreach ($months as $month) {
+                $viewsCounter[$month] = 0;
+            }
+            foreach ($views as $view) {
+                $month = Carbon::parse($view->created_at)->format('F');
+                if (isset($viewsCounter[$month])) {
+                    $viewsCounter[$month]++;
+                }
+            }
+            $viewsNumber = array_values($viewsCounter);
+        } else {
+            /* get months array */
+            $months = [
+                'January', 'February', 'March', 'April', 'May',
+                'June', 'July', 'August', 'September', 'October', 'November', 'December'
+            ];
+
+            /* get year */
+            $year = Carbon::now()->year;
+
+
+            /* MSG */
+            /* init msg counter */
+            $msgCounter = [];
+
+            /* get messages */
+            $messages = Message::select('created_at')
+                ->where('apartment_id', $apartment_id)
+                ->whereYear('created_at', 2024)
+                ->get();
+
+            /* I need an assoc array where msg count starts from zero*/
+            foreach ($months as $month) {
+                $msgCounter[$month] = 0;
+            }
+
+            /* for each msg I need to get the date and get the month name, counter++ if month is present as key in assoc array */
+            foreach ($messages as $message) {
+                $month = Carbon::parse($message->created_at)->format('F');
+
+                if (isset($msgCounter[$month])) {
+                    $msgCounter[$month]++;
+                }
+            }
+
+            //dd($msgCounter);
+            $msgNumber = array_values($msgCounter);
+            //dd($msgNumber);
+
+
+
+            /* VIEWS */
+            /* get views */
+            $views = Statistic::select('created_at')->where('apartment_id', $apartment->id)->whereYear('created_at', 2024)->get();
+
+            /* same as messages */
+            $viewsCounter = [];
+            foreach ($months as $month) {
+                $viewsCounter[$month] = 0;
+            }
+            foreach ($views as $view) {
+                $month = Carbon::parse($view->created_at)->format('F');
+                if (isset($viewsCounter[$month])) {
+                    $viewsCounter[$month]++;
+                }
+            }
+            $viewsNumber = array_values($viewsCounter);
+        }
+
+        return view('admin.apartments.show', compact('apartment', 'msgNumber', 'viewsNumber', 'months', 'requestedPeriod'));
     }
 
     /**
