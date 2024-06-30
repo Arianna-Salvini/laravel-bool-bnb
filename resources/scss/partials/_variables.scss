@@ -41,9 +41,12 @@ $main-color: #45C2B1;
 
 
 // CHART CANVAS
-.statistic_title {
-    margin: 1rem 1rem -1.5rem;
-    color: #45C2B1;
+.stats {
+    /* margin: 1rem 1rem -1.5rem; */
+
+    .statistic_title {
+        color: #45C2B1;
+    }
 }
 
 #messagesChart,

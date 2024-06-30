@@ -182,10 +182,20 @@
         </div>
 
 
-        {{-- Charts --}}
         {{-- messages chat --}}
-        <div class="row">
-            <h3 class="statistic_title"> Statistic</h3>
+        <div class="stats d-flex justify-content-between align-items-center mt-5">
+            <h3 class="statistic_title m-0"> Statistic</h3>
+            {{-- Charts --}}
+            <form action="{{ route('admin.apartments.show', ['apartment' => $apartment]) }}" method="get"
+                class="d-flex align-items-center gap-2">
+                <select name="period" id="period" class="form-select">
+                    <option value="2024" {{ $requestedPeriod === 'current_year' ? 'selected' : '' }}>2024
+                    </option>
+                    <option value="last_12_months" {{ $requestedPeriod === 'last_12_months' ? 'selected' : '' }}>
+                        Last 12 months</option>
+                </select>
+                <button type="submit" class="btn btn-principal">Show</button>
+            </form>
         </div>
         <div class="row m-0">
             <div class="col-xl-6">
@@ -251,9 +261,7 @@
 
             // inserisco i dati per visualizzare il grafico
             const messagesData = {
-                labels: ['January', 'February', 'March', 'April', 'May',
-                    'June', 'July', 'August', 'September', 'October', 'November', 'December'
-                ],
+                labels: {!! json_encode($months) !!},
                 datasets: [{
                     label: 'Messagges',
                     data: {!! json_encode($msgNumber) !!},
@@ -309,9 +317,7 @@
 
             // inserisco i dati per visualizzare il grafico
             const viewsData = {
-                labels: ['January', 'February', 'March', 'April', 'May',
-                    'June', 'July', 'August', 'September', 'October', 'November', 'December'
-                ],
+                labels: {!! json_encode($months) !!},
                 datasets: [{
                     label: 'Views',
                     data: {!! json_encode($viewsNumber) !!},
