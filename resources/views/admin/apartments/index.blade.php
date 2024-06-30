@@ -6,8 +6,13 @@
 
         @if ($apartments->count() >= 1)
             <div class="d-flex justify-content-between my-3 align-items-center">
-                <h2>My Apartments <span class="fs-4">({{ count($apartments) }})</span></h2>
-
+                <div>
+                    <h2>My Apartments </h2>
+                    <div class="mb-1">
+                        <span style="color: #6c6c6c; font-size: 1.2rem; font-style: italic;">Your total apartments:
+                            <span class="fs-5">{{ count($apartments) }}</span>
+                    </div>
+                </div>
                 <a href="{{ route('admin.apartments.create') }}" class="btn btn-principal d-none d-md-inline-block">Insert New
                     Apartment</a>
                 <a href="{{ route('admin.apartments.create') }}" class="btn btn-principal d-inline-block d-md-none">
@@ -15,10 +20,7 @@
                 </a>
             </div>
         @endif
-        <div class="mb-1">
-            <span style="color: #6c6c6c; font-size: 1rem; font-style: italic;">Your apartments online:
-                {{ $userApartmentCount }}</span>
-        </div>
+
         <section id="apartment" class="pb-5">
             @if ($apartments->count() >= 1)
                 <table class="table table-hover">
@@ -112,7 +114,7 @@
                                         class="btn sponsor-me">
                                         <div>
                                             <i class="fa-solid fa-arrow-trend-up d-xl-none p-1"></i>
-                                            <span class="text-fluid d-none d-xl-inline">Sponsor me</span>
+                                            <span class="text-fluid d-none d-xl-inline sponsor_me">Sponsor me</span>
                                         </div>
                                     </a>
                                 </td>
