@@ -14,7 +14,10 @@
                 </a>
             </div>
         @endif
-
+        <div class="mb-1">
+            <span style="color: #6c6c6c; font-size: 1rem; font-style: italic;">Your apartments online:
+                {{ $userApartmentCount }}</span>
+        </div>
         <section id="apartment" class="pb-5">
             @if ($apartments->count() >= 1)
                 <table class="table table-hover">

@@ -28,10 +28,14 @@ class ApartmentController extends Controller
         // dd(Auth::user());
 
         $apartments = Apartment::where('user_id', $user->id)->orderByDesc('id')->get();
+        //$apartments = Apartment::with('user')->get();
+      //  $userApartmentCount = auth()->user()->apartments()->count();
+    $userApartmentCount = $apartments->count();
+ return view('admin.apartments.index', compact('apartments', 'userApartmentCount'));
 
         // dd($apartments);
 
-        return view('admin.apartments.index', compact('apartments'));
+        //return view('admin.apartments.index', compact('apartments'));
     }
 
     /**
