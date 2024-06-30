@@ -46,8 +46,29 @@
                     </li>
                 @endif
             @else
-                <div id="user" class="auth" v-pre>
+                <div id="user" class="auth d-none d-md-block" v-pre>
                     {{ Auth::user()->name }} {{ Auth::user()->lastname }}
+                </div>
+
+                <div class="profile d-md-none">
+                    <ul class="list-unstyled">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('profile') }}">
+                                {{ __('Profile') }}
+                            </a>
+                        </li>
+                        {{-- logout --}}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+
+                        </li>
+                    </ul>
                 </div>
 
 
