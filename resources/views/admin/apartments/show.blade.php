@@ -32,10 +32,11 @@
         <div class="row d-flex">
             <div class="col-lg-8 mb-4">
 
-                <h2 class="">{{ $apartment->title }}</h2>
+                <h2 class="pb-3 ps-1">{{ $apartment->title }}</h2>
 
 
-                <div class="card position-relative overflow-hidden rounded-5">
+                <div class="card position-relative
+                    overflow-hidden rounded-5">
                     @if ($apartment->image)
                         <div class="card-img-overlay d-flex align-items-center p-0">
                             <div class="w-100 h-100 bg-dark bg-opacity-25 p-4">
