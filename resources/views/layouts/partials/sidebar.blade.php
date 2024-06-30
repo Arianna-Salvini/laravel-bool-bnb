@@ -9,21 +9,21 @@
     {{-- opt --}}
     <ul class="navbar-nav mb-auto mt-5 pt-5 d-flex gap-2">
         {{-- dashboard --}}
-        <li class="nav-item px-4 ">
-            <a class="nav-link d-flex gap-3 align-items-center" href="{{ url('admin') }}">
+        <li class="nav-item px-4 {{ Route::currentRouteName() == 'admin.dashboard' ? 'active-opt' : '' }}">
+            <a class="nav-link d-flex gap-3 align-items-center" href="{{ route('admin.dashboard') }}">
                 <i class="fa-solid fa-house"></i>
                 {{ __('Dashboard') }}
             </a>
         </li>
         {{-- apartments --}}
-        <li class="nav-item px-4">
+        <li class="nav-item px-4 {{ Route::currentRouteName() == 'admin.apartments.index' ? 'active-opt' : '' }}">
             <a class="nav-link d-flex gap-3 align-items-center" href="{{ route('admin.apartments.index') }}">
                 <i class="fa-solid fa-building-user"></i>
                 {{ __('Apartments') }}
             </a>
         </li>
         {{-- messages --}}
-        <li class="nav-item px-4">
+        <li class="nav-item px-4 {{ Route::currentRouteName() == 'admin.messages.index' ? 'active-opt' : '' }}">
             <a class="nav-link d-flex gap-3 align-items-center" href="{{ route('admin.messages.index') }}">
                 <i class="fa-solid fa-envelope"></i>
                 {{ __('Messages') }}
