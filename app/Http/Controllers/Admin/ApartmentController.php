@@ -154,7 +154,7 @@ class ApartmentController extends Controller
             $months = [];
             for ($i = 0; $i < 12; $i++) {
                 $months[] = $lastYear->format('F');
-                $lastYear->addMonth();
+                $lastYear->addMonthsNoOverflow(1);
             }
 
             dd($months);
