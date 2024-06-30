@@ -14,7 +14,7 @@ class StatisticSeeder extends Seeder
     public function run(): void
     {
 
-        for ($i = 0; $i < 250; $i++) {
+        for ($i = 0; $i < 600; $i++) {
             $ip_address = $this->randomIp();
             $date = $this->randomDate();
 
@@ -34,7 +34,7 @@ class StatisticSeeder extends Seeder
 
     private function randomDate()
     {
-        $start_date = '2024-01-01 00:00:00';
+        $start_date = '2023-05-01 00:00:00';
         $end_date = '2024-06-29 23:59:59';
         $randomDateInGivenRange = mt_rand(strtotime($start_date), strtotime($end_date));
         return date('Y-m-d H:i:s', $randomDateInGivenRange);
