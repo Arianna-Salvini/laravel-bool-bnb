@@ -8,77 +8,88 @@
             </h4>
         </div>
 
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th class="">Apartment</th>
-                    <th class="">From</th>
-                    <th class="">Sent at</th>
-                    <th class="text-center"></th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse ($messages as $message)
-                    <tr class="align-middle">
-                        <td>
-                            <div class="image-title d-flex align-items-center gap-2">
-                                <div class="image d-none d-lg-block">
-                                    @if (Str::startsWith($message->apartment->image, 'http'))
-                                        <img src="{{ $message->apartment->image }}" alt="" width="80">
-                                    @elseif(Str::startsWith($message->apartment->image, 'uploads/'))
-                                        <img src="{{ asset('storage/' . $message->apartment->image) }}" alt=""
-                                            width="80">
-                                    @elseif(Str::startsWith($message->apartment->image, 'apartments/'))
-                                        <img src="{{ asset($message->apartment->image) }}" alt="" width="80">
-                                    @else
-                                        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png"
-                                            alt="" width="80" class="border rounded">
-                                    @endif
-                                </div>
-                                <div class="title">
-                                    {{ $message->apartment->title }}
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <strong>{{ $message->name }} {{ $message->lastname }} </strong><br>
-                            {{ $message->sender_email }}
-                        </td>
-                        <td>
-                            <div class="date">
-                                {{ \Carbon\Carbon::parse($message->created_at)->format('d F Y') }}
-                            </div>
-                            <div class="time">
-                                {{ \Carbon\Carbon::parse($message->created_at)->format('H:i') }}
-                            </div>
-                        </td>
-                        <td>
-
-                            <button class="btn btn-principal px-2 py-1" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#msg-{{ $message->id }}" aria-expanded="false"
-                                aria-controls="msg-{{ $message->id }}">
-                                <span class="d-none d-xl-inline-block">Read</span>
-                                <span>
-                                    <i class="fa-solid fa-envelope-circle-check d-xl-none"></i>
-                                </span>
-                            </button>
-
-                        </td>
-                    </tr>
-                    <tr class="collapse" id="msg-{{ $message->id }}">
-                        <td colspan="4">
-                            <div class="card card-body border-0 ps-0">
-                                {{ $message->content }}
-                            </div>
-                        </td>
-                    </tr>
-                @empty
+        @if (count($messages) >= 1)
+            <table class="table table-sm table-hover">
+                <thead>
                     <tr>
-                        <td>no messages</td>
+                        <th class="">Apartment</th>
+                        <th class="">From</th>
+                        <th class="d-none d-sm-table-cell">Sent at</th>
+                        <th class="text-center"></th>
                     </tr>
-                @endforelse
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach ($messages as $message)
+                        <tr class="align-middle">
+                            <td>
+                                <div class="image-title d-flex align-items-center gap-2">
+                                    <div class="image d-none d-lg-block">
+                                        @if (Str::startsWith($message->apartment->image, 'http'))
+                                            <img src="{{ $message->apartment->image }}" alt="" width="80">
+                                        @elseif(Str::startsWith($message->apartment->image, 'uploads/'))
+                                            <img src="{{ asset('storage/' . $message->apartment->image) }}" alt=""
+                                                width="80">
+                                        @elseif(Str::startsWith($message->apartment->image, 'apartments/'))
+                                            <img src="{{ asset($message->apartment->image) }}" alt=""
+                                                width="80">
+                                        @else
+                                            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png"
+                                                alt="" width="80" class="border rounded">
+                                        @endif
+                                    </div>
+                                    <div class="title">
+                                        {{ $message->apartment->title }}
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <strong>{{ $message->name }} {{ $message->lastname }} </strong><br>
+                                {{ $message->sender_email }}
+                            </td>
+                            <td class="d-none d-sm-table-cell">
+                                <div class="date">
+                                    {{ \Carbon\Carbon::parse($message->created_at)->format('d F Y') }}
+                                </div>
+                                <div class="time">
+                                    {{ \Carbon\Carbon::parse($message->created_at)->format('H:i') }}
+                                </div>
+                            </td>
+                            <td>
+
+                                <button class="btn btn-principal px-2 py-1" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#msg-{{ $message->id }}" aria-expanded="false"
+                                    aria-controls="msg-{{ $message->id }}">
+                                    <span class="d-none d-xl-inline-block">Read</span>
+                                    <span>
+                                        <i class="fa-solid fa-envelope-circle-check d-xl-none"></i>
+                                    </span>
+                                </button>
+
+                            </td>
+                        </tr>
+                        <tr class="collapse" id="msg-{{ $message->id }}">
+                            <td colspan="4">
+                                <div class="card card-body border-0 ps-0">
+                                    <div class="d-flex gap-2 d-sm-none pb-2">
+                                        <strong>Sent at:</strong>
+                                        <div class="date">
+                                            {{ \Carbon\Carbon::parse($message->created_at)->format('d F Y') }}
+                                        </div>
+                                        <div class="time">
+                                            {{ \Carbon\Carbon::parse($message->created_at)->format('H:i') }}
+                                        </div>
+                                    </div>
+                                    {{ $message->content }}
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        @else
+            <div class="no-msg-img w-100">
+                <img src="/img/nomsg.jpg" alt="no-msg-image" class="w-50 h-50 m-auto object-fit-contain d-block">
+            </div>
+        @endif
 
 
 
