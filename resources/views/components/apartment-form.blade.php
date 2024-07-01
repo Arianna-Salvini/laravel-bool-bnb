@@ -217,7 +217,7 @@
 
         {{-- Services --}}
         <div class="services mb-3">
-            <div class="pb-2"><strong>Services</strong></div>
+            <div class="pb-2"><strong>Services<span class="text-danger"> *</span></strong></div>
             <div id="services_error" class="text-danger pb-2"></div>
             <div class="d-flex gap-2 flex-wrap">
 
@@ -256,7 +256,8 @@
             @error('services')
                 <div class="text-danger py-2">{{ $message }}</div>
             @enderror
-            <small class="pt-3 d-block">Check at least one service of your apartment</small>
+            <small class="pt-3 d-block"><span class="text-danger fw-bold">*</span> Check at least one service of your
+                apartment</small>
         </div>
 
         {{-- Description --}}
