@@ -60,3 +60,9 @@ $main-color: #45C2B1;
     padding: 1rem;
     border-radius: 1.2rem;
 }
+
+.content-wrapper {
+    @media(max-width: 768px) {
+        padding-bottom: 5rem;
+    }
+}
