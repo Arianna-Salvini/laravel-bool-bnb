@@ -8,7 +8,7 @@
                     class="img-fluid rounded-5" style="height: 100vh; object-fit: cover;">
             </div>
             <div class="col-lg-6 d-flex align-items-center justify-content-center ">
-                <div class="card shadow-lg rounded-5">
+                <div class="card shadow-lg rounded-5 w-100 w-md-75"">
                     <div class="card-header rounded-5 bg-dark text-white text-center">
                         <h4>{{ __('Register') }}</h4>
                     </div>
