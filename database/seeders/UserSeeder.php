@@ -30,9 +30,9 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('Ciao123?'),
             ],
             [
-                'name' => 'Elena',
-                'lastname' => 'Fusco',
-                'email' => 'elena.fusco@gmail.com',
+                'name' => 'Arianna',
+                'lastname' => 'Salvini',
+                'email' => 'arianna.salvini@gmail.com',
                 'birth_date' => '1993-06-21',
                 'password' => Hash::make('Ciao123?'),
             ],
