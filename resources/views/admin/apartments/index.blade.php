@@ -9,7 +9,7 @@
                 <div>
                     <h2>My Apartments </h2>
                     <div class="mb-1">
-                        <span style="color: #6c6c6c; font-size: 1.2rem; font-style: italic;">Your total apartments:
+                        <span style="color: #6c6c6c; font-size: 1.2rem; font-style: italic;">Total apartments:
                             <span class="fs-5">{{ count($apartments) }}</span>
                     </div>
                 </div>

@@ -21,7 +21,7 @@
 
             <h3>Your info</h3>
             <div class="name">Name: {{ Auth::user()->name }}</div>
-            <div class="lastname">Lastname: {{ Auth::user()->name }}</div>
+            <div class="lastname">Lastname: {{ Auth::user()->lastname }}</div>
             <div class="email">Email: {{ Auth::user()->email }}</div>
 
 
